@@ -19,7 +19,8 @@ import { MatIconModule } from '@angular/material/icon'; //?
 import { MatListModule } from '@angular/material/list'; //?
 import { MatButtonModule } from '@angular/material/button';
 import { AboutMeComponent } from './about-me/about-me.component';
-import { FacebookComponent } from './facebook/facebook.component'; //?
+import { FacebookComponent } from './facebook/facebook.component';
+import { TestCompComponent } from './test-comp/test-comp.component'; //?
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { FacebookComponent } from './facebook/facebook.component'; //?
     HomeComponent,
     NavBarComponent,
     AboutMeComponent,
-    FacebookComponent
+    FacebookComponent,
+    TestCompComponent
   ],
   imports: [
     BrowserModule,

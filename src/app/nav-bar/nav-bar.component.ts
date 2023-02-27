@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { MatDrawerContainer, MatSidenav } from '@angular/material/sidenav';
+import { Component } from '@angular/core'; //imported HostListener for clicking out of menu event
+// import { MatDrawerContainer, MatSidenav } from '@angular/material/sidenav';
 
 /** @title Sidenav with custom escape and backdrop click behavior */
 @Component({
@@ -10,3 +10,5 @@ import { MatDrawerContainer, MatSidenav } from '@angular/material/sidenav';
 export class NavBarComponent {
   isOpen: boolean = false;
 }
+
+
