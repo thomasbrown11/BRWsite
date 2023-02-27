@@ -1,0 +1,38 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <!-- toggle isOpen nav-bar state when clicked -->
+    <button mat-icon-button (click)="isOpen = !isOpen">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span></span>
+    <a routerLink="/home">
+      <h1 [routerLink]="'home'">Brier-Rose Werner</h1>
+      <!-- placehold insert custom log -->
+      <!-- <img src="../../assets/f_logo_RGB-Blue_250.png" alt="Facebook" width="20" height="20"> -->
+    </a>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+
+<mat-sidenav-container *ngIf="isOpen">
+  <!-- #sidenav is a temple variable you can use to map the icon above -->
+  <mat-sidenav opened="true">
+    <mat-nav-list>
+      <!-- <mat-list-item routerLink="/home"><mat-icon>home</mat-icon><a routerLink="home">Home</a></mat-list-item> -->
+      <mat-list-item [routerLink]="'home'"><mat-icon>home</mat-icon>Home</mat-list-item>
+      <mat-list-item [routerLink]="'about'"><mat-icon>account_box</mat-icon>About Me</mat-list-item>
+      <mat-list-item [routerLink]="'blownglass'"><mat-icon>hourglass_full</mat-icon>Blown Glass</mat-list-item>
+      <mat-list-item [routerLink]="'lampwork'"><mat-icon>highlight</mat-icon>Lamp Work</mat-list-item>
+      <mat-list-item [routerLink]="'instagram'"><img src="../assets/Instagram_Glyph_Gradient.png" alt="Instagram"
+          width="20" height="20">Instagram</mat-list-item>
+      <mat-list-item [routerLink]="'facebook'"><img src="../../assets/f_logo_RGB-Blue_250.png" alt="Facebook" width="20"
+          height="20">Facebook Market</mat-list-item>
+      <mat-list-item [routerLink]="'contact'"><mat-icon>contact_support</mat-icon>Contact</mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <div style="height: 88vh;">
+    <router-outlet></router-outlet>
+  </div>
+
+</mat-sidenav-container>
