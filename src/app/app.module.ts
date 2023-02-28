@@ -12,6 +12,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ContactService } from './contact.service';
 //Angular Matierals Imported components 
 import { CdkMenuModule } from '@angular/cdk/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -41,6 +43,7 @@ import { TestCompComponent } from './test-comp/test-comp.component'; //?
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     CdkMenuModule,
     BrowserAnimationsModule,
     MatSidenavModule,
@@ -49,7 +52,10 @@ import { TestCompComponent } from './test-comp/test-comp.component'; //?
     MatListModule,
     MatButtonModule
   ],
-  providers: [],
+  providers: [
+    //do you need this specified?
+    ContactService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -7,3 +7,11 @@ export class ContactProtoype {
     public phone?: string
   ) { }
 }
+
+export interface ContactPrototype {
+  name: string,
+  email: string,
+  message: string,
+  requestType: string,
+  phone?: string
+}
