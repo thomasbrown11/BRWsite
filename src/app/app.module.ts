@@ -11,6 +11,7 @@ import { InstagramComponent } from './instagram/instagram.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { FormsModule } from '@angular/forms';
 //Angular Matierals Imported components 
 import { CdkMenuModule } from '@angular/cdk/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -39,6 +40,7 @@ import { TestCompComponent } from './test-comp/test-comp.component'; //?
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     CdkMenuModule,
     BrowserAnimationsModule,
     MatSidenavModule,

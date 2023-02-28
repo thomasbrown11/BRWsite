@@ -1,0 +1,12 @@
+//style form elements that are required and valid (currently meet requirements)
+.ng-valid[required],
+.ng-valid.required {
+  border-left: 5px solid #42A948;
+  /* green */
+}
+
+//style any (currently invalid form elements
+.ng-invalid:not(form) {
+  border-left: 5px solid #a94442;
+  /* red */
+}

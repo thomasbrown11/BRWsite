@@ -1,1 +1,36 @@
-<h2>Contact Me</h2>
+<h1>Contact Me</h1>
+<form #contactForm="ngForm">
+  <!-- this is to see the dynamic data changes in the form.. delete when done -->
+  {{model | json}}
+  <div class="form-group">
+    <label for="name">Name</label>
+    <br>
+    <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name">
+  </div>
+
+  <div class="form-group">
+    <label for="requstType">Request Type</label>
+    <br>
+    <select class="form-control" id="requestType" required [(ngModel)]="model.requestType" name="requestType">
+      <option *ngFor="let req of requestType" [value]="req">{{req}}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <br>
+    <input type="text" class="form-control" id="email" required [(ngModel)]="model.email" name="email">
+  </div>
+
+  <div class="form-group">
+    <label for="phone">Phone Number</label>
+    <br>
+    <input type="text" class="form-control" id="phone" [(ngModel)]="model.phone" name="phone">
+  </div>
+
+  <div class="form-group">
+    <label for="message">Message</label>
+    <br>
+    <input type="text" class="form-control" id="message" required [(ngModel)]="model.message" name="message">
+  </div>
+</form>
