@@ -1,7 +1,19 @@
 <h1>Contact Me</h1>
 
 <div class="formBox" [hidden]="submitted">
-  <form #contactForm="ngForm" (ngSubmit)="onSubmit()">
+  <!-- allows you to send to a sheet and then emails with proper body -->
+  <!-- <form #contactForm="ngForm" (ngSubmit)="onSubmit(model)" method="POST" action="https://mailthis.to/tb5a"
+    enctype="multipart/form-data" #form> -->
+  <!-- Google version: allows you to send to a sheet and then emails with proper body -->
+
+  <!-- UNCOMMENT THIS ONE -->
+  <!-- <form #contactForm="ngForm" (ngSubmit)="onSubmit(model)" method="POST"
+    action="https://script.google.com/macros/s/AKfycbzu4XW3jks5fxn5GLnTCfKjSx7PKv9HPHWx7b42lE4Nq8ScUMXZPCSc-eyXvCe0cXq12w/exec"
+    enctype="multipart/form-data" #form> -->
+
+  <!-- DELETE? -->
+  <form #contactForm="ngForm" (ngSubmit)="onSubmit(model)" method="POST" enctype="multipart/form-data" #form>
+    <!-- DETETE? -->
     <!-- this is to see the dynamic data changes in the form.. delete when done -->
     {{model | json}}
     <div class=" form-group">
@@ -25,12 +37,19 @@
     <div class="form-group">
       <label for="email">Email</label>
       <br>
-      <input type="text" #email='ngModel' class="form-control" id="email" required [(ngModel)]="model.email"
+      <input type="email" #email='ngModel' class="form-control" id="email" required [(ngModel)]="model.email"
         name="email">
       <div [hidden]="email.valid || email.pristine" class="alert-danger">
         Email is required
       </div>
     </div>
+
+    <!-- <div class="form-group">
+      <label for="listOpt">Join BRW Mail List</label>
+      <br>
+      <input type="checkbox" #listOpt='ngModel' class="form-control" id="listOpt" [(ngModel)]="model.listOpt"
+        value="listOpt">
+    </div> -->
 
     <div class="form-group">
       <label for="phone">Phone Number</label>
@@ -39,17 +58,38 @@
     </div>
 
     <div class="form-group">
+      <label for="upload">Upload File</label>
+      <br>
+      <input type="file" #upload='ngModel' class="form-control" id="upload" [(ngModel)]="model.upload" name="upload">
+    </div>
+
+    <div class="form-group">
       <label for="message">Message</label>
       <br>
-      <input type="text" #message='ngModel' class="form-control" id="message" required [(ngModel)]="model.message"
-        name="message">
+      <textarea type="text" #message='ngModel' class="form-control" id="message" required [(ngModel)]="model.message"
+        name="message"></textarea>
       <div [hidden]="message.valid || message.pristine" class="alert-danger">
         Please enter a message
       </div>
-      <br>
-      <br>
-      <button type="submit" class="btn btn-success" [disabled]="!contactForm.form.valid">Submit</button>
     </div>
+
+    <br>
+    <br>
+    <!-- UNCOMMENT -->
+    <!-- <button type="submit" class="btn btn-success" [disabled]="!contactForm.form.valid"
+      (click)="form.submit()">Submit</button> -->
+
+    <!-- DELETE? -->
+    <button type="submit" class="btn btn-success" [disabled]="!contactForm.form.valid">Submit</button>
+    <!-- DELETE? -->
+
+    <!-- testing mailthis.to api -->
+    <!-- Honeypot (to catch comment spam bots) -->
+    <!-- <input type="hidden" name="_honeypot" value=""> -->
+    <!-- Redirect to a page after recaptcha -->
+    <!-- <input type="hidden" name="_after" value="http://localhost:4200/home"> -->
+
+
   </form>
 </div>
 
