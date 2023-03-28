@@ -11,8 +11,6 @@
     action="https://script.google.com/macros/s/AKfycbzu4XW3jks5fxn5GLnTCfKjSx7PKv9HPHWx7b42lE4Nq8ScUMXZPCSc-eyXvCe0cXq12w/exec"
     enctype="multipart/form-data" #form> -->
 
-  <!-- checking for setup-->
-
   <!-- DELETE? -->
   <form #contactForm="ngForm" (ngSubmit)="onSubmit(model)" method="POST" enctype="multipart/form-data" #form>
     <!-- DETETE? -->
@@ -31,7 +29,7 @@
     <div class="form-group">
       <label for="requstType">Request Type</label>
       <br>
-      <select class="form-control" id="requestType" required [(ngModel)]="model.requestType" name="requestType">
+      <select class="form-control" id="requestType" required [(ngModel)]="model.subject" name="requestType">
         <option *ngFor="let req of requestType" [value]="req">{{req}}</option>
       </select>
     </div>

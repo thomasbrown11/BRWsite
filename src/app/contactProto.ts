@@ -1,9 +1,9 @@
-export class ContactProtoype {
+export class ContactObject {
   constructor(
     public name: string,
     public email: string,
     public message: string,
-    public requestType: string,
+    public subject: string,
     public phone?: string,
     public listOpt?: boolean,
     public upload?: any
@@ -13,8 +13,9 @@ export class ContactProtoype {
 export interface ContactPrototype {
   name: string,
   email: string,
-  optList?: boolean,
   message: string,
-  requestType: string,
-  phone?: string
+  subject: string, //you changed from reqType to help servic request
+  optList?: boolean,
+  phone?: string,
+  upload?: any
 }
