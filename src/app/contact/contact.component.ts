@@ -51,8 +51,11 @@ export class ContactComponent {
     this.isLoading = false;
   }
 
-
+  //clear all data for new request
   newRequest() {
+
+    this.submitted = false;
     this.model = new ContactObject('', '', '', '');
+    this.formData = new FormData()
   }
 }
