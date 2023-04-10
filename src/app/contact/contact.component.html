@@ -13,6 +13,7 @@
 
   <!-- DELETE? -->
   <form #contactForm="ngForm" (ngSubmit)="onSubmit(model)" method="POST" enctype="multipart/form-data" #form>
+    <!-- <form #contactForm="ngForm" (ngSubmit)="sendEmail($event)" method="POST" enctype="multipart/form-data" #form> -->
     <!-- DETETE? -->
     <!-- this is to see the dynamic data changes in the form.. delete when done -->
     {{model | json}}
@@ -58,9 +59,10 @@
     </div>
 
     <div class="form-group">
-      <label for="upload">Upload File</label>
+      <label for="fileInput">Upload File</label>
       <br>
-      <input type="file" #upload='ngModel' class="form-control" id="upload" [(ngModel)]="model.upload" name="upload">
+      <input type="file" #upload='ngModel' class="form-control" id="fileInput" [(ngModel)]="model.selectedFile"
+        name="file" (change)="onFileSelected($event)" multiple>
     </div>
 
     <div class="form-group">

@@ -4,18 +4,9 @@ export class ContactObject {
     public email: string,
     public message: string,
     public subject: string,
+    public file: any, //null | string blob? | File []?
     public phone?: string,
     public listOpt?: boolean,
-    public upload?: any
+    public selectedFile?: any,
   ) { }
-}
-
-export interface ContactPrototype {
-  name: string,
-  email: string,
-  message: string,
-  subject: string, //you changed from reqType to help servic request
-  optList?: boolean,
-  phone?: string,
-  upload?: any
 }

@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { ContactObject, ContactPrototype } from '../contactProto';
+import { ContactObject } from '../contactProto';
+import { ContactService } from '../contact.service';
 //deletable? testing
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
-
-import { ContactService } from '../contact.service';
 
 @Component({
   selector: 'app-contact',
@@ -14,7 +13,8 @@ export class ContactComponent {
   //requestType populates as subject in prototypes and service request
   requestType = ['Custom Order', 'Work Inquiry', 'Product Inquiry', 'Other']
   //fix the checkbox input? optList in ContactProtoype. boolean isn't the right way to reference.. Maybe leave for later
-  model: ContactPrototype = new ContactObject('Enter Name', 'jane@example.com', 'Leave your message here.', 'Custom Order', '555-555-5555', false);
+  //this auto-populates the first instantiation of the email page before filling... don't change- can push to formData
+  model: ContactObject = new ContactObject('Enter Name', 'jane@example.com', 'Leave your message here.', 'Custom Order', null, '555-555-5555', false, null);
 
   submitted = false;
 
@@ -23,17 +23,42 @@ export class ContactComponent {
 
   constructor(private contactService: ContactService) { }
 
-  onSubmit(formData: ContactPrototype) {
+  onFileSelected(event: any) {
+    // if (this.model.file) {
+    //   this.model.file.push(this.model.selectedFile)
+    // }
+    this.model.file = event.target.files[0];
 
-    this.contactService.sendEmail(formData).subscribe( //change to data if not working? Not sure if model
+  }
+
+  onSubmit(model: ContactObject) {
+    // Add selected files to the file array
+    //loader?
+    this.isLoading = true;
+
+    const formData = new FormData();
+    formData.append('name', model.name);
+    formData.append('email', model.email);
+    formData.append('message', model.message);
+    formData.append('subject', model.subject);
+    if (model.phone) {
+      formData.append('phone', model.phone);
+    }
+
+    formData.append('file', model.file);
+
+
+    this.contactService.sendEmail(formData).subscribe(
       response => console.log('Email sent!', response),
       error => console.log('Error sending email:', error)
     );
 
     this.submitted = true;
+    this.isLoading = false;
   }
 
+
   newRequest() {
-    this.model = new ContactObject('', '', '', '');
+    this.model = new ContactObject('', '', '', '', '');
   }
 }
