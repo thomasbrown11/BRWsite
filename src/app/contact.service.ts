@@ -13,19 +13,10 @@ export class ContactService {
   constructor(private http: HttpClient) { }
 
   sendEmail(data: FormData): Observable<any> { //you added FormData to accomodate test 'sendEmail' method written by GPT
+    console.log(data);
     return this.http.post<any>(this.apiUrl, data).pipe(
       switchMap(response => of(response)),
       catchError(error => of(error))
     );
   }
 }
-
-// uploadFile(file: File, progressListener: ImageUploadProgressListener): Promise<Image> {
-//   const data = new FormData();
-//   if (this.isPng(file.name)) {
-//       data.append('pngimagedata', file);
-//   } else {
-//       data.append('imagedata', file);
-//   }
-//   return this.network.execute(this.buildPostRequest(data, progressListener));
-// }
