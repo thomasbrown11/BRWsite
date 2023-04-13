@@ -16,17 +16,47 @@ export class ContactComponent {
   model: ContactObject = new ContactObject('Enter Name', 'jane@example.com', 'Leave your message here.', 'Custom Order', '555-555-5555', false, null);
 
   submitted = false;
-
+  isPreviewSelected = false; //only show file preview when file selected
+  previewUrls: string[] = []; // Create an array to store preview data URLs
   honeypot: FormControl = new FormControl(""); //prevent spam? can delete it needed
   isLoading: boolean = false; //disable controls when loading.
 
   constructor(private contactService: ContactService) { }
 
   formData: FormData = new FormData();
+  // fileReader: FileReader = new FileReader();
+  fileReaders: FileReader[] | any = []; // Create an array to store FileReader instances
+
+  //handler to clear array of image previews in relation to file uploads
+  clearPreview() {
+    this.previewUrls = []; // Clear the previewUrls array
+    this.fileReaders.forEach((fileReader: any) => fileReader.abort()); // Abort all the FileReader instances
+    this.fileReaders = []; // Clear the fileReaders array
+    this.isPreviewSelected = false; // Set the flag to indicate that no preview is selected
+  }
 
   onFileSelected(event: any) {
-    this.formData.append('files', event.target.files[0])
-  }
+    //refence uploaded file
+    let file = event.target.files[0]
+    //add to FormData (parses to send to email)
+    this.formData.append('files', file);
+    //clear array of previews displayed under upload (for multiple uploads in one request)
+    this.clearPreview(); // Clear the preview arrays before appending new files
+    //get File[] array of all files present on the FormData object
+    const files = this.formData.getAll('files') as File[]; // Get all the uploaded files from the FormData object
+    //loop through files array, make new FileReader(), read as data url, and onLoad push to the displayed array and make true (so html displays)
+    for (const f of files) {
+      const fileReader = new FileReader(); // Create a new instance of the FileReader class for each file
+      fileReader.readAsDataURL(f); // Read the file as a data URL
+      fileReader.onload = () => {
+        this.previewUrls.push(fileReader.result as string); // Add the data URL to the preview URLs array
+        this.isPreviewSelected = true; // Set the flag to indicate that a preview is selected
+      };
+      //necessary to read and view
+      this.fileReaders.push(fileReader); // Add the FileReader instance to the array
+    }
+  };
+
 
   onSubmit(model: ContactObject) {
 
@@ -55,7 +85,8 @@ export class ContactComponent {
   newRequest() {
 
     this.submitted = false;
-    this.model = new ContactObject('', '', '', '');
+    //not working?
+    this.model = new ContactObject('', '', '', 'Custom Order', '');
     this.formData = new FormData()
   }
 }
