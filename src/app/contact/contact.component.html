@@ -62,30 +62,8 @@
       <label for="fileInput">Upload File</label>
       <br>
       <input type="file" #upload='ngModel' class="form-control" id="fileInput" [(ngModel)]="model.selectedFile"
-        name="files" (change)="onFileSelected($event)" multiple>
+        name="files" (change)="onFileSelected($event)" multiple >
     </div>
-
-    <!-- working div for displaying image preview  -->
-    <!-- <div *ngIf="isPreviewSelected">
-      <img *ngFor="let previewUrl of previewUrls" [src]="previewUrl" alt="Preview" width="200">
-    </div> -->
-
-    <!-- add clickable image preview that triggers 'removeFIle()' method to remove File from array -->
-    <!-- <div *ngIf="isPreviewSelected">
-      <img *ngFor="let previewUrl of previewUrls"
-           [src]="previewUrl"
-           alt="Preview"
-           width="200"
-           (click)="removeFile(previewUrl)">
-    </div> -->
-
-    <!-- <div *ngIf="isPreviewSelected">
-      <div class="preview-image-container" *ngFor="let previewUrl of previewUrls; let i=index">
-        <img [src]="previewUrl" alt="Preview" width="200" (click)="removeFile(previewUrl)">
-        <div class="preview-image-title">{{ fileTitles[i] }}</div>
-        <div class="preview-image-remove" (click)="removeFile(previewUrl)">x</div>
-      </div>
-    </div> -->
 
     <div *ngIf="isPreviewSelected">
       <div class="preview-image-container" *ngFor="let previewUrl of previewUrls; let i=index">

@@ -48,15 +48,21 @@ export class ContactComponent {
     const files = this.formData.getAll('files') as File[]; // Get all the uploaded files from the FormData object
     //loop through files array, make new FileReader(), read as data url, and onLoad push to the displayed array and make true (so html displays)
     for (const f of files) {
-      const fileReader = new FileReader(); // Create a new instance of the FileReader class for each file
-      fileReader.readAsDataURL(f); // Read the file as a data URL
-      fileReader.onload = () => {
-        this.previewUrls.push(fileReader.result as string); // Add the data URL to the preview URLs array
+      if (f.type === 'application/pdf') {
+        this.previewUrls.push('assets/pdf-icon.png'); // Display the generic PDF image
         this.fileTitles.push(f.name); // Add the title of the file to the file titles array
         this.isPreviewSelected = true; // Set the flag to indicate that a preview is selected
-      };
-      //necessary to read and view
-      this.fileReaders.push(fileReader); // Add the FileReader instance to the array
+      } else {
+        const fileReader = new FileReader(); // Create a new instance of the FileReader class for each file
+        fileReader.readAsDataURL(f); // Read the file as a data URL
+        fileReader.onload = () => {
+          this.previewUrls.push(fileReader.result as string); // Add the data URL to the preview URLs array
+          this.fileTitles.push(f.name); // Add the title of the file to the file titles array
+          this.isPreviewSelected = true; // Set the flag to indicate that a preview is selected
+
+          this.fileReaders.push(fileReader); // Add the FileReader instance to the array
+        };
+      }
     }
   };
 
