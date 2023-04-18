@@ -18,6 +18,7 @@ export class ContactComponent {
   submitted = false;
   isPreviewSelected = false; //only show file preview when file selected
   previewUrls: any = []; // Create an array to store preview data URLs
+  fileTitles: any = [];
   honeypot: FormControl = new FormControl(""); //prevent spam? can delete it needed
   isLoading: boolean = false; //disable controls when loading.
 
@@ -30,6 +31,7 @@ export class ContactComponent {
   //handler to clear array of image previews in relation to file uploads
   clearPreview() {
     this.previewUrls = []; // Clear the previewUrls array
+    this.fileTitles = []; //Clear preview titles
     this.fileReaders.forEach((fileReader: any) => fileReader.abort()); // Abort all the FileReader instances
     this.fileReaders = []; // Clear the fileReaders array
     this.isPreviewSelected = false; // Set the flag to indicate that no preview is selected
@@ -50,6 +52,7 @@ export class ContactComponent {
       fileReader.readAsDataURL(f); // Read the file as a data URL
       fileReader.onload = () => {
         this.previewUrls.push(fileReader.result as string); // Add the data URL to the preview URLs array
+        this.fileTitles.push(f.name); // Add the title of the file to the file titles array
         this.isPreviewSelected = true; // Set the flag to indicate that a preview is selected
       };
       //necessary to read and view
@@ -62,6 +65,7 @@ export class ContactComponent {
     const index = this.previewUrls.indexOf(previewUrl);
     if (index >= 0) {
       this.previewUrls.splice(index, 1); // Remove the preview URL from the array
+      //this.fileTitles.splice(index, 1); //Remove Titles
       const files: any = this.formData.getAll('files') as File[]; // Get all the uploaded files from the FormData object
       files.splice(index, 1); // Remove the corresponding file from the files array
       this.formData.delete('files'); // Remove the 'files' key from the FormData object

@@ -79,10 +79,20 @@
            (click)="removeFile(previewUrl)">
     </div> -->
 
-    <div *ngIf="isPreviewSelected">
-      <div class="preview-image-container" *ngFor="let previewUrl of previewUrls">
+    <!-- <div *ngIf="isPreviewSelected">
+      <div class="preview-image-container" *ngFor="let previewUrl of previewUrls; let i=index">
         <img [src]="previewUrl" alt="Preview" width="200" (click)="removeFile(previewUrl)">
-        <div class="preview-image-title">{{ previewUrl.name }}</div>
+        <div class="preview-image-title">{{ fileTitles[i] }}</div>
+        <div class="preview-image-remove" (click)="removeFile(previewUrl)">x</div>
+      </div>
+    </div> -->
+
+    <div *ngIf="isPreviewSelected">
+      <div class="preview-image-container" *ngFor="let previewUrl of previewUrls; let i=index">
+        <div class="preview-item">
+          <img [src]="previewUrl" alt="Preview" width="200" (click)="removeFile(previewUrl)">
+        <div class="preview-image-title">{{ fileTitles[i] }}</div>
+        </div>
         <div class="preview-image-remove" (click)="removeFile(previewUrl)">x</div>
       </div>
     </div>
