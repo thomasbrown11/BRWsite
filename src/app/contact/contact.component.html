@@ -71,12 +71,20 @@
     </div> -->
 
     <!-- add clickable image preview that triggers 'removeFIle()' method to remove File from array -->
-    <div *ngIf="isPreviewSelected">
+    <!-- <div *ngIf="isPreviewSelected">
       <img *ngFor="let previewUrl of previewUrls"
            [src]="previewUrl"
            alt="Preview"
            width="200"
            (click)="removeFile(previewUrl)">
+    </div> -->
+
+    <div *ngIf="isPreviewSelected">
+      <div class="preview-image-container" *ngFor="let previewUrl of previewUrls">
+        <img [src]="previewUrl" alt="Preview" width="200" (click)="removeFile(previewUrl)">
+        <div class="preview-image-title">{{ previewUrl.name }}</div>
+        <div class="preview-image-remove" (click)="removeFile(previewUrl)">x</div>
+      </div>
     </div>
 
     <div class="form-group">
@@ -98,13 +106,6 @@
     <!-- DELETE? -->
     <button type="submit" class="btn btn-success" [disabled]="!contactForm.form.valid">Submit</button>
     <!-- DELETE? -->
-
-    <!-- testing mailthis.to api -->
-    <!-- Honeypot (to catch comment spam bots) -->
-    <!-- <input type="hidden" name="_honeypot" value=""> -->
-    <!-- Redirect to a page after recaptcha -->
-    <!-- <input type="hidden" name="_after" value="http://localhost:4200/home"> -->
-
 
   </form>
 </div>
