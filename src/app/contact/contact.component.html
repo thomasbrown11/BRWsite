@@ -65,8 +65,18 @@
         name="files" (change)="onFileSelected($event)" multiple>
     </div>
 
-    <div *ngIf="isPreviewSelected">
+    <!-- working div for displaying image preview  -->
+    <!-- <div *ngIf="isPreviewSelected">
       <img *ngFor="let previewUrl of previewUrls" [src]="previewUrl" alt="Preview" width="200">
+    </div> -->
+
+    <!-- add clickable image preview that triggers 'removeFIle()' method to remove File from array -->
+    <div *ngIf="isPreviewSelected">
+      <img *ngFor="let previewUrl of previewUrls"
+           [src]="previewUrl"
+           alt="Preview"
+           width="200"
+           (click)="removeFile(previewUrl)">
     </div>
 
     <div class="form-group">

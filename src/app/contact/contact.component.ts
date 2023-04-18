@@ -55,29 +55,21 @@ export class ContactComponent {
       //necessary to read and view
       this.fileReaders.push(fileReader); // Add the FileReader instance to the array
     }
-    //doesn't work?
-    // for (const f of files) {
-    //   const fileType = f.type.split('/')[0]; // Get the file type from the MIME type
-    //   if (fileType === 'image') {
-    //     const fileReader = new FileReader(); // Create a new instance of the FileReader class for each file
-    //     fileReader.readAsDataURL(f); // Read the file as a data URL
-    //     fileReader.onload = () => {
-    //       this.previewUrls.push({ name: f.name, url: fileReader.result as string }); // Add the file name and data URL to the preview URLs array
-    //       this.isPreviewSelected = true; // Set the flag to indicate that a preview is selected
-    //     };
-    //     this.fileReaders.push(fileReader); // Add the FileReader instance to the array
-    //   } else if (fileType === 'application' && file.type === 'application/pdf') {
-    //     const fileReader = new FileReader(); // Create a new instance of the FileReader class for each file
-    //     fileReader.readAsDataURL(f); // Read the file as a data URL
-    //     fileReader.onload = () => {
-    //       this.previewUrls.push({ name: f.name, url: fileReader.result as string }); // Add the file name and data URL to the preview URLs array
-    //       this.isPreviewSelected = true; // Set the flag to indicate that a preview is selected
-    //     };
-    //     this.fileReaders.push(fileReader); // Add the FileReader instance to the array
-    //   }
-    // }
   };
 
+  //remove file from email's formData object by clicking preview image
+  removeFile(previewUrl: string) {
+    const index = this.previewUrls.indexOf(previewUrl);
+    if (index >= 0) {
+      this.previewUrls.splice(index, 1); // Remove the preview URL from the array
+      const files: any = this.formData.getAll('files') as File[]; // Get all the uploaded files from the FormData object
+      files.splice(index, 1); // Remove the corresponding file from the files array
+      this.formData.delete('files'); // Remove the 'files' key from the FormData object
+      for (const file of files) {
+        this.formData.append('files', file); // Re-add all the remaining files to the FormData object
+      }
+    }
+  }
 
   onSubmit(model: ContactObject) {
 
