@@ -17,7 +17,7 @@ export class ContactComponent {
 
   submitted = false;
   isPreviewSelected = false; //only show file preview when file selected
-  previewUrls: string[] = []; // Create an array to store preview data URLs
+  previewUrls: any = []; // Create an array to store preview data URLs
   honeypot: FormControl = new FormControl(""); //prevent spam? can delete it needed
   isLoading: boolean = false; //disable controls when loading.
 
@@ -55,6 +55,27 @@ export class ContactComponent {
       //necessary to read and view
       this.fileReaders.push(fileReader); // Add the FileReader instance to the array
     }
+    //doesn't work?
+    // for (const f of files) {
+    //   const fileType = f.type.split('/')[0]; // Get the file type from the MIME type
+    //   if (fileType === 'image') {
+    //     const fileReader = new FileReader(); // Create a new instance of the FileReader class for each file
+    //     fileReader.readAsDataURL(f); // Read the file as a data URL
+    //     fileReader.onload = () => {
+    //       this.previewUrls.push({ name: f.name, url: fileReader.result as string }); // Add the file name and data URL to the preview URLs array
+    //       this.isPreviewSelected = true; // Set the flag to indicate that a preview is selected
+    //     };
+    //     this.fileReaders.push(fileReader); // Add the FileReader instance to the array
+    //   } else if (fileType === 'application' && file.type === 'application/pdf') {
+    //     const fileReader = new FileReader(); // Create a new instance of the FileReader class for each file
+    //     fileReader.readAsDataURL(f); // Read the file as a data URL
+    //     fileReader.onload = () => {
+    //       this.previewUrls.push({ name: f.name, url: fileReader.result as string }); // Add the file name and data URL to the preview URLs array
+    //       this.isPreviewSelected = true; // Set the flag to indicate that a preview is selected
+    //     };
+    //     this.fileReaders.push(fileReader); // Add the FileReader instance to the array
+    //   }
+    // }
   };
 
 
