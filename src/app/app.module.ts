@@ -15,7 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-//Angular Matierals Imported components 
+//Angular Matierals Imported components
 import { CdkMenuModule } from '@angular/cdk/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar'; //?
@@ -25,6 +25,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { AboutMeComponent } from './about-me/about-me.component';
 import { FacebookComponent } from './facebook/facebook.component';
 import { TestCompComponent } from './test-comp/test-comp.component'; //?
+
+//PDF viewer for contact form
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+
 
 
 @NgModule({
@@ -52,7 +56,8 @@ import { TestCompComponent } from './test-comp/test-comp.component'; //?
     MatToolbarModule,
     MatIconModule,
     MatListModule,
-    MatButtonModule
+    MatButtonModule,
+    NgxExtendedPdfViewerModule
   ],
   providers: [
 

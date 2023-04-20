@@ -1,20 +1,7 @@
 <h1>Contact Me</h1>
 
 <div class="formBox" [hidden]="submitted">
-  <!-- allows you to send to a sheet and then emails with proper body -->
-  <!-- <form #contactForm="ngForm" (ngSubmit)="onSubmit(model)" method="POST" action="https://mailthis.to/tb5a"
-    enctype="multipart/form-data" #form> -->
-  <!-- Google version: allows you to send to a sheet and then emails with proper body -->
-
-  <!-- UNCOMMENT THIS ONE -->
-  <!-- <form #contactForm="ngForm" (ngSubmit)="onSubmit(model)" method="POST"
-    action="https://script.google.com/macros/s/AKfycbzu4XW3jks5fxn5GLnTCfKjSx7PKv9HPHWx7b42lE4Nq8ScUMXZPCSc-eyXvCe0cXq12w/exec"
-    enctype="multipart/form-data" #form> -->
-
-  <!-- DELETE? -->
   <form #contactForm="ngForm" (ngSubmit)="onSubmit(model)" method="POST" enctype="multipart/form-data" #form>
-    <!-- <form #contactForm="ngForm" (ngSubmit)="sendEmail($event)" method="POST" enctype="multipart/form-data" #form> -->
-    <!-- DETETE? -->
     <!-- this is to see the dynamic data changes in the form.. delete when done -->
     {{model | json}}
     <div class=" form-group">
@@ -62,18 +49,31 @@
       <label for="fileInput">Upload File</label>
       <br>
       <input type="file" #upload='ngModel' class="form-control" id="fileInput" [(ngModel)]="model.selectedFile"
-        name="files" (change)="onFileSelected($event)" multiple >
+        name="files" (change)="onFileSelected($event)" multiple>
     </div>
 
     <div *ngIf="isPreviewSelected">
       <div class="preview-image-container" *ngFor="let previewUrl of previewUrls; let i=index">
         <div class="preview-item">
-          <img [src]="previewUrl" alt="Preview" width="200" (click)="removeFile(previewUrl)">
-        <div class="preview-image-title">{{ fileTitles[i] }}</div>
+          <img [src]="previewUrl" alt="Preview" width="200">
+          <div class="preview-image-title">{{ fileTitles[i] }}</div>
         </div>
         <div class="preview-image-remove" (click)="removeFile(previewUrl)">x</div>
       </div>
     </div>
+
+    <!-- <div *ngIf="isPreviewSelected">
+      <div class="preview-image-container" *ngFor="let previewUrl of previewUrls; let i=index">
+        <div class="preview-item">
+          <ngx-extended-pdf-viewer *ngIf="previewUrl.type === 'application/pdf'"
+            [src]="previewUrl"></ngx-extended-pdf-viewer>
+          <img *ngIf="previewUrl.type !== 'application/pdf'" [src]="previewUrl" alt="Preview" width="200"
+            (click)="removeFile(previewUrl)">
+          <div class="preview-image-title">{{ fileTitles[i] }}</div>
+        </div>
+        <div class="preview-image-remove" (click)="removeFile(previewUrl)">x</div>
+      </div>
+    </div> -->
 
     <div class="form-group">
       <label for="message">Message</label>
@@ -87,13 +87,10 @@
 
     <br>
     <br>
-    <!-- UNCOMMENT -->
-    <!-- <button type="submit" class="btn btn-success" [disabled]="!contactForm.form.valid"
-      (click)="form.submit()">Submit</button> -->
 
-    <!-- DELETE? -->
     <button type="submit" class="btn btn-success" [disabled]="!contactForm.form.valid">Submit</button>
-    <!-- DELETE? -->
+
+    <div class="loader" *ngIf="isLoading"></div>
 
   </form>
 </div>
