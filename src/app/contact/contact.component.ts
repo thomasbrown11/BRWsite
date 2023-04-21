@@ -126,7 +126,7 @@ export class ContactComponent {
     this.formData.append('email', model.email);
     this.formData.append('message', model.message);
     this.formData.append('subject', model.subject);
-    // this.formData.append('listOpt', model.listOpt);
+    this.formData.append('listOpt', model.listOpt.toString());
     if (model.phone) {
       this.formData.append('phone', model.phone);
     }
