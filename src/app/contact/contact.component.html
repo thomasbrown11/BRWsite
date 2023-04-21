@@ -101,9 +101,16 @@
   </form>
 </div>
 
-<div [hidden]="!submitted">
+<!-- <div [hidden]="!submitted">
   <p>Thank you for the message! You will recieve a response as soon as possible.</p>
   <button type='button' class="btn" (click)="contactForm.reset(); newRequest()" submitted="false">Submit another
+    request</button>
+  <button type='button' class="btn" routerLink="/home">Home</button>
+</div> -->
+
+<div [hidden]="!submitted">
+  <p>Thank you for the message! You will recieve a response as soon as possible.</p>
+  <button type='button' class="btn" (click)="newRequest()" submitted="false">Submit another
     request</button>
   <button type='button' class="btn" routerLink="/home">Home</button>
 </div>

@@ -16,7 +16,8 @@ export class ContactComponent {
   //requestType populates as subject in prototypes and service request
   requestType = ['Custom Order', 'Work Inquiry', 'Product Inquiry', 'Other']
 
-  model: ContactObject = new ContactObject('Enter Name', 'jane@example.com', 'Leave your message here.', 'Custom Order', false, '555-555-5555', null);
+  model: ContactObject = new ContactObject('Enter Name', 'jane@example.com', 'Leave your message here', 'Custom Order', false, '555-555-5555', null);
+  // model: ContactObject;
 
   submitted = false;
   isPreviewSelected = false; //only show file preview when file selected
@@ -145,12 +146,10 @@ export class ContactComponent {
 
   //clear all data for new request
   newRequest() {
-
     this.submitted = false;
-    //not working?
-    this.model = new ContactObject('', '', '', 'Custom Order', false, '');
+    this.model = new ContactObject('Enter Name', 'jane@example.com', 'Leave your message here', 'Custom Order', false, '555-555-5555', null);
     this.clearPreview();
     this.formData = new FormData()
-
   }
+
 }
