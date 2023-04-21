@@ -5,7 +5,7 @@ import { ContactService } from '../contact.service';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 
 //sanitize pdfs
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-contact',
@@ -16,13 +16,12 @@ export class ContactComponent {
   //requestType populates as subject in prototypes and service request
   requestType = ['Custom Order', 'Work Inquiry', 'Product Inquiry', 'Other']
 
-  model: ContactObject = new ContactObject('Enter Name', 'jane@example.com', 'Leave your message here.', 'Custom Order', '555-555-5555', false, null);
+  model: ContactObject = new ContactObject('Enter Name', 'jane@example.com', 'Leave your message here.', 'Custom Order', false, '555-555-5555', null);
 
   submitted = false;
   isPreviewSelected = false; //only show file preview when file selected
   previewUrls: any = []; // Create an array to store preview data URLs
   fileTitles: any = [];
-  honeypot: FormControl = new FormControl(""); //prevent spam? can delete it needed
   isLoading: boolean = false; //disable controls when loading.
 
   constructor(private contactService: ContactService, private sanitizer: DomSanitizer) { }
@@ -127,6 +126,7 @@ export class ContactComponent {
     this.formData.append('email', model.email);
     this.formData.append('message', model.message);
     this.formData.append('subject', model.subject);
+    // this.formData.append('listOpt', model.listOpt);
     if (model.phone) {
       this.formData.append('phone', model.phone);
     }
@@ -148,7 +148,9 @@ export class ContactComponent {
 
     this.submitted = false;
     //not working?
-    this.model = new ContactObject('', '', '', 'Custom Order', '');
+    this.model = new ContactObject('', '', '', 'Custom Order', false, '');
+    this.clearPreview();
     this.formData = new FormData()
+
   }
 }
