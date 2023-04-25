@@ -1,1 +1,6 @@
 <p>instagram works!</p>
+
+<div *ngFor="let image of images">
+  <img [src]="image.media_url" alt="{{ image.caption }}">
+  <p>{{ image.caption }}</p>
+</div>
