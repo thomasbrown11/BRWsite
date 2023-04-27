@@ -1,4 +1,4 @@
-<h1>Instagram</h1>
+<!-- <h1>Instagram</h1>
 
 <div class="image-container">
   <div class="image-wrapper" *ngFor="let image of images" (click)="toggleImageEnlarged(image)">
@@ -20,6 +20,45 @@
       <video *ngIf="imageEnlarged.media_type === 'VIDEO'" width="100%" controls>
         <source [src]="imageEnlarged.media_url" type="video/mp4">
       </video>
+      <div class="preview-image-remove" (click)="toggleImageEnlarged(imageEnlarged)">x</div>
+    </div>
+    <div class="enlarged-text-container">
+      <div class="enlarged-title">Else Werner Glass</div>
+      <div class="enlarged-timestamp">{{imageEnlarged.timestamp | date: 'mediumDate'}}</div>
+      <hr>
+      <div class="enlarged-caption">{{ imageEnlarged.caption }}</div>
+
+      <a [href]="imageEnlarged.permalink" target="_blank" class="insta-permalink">
+        <div class="insta-link-container">
+          <img src="../../assets/Instagram_Glyph_Gradient.png" alt="Instagram Icon" class="insta-icon">
+          <span class="insta-label">View in Instagram</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</div> -->
+
+<h1>Instagram</h1>
+
+<div class="image-container">
+  <div class="image-wrapper" *ngFor="let image of images" (click)="toggleImageEnlarged(image)">
+    <div class="image" *ngIf="image.media_type === 'VIDEO'" style="background-image: url('{{image.thumbnail_url}}')">
+    </div>
+    <div class="image" *ngIf="image.media_type !== 'VIDEO'" style="background-image: url('{{image.media_url}}')"></div>
+    <p class="caption">{{ image.caption }}</p>
+  </div>
+</div>
+
+<div class="image-enlarged" *ngIf="imageEnlarged">
+  <div class="enlarged-image-container" (click)="toggleImageEnlarged(imageEnlarged)">
+    <div class="enlarged-image">
+      <ng-container *ngIf="imageEnlarged.media_type === 'VIDEO'">
+        <video [src]="imageEnlarged.media_url" controls></video>
+      </ng-container>
+      <ng-container *ngIf="imageEnlarged.media_type !== 'VIDEO'">
+        <img [src]="imageEnlarged.media_url" alt="{{ imageEnlarged.caption }}">
+      </ng-container>
       <div class="preview-image-remove" (click)="toggleImageEnlarged(imageEnlarged)">x</div>
     </div>
     <div class="enlarged-text-container">

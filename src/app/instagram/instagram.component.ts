@@ -24,13 +24,13 @@ export class InstagramComponent implements OnInit {
 
   //added to toggle image enlargement
   toggleImageEnlarged(image: any) {
-    // console.log('Toggle image:', image);
+    console.log('Toggle image:', image);
     if (this.imageEnlarged === image) {
       this.imageEnlarged = null;
     } else {
       this.imageEnlarged = image;
     }
-    // console.log('Image enlarged:', this.imageEnlarged);
+    console.log('Image enlarged:', this.imageEnlarged);
   }
 
 }
