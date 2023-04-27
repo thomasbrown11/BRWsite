@@ -38,6 +38,11 @@
       <div class="enlarged-timestamp">{{imageEnlarged.timestamp | date: 'mediumDate'}}</div>
       <hr>
       <div class="enlarged-caption">{{ imageEnlarged.caption }}</div>
+
+      <a [href]="imageEnlarged.permalink" target="_blank" class="insta-permalink">
+        <img src="../../assets/Instagram_Glyph_Gradient.png" alt="Instagram Icon" class="insta-icon">
+      </a>
+
     </div>
   </div>
 </div>
