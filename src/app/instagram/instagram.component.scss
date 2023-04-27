@@ -127,6 +127,11 @@
   color: #bebbbb;
 }
 
+.insta-link-container {
+  display: flex;
+  align-items: center;
+}
+
 .insta-permalink {
   display: inline-block;
   position: absolute;
@@ -134,11 +139,18 @@
   right: 0;
   margin-bottom: 20px;
   margin-right: 20px;
+
+  text-decoration: none;
+  color: white
 }
 
 .insta-icon {
   max-width: 24px !important;
   max-height: 24px !important;
+}
+
+.insta-label {
+  margin-left: 5px;
 }
 
 hr {

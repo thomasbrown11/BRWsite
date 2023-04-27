@@ -1,31 +1,11 @@
 <p>instagram works!</p>
 
-<!-- <div class="image-container">
-  <div class="image-wrapper" *ngFor="let image of images">
-    <div class="image" style="background-image: url('{{image.media_url}}')"></div>
-    <p class="caption">{{ image.caption }}</p>
-  </div>
-</div> -->
-
 <div class="image-container">
   <div class="image-wrapper" *ngFor="let image of images" (click)="toggleImageEnlarged(image)">
     <div class="image" style="background-image: url('{{image.media_url}}')"></div>
     <p class="caption">{{ image.caption }}</p>
   </div>
 </div>
-
-<!-- Enlarged view for single post  -->
-<!-- <div class="image-enlarged" *ngIf="imageEnlarged">
-  <div class="enlarged-image-container" (click)="toggleImageEnlarged(imageEnlarged)">
-    <img [src]="imageEnlarged.media_url" alt="{{ imageEnlarged.caption }}">
-    <div class="preview-image-remove" (click)="toggleImageEnlarged(imageEnlarged)">x</div>
-    <div class="enlarged-text-container">
-      <div class="enlarged-title">Else Werner Glass</div>
-      <hr>
-      <div class="enlarged-caption">{{ imageEnlarged.caption }}</div>
-    </div>
-  </div>
-</div> -->
 
 <div class="image-enlarged" *ngIf="imageEnlarged">
   <div class="enlarged-image-container" (click)="toggleImageEnlarged(imageEnlarged)">
@@ -40,9 +20,10 @@
       <div class="enlarged-caption">{{ imageEnlarged.caption }}</div>
 
       <a [href]="imageEnlarged.permalink" target="_blank" class="insta-permalink">
-        <!-- showing up as link? -->
-        <!-- <p>Go To Instagram</p> -->
-        <img src="../../assets/Instagram_Glyph_Gradient.png" alt="Instagram Icon" class="insta-icon">
+        <div class="insta-link-container">
+          <img src="../../assets/Instagram_Glyph_Gradient.png" alt="Instagram Icon" class="insta-icon">
+          <span class="insta-label">View in Instagram</span>
+        </div>
       </a>
 
     </div>
