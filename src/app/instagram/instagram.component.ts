@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { InstagramService } from './instagram.service';
 
 @Component({
@@ -24,11 +24,13 @@ export class InstagramComponent implements OnInit {
 
   //added to toggle image enlargement
   toggleImageEnlarged(image: any) {
+    // console.log('Toggle image:', image);
     if (this.imageEnlarged === image) {
       this.imageEnlarged = null;
     } else {
       this.imageEnlarged = image;
     }
+    // console.log('Image enlarged:', this.imageEnlarged);
   }
 
 }

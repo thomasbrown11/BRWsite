@@ -1,8 +1,13 @@
-<p>instagram works!</p>
+<h1>Instagram</h1>
 
 <div class="image-container">
   <div class="image-wrapper" *ngFor="let image of images" (click)="toggleImageEnlarged(image)">
-    <div class="image" style="background-image: url('{{image.media_url}}')"></div>
+    <div *ngIf="image.media_type === 'VIDEO'" class="image">
+      <video width="100%" controls>
+        <source [src]="image.media_url" type="video/mp4">
+      </video>
+    </div>
+    <div *ngIf="image.media_type !== 'VIDEO'" class="image" style="background-image: url('{{image.media_url}}')"></div>
     <p class="caption">{{ image.caption }}</p>
   </div>
 </div>
@@ -10,7 +15,11 @@
 <div class="image-enlarged" *ngIf="imageEnlarged">
   <div class="enlarged-image-container" (click)="toggleImageEnlarged(imageEnlarged)">
     <div class="enlarged-image">
-      <img [src]="imageEnlarged.media_url" alt="{{ imageEnlarged.caption }}">
+      <img *ngIf="imageEnlarged.media_type !== 'VIDEO'" [src]="imageEnlarged.media_url"
+        alt="{{ imageEnlarged.caption }}">
+      <video *ngIf="imageEnlarged.media_type === 'VIDEO'" width="100%" controls>
+        <source [src]="imageEnlarged.media_url" type="video/mp4">
+      </video>
       <div class="preview-image-remove" (click)="toggleImageEnlarged(imageEnlarged)">x</div>
     </div>
     <div class="enlarged-text-container">
