@@ -8,6 +8,8 @@ import { InstagramService } from './instagram.service';
 })
 export class InstagramComponent implements OnInit {
   images: any[] = [];
+  //just added?
+  imageEnlarged: any;
 
   constructor(private instagramService: InstagramService) { }
 
@@ -19,4 +21,18 @@ export class InstagramComponent implements OnInit {
       this.images = data.data;
     });
   }
+
+  //added to toggle image enlargement
+  toggleImageEnlarged(image: any) {
+    if (this.imageEnlarged === image) {
+      this.imageEnlarged = null;
+    } else {
+      this.imageEnlarged = image;
+    }
+  }
+
+  // enlargeToggle() {
+
+  // }
+
 }

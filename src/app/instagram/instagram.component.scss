@@ -35,3 +35,78 @@
 .image-wrapper:hover .caption {
   opacity: 1;
 }
+
+.image-wrapper {
+  position: relative;
+  cursor: pointer;
+}
+
+//all following styling relates to enlarged photos after clicking only
+
+.image-enlarged {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  width: 80%;
+  max-width: 1000px;
+  height: auto;
+  max-height: 80%;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  overflow: hidden;
+}
+
+.image-enlarged img {
+  max-width: 70%;
+  max-height: 70%;
+  object-fit: contain;
+}
+
+.enlarged-image-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.enlarged-image-container img {
+  max-width: 60%;
+  max-height: 80%;
+  object-fit: contain;
+}
+
+.preview-image-remove {
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.enlarged-text-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  height: 100%;
+  padding: 10px;
+}
+
+.enlarged-title {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #000;
+}
+
+.enlarged-caption {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  color: #000;
+}
+
+hr {
+  width: 100%;
+  border: none;
+  border-top: 1px solid #000;
+  margin: 10px 0;
+}

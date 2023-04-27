@@ -1,8 +1,28 @@
 <p>instagram works!</p>
 
-<div class="image-container">
+<!-- <div class="image-container">
   <div class="image-wrapper" *ngFor="let image of images">
     <div class="image" style="background-image: url('{{image.media_url}}')"></div>
     <p class="caption">{{ image.caption }}</p>
+  </div>
+</div> -->
+
+<div class="image-container">
+  <div class="image-wrapper" *ngFor="let image of images" (click)="toggleImageEnlarged(image)">
+    <div class="image" style="background-image: url('{{image.media_url}}')"></div>
+    <p class="caption">{{ image.caption }}</p>
+  </div>
+</div>
+
+<!-- Enlarged view for single post  -->
+<div class="image-enlarged" *ngIf="imageEnlarged">
+  <div class="enlarged-image-container">
+    <img [src]="imageEnlarged.media_url" alt="{{ imageEnlarged.caption }}" (click)="toggleImageEnlarged(imageEnlarged)">
+    <div class="enlarged-text-container">
+      <div class="enlarged-title">Else Werner Glass</div>
+      <hr>
+      <div class="enlarged-caption">{{ imageEnlarged.caption }}</div>
+    </div>
+    <div class="preview-image-remove" (click)="toggleImageEnlarged(imageEnlarged)">x</div>
   </div>
 </div>
