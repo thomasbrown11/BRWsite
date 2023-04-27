@@ -31,8 +31,4 @@ export class InstagramComponent implements OnInit {
     }
   }
 
-  // enlargeToggle() {
-
-  // }
-
 }
