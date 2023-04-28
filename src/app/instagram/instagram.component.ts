@@ -1,6 +1,8 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { InstagramService } from './instagram.service';
 
+import { forkJoin } from 'rxjs';
+
 @Component({
   selector: 'app-instagram',
   templateUrl: './instagram.component.html',
@@ -8,20 +10,74 @@ import { InstagramService } from './instagram.service';
 })
 export class InstagramComponent implements OnInit {
   images: any[] = [];
-  carouselArray: any[] = [];
+  carousels: Record<string, object> = {};
   //just added?
   imageEnlarged: any;
 
   constructor(private instagramService: InstagramService) { }
 
-  ngOnInit() {
+  // ngOnInit() {
 
+  //   // Call the Instagram service to fetch the images and update the images array
+  //   this.instagramService.getMedia().subscribe((data: any) => {
+  //     //this is entire json body parsed per individual post object. Parsed further into the 'media_urls' in the template
+  //     this.images = data.data;
+  //   });
+
+  //   this.images.forEach((image) => {
+  //     //if current post has a children array (indicating it's a carousel)
+  //     if (image.media_type === 'CAROUSEL_ALBUM') {
+  //       console.log('its an album')
+  //       const mediaUrlArray: any = [];
+  //       //iterate over the array of each carousel object at image.children.data
+  //       //this contains id's which whould be fed to the .getMedia(id) method from service
+  //       image.children.data.forEach((child: any) => {
+  //         this.instagramService.getCarouselItem(child.id).subscribe((data: any) => {
+  //           //push object with media_type and media_url to to array
+  //           mediaUrlArray.push(data)
+  //         });
+  //       });
+  //       //push key:value pair of post id: array of objects with children's media_type and media_urls
+  //       this.carousels[image.id] = mediaUrlArray;
+  //       console.log(this.carousels)
+  //     }
+  //   })
+
+  // }
+
+
+  ngOnInit() {
     // Call the Instagram service to fetch the images and update the images array
     this.instagramService.getMedia().subscribe((data: any) => {
       //this is entire json body parsed per individual post object. Parsed further into the 'media_urls' in the template
       this.images = data.data;
+
+      this.images.forEach((image) => {
+        //if current post has a children array (indicating it's a carousel)
+        if (image.media_type === 'CAROUSEL_ALBUM') {
+          console.log('its an album')
+          const mediaUrlArray: any = [];
+
+          //iterate over the array of each carousel object at image.children.data
+          //this contains id's which whould be fed to the .getMedia(id) method from service
+          image.children.data.forEach((child: any) => {
+            mediaUrlArray.push(this.instagramService.getCarouselItem(child.id));
+          });
+
+          forkJoin(mediaUrlArray).subscribe((results: any) => {
+            //push key:value pair of post id: array of objects with children's media_type and media_urls
+            this.carousels[image.id] = results;
+            // console.log(this.carousels);
+          });
+        }
+      });
+
+      console.log(this.carousels)
+
     });
   }
+
+
 
   //added to toggle image enlargement
   toggleImageEnlarged(image: any) {
