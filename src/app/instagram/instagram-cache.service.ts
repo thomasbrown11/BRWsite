@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import { CarouselImage } from './carouselProto';
-
 @Injectable({
   providedIn: 'root'
 })
 export class InstagramCacheService {
 
-  private carouselCache: { [id: string]: CarouselImage[] } = {};
+  private carouselCache: { [id: string]: any } = {};
 
   constructor() { }
 
