@@ -22,9 +22,49 @@
       </ng-container>
 
       <!-- If clicked image is a carousel -->
-      <ng-container *ngIf="imageEnlarged.media_type === 'CAROUSEL_ALBUM'">
+      <!-- <ng-container *ngIf="imageEnlarged.media_type === 'CAROUSEL_ALBUM'">
         <img [src]="imageEnlarged.children.data[0].media_url" alt="{{ imageEnlarged.caption }}">
+      </ng-container> -->
+      <!-- <ng-container *ngIf="imageEnlarged.media_type === 'CAROUSEL_ALBUM'">
+        <ng-container *ngIf="imageEnlarged.children.data.length > 0">
+          <ng-container *ngIf="imageEnlarged.children.data[0].media_type === 'VIDEO'; else imgBlock">
+            <video controls>
+              <source [src]="imageEnlarged.children.data[carouselIndex].media_url" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </ng-container>
+          <ng-template #imgBlock>
+            <img [src]="imageEnlarged.children.data[carouselIndex].media_url" alt="{{ imageEnlarged.caption }}">
+          </ng-template>
+          <button (click)="carouselIndex = carouselIndex - 1">Previous</button>
+          <button (click)="carouselIndex = carouselIndex + 1">Next</button>
+        </ng-container>
+      </ng-container> -->
+
+      <ng-container *ngIf="imageEnlarged.media_type === 'CAROUSEL_ALBUM'">
+        <ng-container
+          *ngIf="imageEnlarged.children.data[carouselIndex].media_type === 'VIDEO'; then video else image"></ng-container>
+
+        <ng-template #image>
+          <img [src]="imageEnlarged.children.data[carouselIndex].media_url" alt="{{ imageEnlarged.caption }}">
+        </ng-template>
+
+        <ng-template #video>
+          <video width="100%" height="auto" controls>
+            <source [src]="imageEnlarged.children.data[carouselIndex].media_url" type="video/mp4">
+          </video>
+        </ng-template>
+
+        <div *ngIf="carouselIndex >= 0">
+          <button (click)="carouselIndex = carouselIndex - 1; $event.stopPropagation()">Previous</button>
+        </div>
+
+        <div *ngIf="carouselIndex <= imageEnlarged.children.data.length - 1">
+          <button (click)="nextImage(); $event.stopPropagation()">Next</button>
+        </div>
       </ng-container>
+
+
 
       <div class="preview-image-remove" (click)="toggleImageEnlarged(imageEnlarged)">x</div>
     </div>

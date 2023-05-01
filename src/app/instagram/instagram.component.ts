@@ -3,8 +3,8 @@ import { InstagramService } from './instagram.service';
 
 import { forkJoin } from 'rxjs';
 
-import { CarouselImage } from './carouselProto'
-import { InstagramCacheService } from './instagram-cache.service';
+import { CarouselImage } from './carouselProto' //won't need
+import { InstagramCacheService } from './instagram-cache.service'; //still need to add a caching library so this doesn't matter for now
 
 @Component({
   selector: 'app-instagram',
@@ -16,6 +16,7 @@ export class InstagramComponent implements OnInit {
   carousels: { [key: string]: CarouselImage[] } = {};
   //just added?
   imageEnlarged: any;
+  carouselIndex: number = 0
 
   constructor(private instagramService: InstagramService, private instaCache: InstagramCacheService) { }
 
@@ -145,9 +146,11 @@ export class InstagramComponent implements OnInit {
   //added to toggle image enlargement
   toggleImageEnlarged(image: any) {
     console.log('Toggle image:', image);
+    console.log('carouselIndex', this.carouselIndex)
     if (this.imageEnlarged === image) {
       this.imageEnlarged = null;
     } else {
+      this.carouselIndex = 0; //set back to 0 in case multiple post click throughs
       this.imageEnlarged = image;
       //if the post is a carousel you need to populate this.carouselArray as below and then build out the instagram service to make invidual id calls
       //from the express get call you just made. then populte the carouselArray with the reponse media_urls instead... maybe have an array in this function
@@ -160,6 +163,14 @@ export class InstagramComponent implements OnInit {
       // }
     }
     console.log('Image enlarged:', this.imageEnlarged);
+  }
+
+  nextImage() {
+    this.carouselIndex += 1;
+  }
+
+  previousImage() {
+    this.carouselIndex -= 1;
   }
 
 }
