@@ -161,3 +161,54 @@ hr {
   margin: 10px 0;
   align-self: flex-start;
 }
+
+//next buttons on carousel images
+/* Position the previous and next buttons */
+button.previous,
+button.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: transparent;
+}
+
+// button.previous {
+//   background: url('../../assets/white_arrow_before.png') no-repeat;
+//   text-indent: -9999px;
+//   /* hide the text */
+//   width: 30px;
+//   /* set the width of the button */
+//   height: 30px;
+//   /* set the height of the button */
+//   background-size: 100% 100%;
+// }
+
+// button.next {
+//   background: url('../../assets/white_arrow_next.png') no-repeat;
+//   text-indent: -9999px;
+//   /* hide the text */
+//   width: 30px;
+//   /* set the width of the button */
+//   height: 30px;
+//   /* set the height of the button */
+//   background-size: 100% 100%;
+// }
+
+/* Position the previous button on the left */
+button.previous {
+  left: 0;
+  background: url('../../assets/white_arrow_before.png') no-repeat;
+  background-size: contain;
+  text-indent: -9999px;
+}
+
+/* Position the next button on the right */
+button.next {
+  right: 0;
+  background: url('../../assets/white_arrow_next.png') no-repeat;
+  background-size: contain;
+  text-indent: -9999px;
+}

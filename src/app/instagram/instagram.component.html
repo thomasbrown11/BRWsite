@@ -55,12 +55,13 @@
           </video>
         </ng-template>
 
-        <div *ngIf="carouselIndex >= 0">
-          <button (click)="carouselIndex = carouselIndex - 1; $event.stopPropagation()">Previous</button>
+        <div [hidden]="carouselIndex<=0">
+          <button (click)="carouselIndex = carouselIndex - 1; $event.stopPropagation()"
+            class="previous">Previous</button>
         </div>
 
-        <div *ngIf="carouselIndex <= imageEnlarged.children.data.length - 1">
-          <button (click)="nextImage(); $event.stopPropagation()">Next</button>
+        <div [hidden]="carouselIndex >= imageEnlarged.children.data.length - 1">
+          <button (click)="nextImage(); $event.stopPropagation()" class="next">Next</button>
         </div>
       </ng-container>
 
