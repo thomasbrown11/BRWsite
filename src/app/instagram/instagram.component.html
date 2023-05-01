@@ -12,12 +12,20 @@
 <div class="image-enlarged" *ngIf="imageEnlarged">
   <div class="enlarged-image-container" (click)="toggleImageEnlarged(imageEnlarged)">
     <div class="enlarged-image">
+      <!-- If clicked image is video -->
       <ng-container *ngIf="imageEnlarged.media_type === 'VIDEO'">
         <video [src]="imageEnlarged.media_url" controls></video>
       </ng-container>
-      <ng-container *ngIf="imageEnlarged.media_type !== 'VIDEO'">
+      <!-- If clicked image is image -->
+      <ng-container *ngIf="imageEnlarged.media_type === 'IMAGE'">
         <img [src]="imageEnlarged.media_url" alt="{{ imageEnlarged.caption }}">
       </ng-container>
+
+      <!-- If clicked image is a carousel -->
+      <!-- <ng-container *ngIf="imageEnlarged.media_type === 'IMAGE_CAROUSEL'">
+        <img [src]="carousels[imageEnlarged.id][1].media_url" alt="{{ imageEnlarged.caption }}">
+      </ng-container> -->
+
       <div class="preview-image-remove" (click)="toggleImageEnlarged(imageEnlarged)">x</div>
     </div>
     <div class="enlarged-text-container">

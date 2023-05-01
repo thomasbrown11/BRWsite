@@ -3,6 +3,8 @@ import { InstagramService } from './instagram.service';
 
 import { forkJoin } from 'rxjs';
 
+import { CarouselImage } from './carouselProto'
+
 @Component({
   selector: 'app-instagram',
   templateUrl: './instagram.component.html',
@@ -10,7 +12,7 @@ import { forkJoin } from 'rxjs';
 })
 export class InstagramComponent implements OnInit {
   images: any[] = [];
-  carousels: Record<string, object> = {};
+  carousels: { [key: string]: CarouselImage[] } = {};
   //just added?
   imageEnlarged: any;
 
@@ -59,7 +61,7 @@ export class InstagramComponent implements OnInit {
           const mediaUrlArray: any = [];
 
           //iterate over the array of each carousel object at image.children.data
-          //this contains id's which whould be fed to the .getMedia(id) method from service
+          //this contains id's which whould be fed to the .getCarouselItem(id) method from service
           image.children.data.forEach((child: any) => {
             mediaUrlArray.push(this.instagramService.getCarouselItem(child.id));
           });
