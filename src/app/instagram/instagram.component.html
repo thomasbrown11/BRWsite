@@ -20,27 +20,7 @@
       <ng-container *ngIf="imageEnlarged.media_type === 'IMAGE'">
         <img [src]="imageEnlarged.media_url" alt="{{ imageEnlarged.caption }}">
       </ng-container>
-
-      <!-- If clicked image is a carousel -->
-      <!-- <ng-container *ngIf="imageEnlarged.media_type === 'CAROUSEL_ALBUM'">
-        <img [src]="imageEnlarged.children.data[0].media_url" alt="{{ imageEnlarged.caption }}">
-      </ng-container> -->
-      <!-- <ng-container *ngIf="imageEnlarged.media_type === 'CAROUSEL_ALBUM'">
-        <ng-container *ngIf="imageEnlarged.children.data.length > 0">
-          <ng-container *ngIf="imageEnlarged.children.data[0].media_type === 'VIDEO'; else imgBlock">
-            <video controls>
-              <source [src]="imageEnlarged.children.data[carouselIndex].media_url" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </ng-container>
-          <ng-template #imgBlock>
-            <img [src]="imageEnlarged.children.data[carouselIndex].media_url" alt="{{ imageEnlarged.caption }}">
-          </ng-template>
-          <button (click)="carouselIndex = carouselIndex - 1">Previous</button>
-          <button (click)="carouselIndex = carouselIndex + 1">Next</button>
-        </ng-container>
-      </ng-container> -->
-
+      <!-- If clicked image is carousel -->
       <ng-container *ngIf="imageEnlarged.media_type === 'CAROUSEL_ALBUM'">
         <ng-container
           *ngIf="imageEnlarged.children.data[carouselIndex].media_type === 'VIDEO'; then video else image"></ng-container>
@@ -64,9 +44,7 @@
           <button (click)="nextImage(); $event.stopPropagation()" class="next">Next</button>
         </div>
       </ng-container>
-
-
-
+      <!-- generic enlarged box population for all content types -->
       <div class="preview-image-remove" (click)="toggleImageEnlarged(imageEnlarged)">x</div>
     </div>
     <div class="enlarged-text-container">
