@@ -175,27 +175,11 @@ button.next {
   background-color: transparent;
 }
 
-// button.previous {
-//   background: url('../../assets/white_arrow_before.png') no-repeat;
-//   text-indent: -9999px;
-//   /* hide the text */
-//   width: 30px;
-//   /* set the width of the button */
-//   height: 30px;
-//   /* set the height of the button */
-//   background-size: 100% 100%;
-// }
-
-// button.next {
-//   background: url('../../assets/white_arrow_next.png') no-repeat;
-//   text-indent: -9999px;
-//   /* hide the text */
-//   width: 30px;
-//   /* set the width of the button */
-//   height: 30px;
-//   /* set the height of the button */
-//   background-size: 100% 100%;
-// }
+button.previous:hover,
+button.next:hover {
+  border: 1px solid #000;
+  cursor: pointer;
+}
 
 /* Position the previous button on the left */
 button.previous {
