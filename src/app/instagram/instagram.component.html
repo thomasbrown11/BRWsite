@@ -22,9 +22,9 @@
       </ng-container>
 
       <!-- If clicked image is a carousel -->
-      <!-- <ng-container *ngIf="imageEnlarged.media_type === 'IMAGE_CAROUSEL'">
+      <ng-container *ngIf="imageEnlarged.media_type === 'CAROUSEL_ALBUM'">
         <img [src]="carousels[imageEnlarged.id][1].media_url" alt="{{ imageEnlarged.caption }}">
-      </ng-container> -->
+      </ng-container>
 
       <div class="preview-image-remove" (click)="toggleImageEnlarged(imageEnlarged)">x</div>
     </div>
