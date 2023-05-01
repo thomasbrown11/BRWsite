@@ -5,19 +5,19 @@ import { Injectable } from '@angular/core';
 })
 export class InstagramCacheService {
 
-  private carouselCache: { [id: string]: any } = {};
+  private cache: { [key: string]: any } = {};
 
   constructor() { }
 
-  get(id: string): any {
-    return this.carouselCache[id];
+  get(key: string): any {
+    return this.cache[key];
   }
 
-  set(id: string, value: any): void {
-    this.carouselCache[id] = value;
+  set(key: string, value: any): void {
+    this.cache[key] = value;
   }
 
   clear(): void {
-    this.carouselCache = {};
+    this.cache = {};
   }
 }
