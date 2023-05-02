@@ -115,13 +115,23 @@ export class InstagramComponent implements OnInit {
   }
 
   loadMore() {
+    //if init api response included 'after' suggesting more posts exist
     if (this.after) {
       this.instagramService.getMediaByCursor(this.after).subscribe((data: any) => {
+        //if response includes a 'paging' prop (there are more posts)
         if (data.paging) {
+          //append images to display from response
           this.images.push(...data.data);
+          //if there are less than 16 posts then no more content.. hide button
+          if (data.data.length < 16) {
+            this.after = '';
+            return;
+          }
+          //set after to target next batch of posts
           this.after = data.paging.cursors.after;
           console.log('after', this.after);
         } else {
+          //if !paging (request body was empty array) hide button
           this.after = '';
         }
       });
