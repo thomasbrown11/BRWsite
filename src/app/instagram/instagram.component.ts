@@ -17,6 +17,7 @@ export class InstagramComponent implements OnInit {
   //just added?
   imageEnlarged: any;
   carouselIndex: number = 0
+  next: string = '';
 
   constructor(private instagramService: InstagramService, private instaCache: InstagramCacheService) { }
 
@@ -26,29 +27,8 @@ export class InstagramComponent implements OnInit {
     this.instagramService.getMedia().subscribe((data: any) => {
       //this is entire json body parsed per individual post object. Parsed further into the 'media_urls' in the template
       this.images = data.data;
-
-      // this.images.forEach((image) => {
-      //   //if current post has a children array (indicating it's a carousel)
-      //   if (image.media_type === 'CAROUSEL_ALBUM') {
-      //     console.log('its an album')
-      //     const mediaUrlArray: any = [];
-
-      //     //iterate over the array of each carousel object at image.children.data
-      //     //this contains id's which whould be fed to the .getCarouselItem(id) method from service
-      //     image.children.data.forEach((child: any) => {
-      //       mediaUrlArray.push(this.instagramService.getCarouselItem(child.id));
-      //     });
-
-      //     forkJoin(mediaUrlArray).subscribe((results: any) => {
-      //       //push key:value pair of post id: array of objects with children's media_type and media_urls
-      //       this.carousels[image.id] = results;
-      //       // console.log(this.carousels);
-      //     });
-      //   }
-      // });
-
-      // console.log(this.carousels)
-
+      this.next = data.paging.next;
+      console.log('next', this.next)
     });
   }
 
@@ -131,5 +111,16 @@ export class InstagramComponent implements OnInit {
   previousImage() {
     this.carouselIndex -= 1;
   }
+
+  loadMore() {
+    if (this.next) {
+      this.instagramService.getMediaByURL(this.next).subscribe((data: any) => {
+        this.images.push(...data.data);
+        this.next = data.paging.next;
+        console.log('next', this.next);
+      });
+    }
+  }
+
 
 }

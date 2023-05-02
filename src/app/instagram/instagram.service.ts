@@ -19,4 +19,8 @@ export class InstagramService {
     return this.http.get<any>(`${this.apiUrl}/${id}`)
   }
 
+  getMediaByURL(url: string): Observable<any> {
+    return this.http.get<any>(url);
+  }
+
 }
