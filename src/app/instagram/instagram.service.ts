@@ -15,8 +15,8 @@ export class InstagramService {
   }
 
   //arg is id in post object.. iterate over images (returned object from getMedia())
-  getCarouselItem(id: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${id}`)
+  getMediaByCursor(after: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${after}`)
   }
 
   getMediaByURL(url: string): Observable<any> {

@@ -16,8 +16,10 @@ export class InstagramComponent implements OnInit {
   carousels: { [key: string]: CarouselImage[] } = {};
   //just added?
   imageEnlarged: any;
+  //controls which carousel image is displayed via method
   carouselIndex: number = 0
-  next: string = '';
+  //from api request providing key to next 16 posts. Hides more post button if empty
+  after: string = '';
 
   constructor(private instagramService: InstagramService, private instaCache: InstagramCacheService) { }
 
@@ -27,8 +29,8 @@ export class InstagramComponent implements OnInit {
     this.instagramService.getMedia().subscribe((data: any) => {
       //this is entire json body parsed per individual post object. Parsed further into the 'media_urls' in the template
       this.images = data.data;
-      this.next = data.paging.next;
-      console.log('next', this.next)
+      this.after = data.paging.cursors.after;
+      console.log('after', this.after)
     });
   }
 
@@ -113,11 +115,15 @@ export class InstagramComponent implements OnInit {
   }
 
   loadMore() {
-    if (this.next) {
-      this.instagramService.getMediaByURL(this.next).subscribe((data: any) => {
-        this.images.push(...data.data);
-        this.next = data.paging.next;
-        console.log('next', this.next);
+    if (this.after) {
+      this.instagramService.getMediaByCursor(this.after).subscribe((data: any) => {
+        if (data.paging) {
+          this.images.push(...data.data);
+          this.after = data.paging.cursors.after;
+          console.log('after', this.after);
+        } else {
+          this.after = '';
+        }
       });
     }
   }
