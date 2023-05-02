@@ -1,3 +1,7 @@
+.insta-page-title {
+  text-align: center;
+}
+
 .image-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -195,4 +199,10 @@ button.next {
   background: url('../../assets/white_arrow_next.png') no-repeat;
   background-size: contain;
   text-indent: -9999px;
+}
+
+//Position the load more button (temp)
+.next-page-button {
+  text-align: center;
+  margin-top: 5px;
 }
