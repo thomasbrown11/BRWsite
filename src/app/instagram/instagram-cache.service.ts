@@ -46,7 +46,7 @@ export class InstagramCacheService {
   constructor() { }
 
   getImages(): any[] | null {
-    const cachedImages = localStorage.getItem(this.imagesKey);
+    const cachedImages = sessionStorage.getItem(this.imagesKey);
     return cachedImages ? JSON.parse(cachedImages) : null;
   }
 
@@ -55,15 +55,15 @@ export class InstagramCacheService {
   }
 
   cacheImages(images: any[]) {
-    localStorage.setItem(this.imagesKey, JSON.stringify(images));
+    sessionStorage.setItem(this.imagesKey, JSON.stringify(images));
   }
 
   cacheAfterCursor(cursor: string) {
-    localStorage.setItem(this.afterCursorKey, cursor);
+    sessionStorage.setItem(this.afterCursorKey, cursor);
   }
 
   clear(): void {
-    localStorage.removeItem(this.imagesKey);
-    localStorage.removeItem(this.afterCursorKey);
+    sessionStorage.removeItem(this.imagesKey);
+    sessionStorage.removeItem(this.afterCursorKey);
   }
 }
