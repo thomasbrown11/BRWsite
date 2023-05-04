@@ -27,7 +27,8 @@ export class InstagramComponent implements OnInit {
       this.after = data.paging.cursors.after;
       console.log('images', this.images, 'after', this.after);
       //cache data for next call
-      this.cacheService.cacheInstagramData(data);
+      // this.cacheService.cacheInstagramData(data);
+      this.cacheService.cacheInstagramData(this.images, this.after);
     });
   }
 
@@ -73,68 +74,46 @@ export class InstagramComponent implements OnInit {
     this.carouselIndex -= 1;
   }
 
+  //loadMore content and update cache
   loadMore() {
-    //if init api response included 'after' suggesting more posts exist
-    if (this.after) {
-      this.instagramService.getMediaByCursor(this.after).subscribe((data: any) => {
-        //if response includes a 'paging' prop (there are more posts)
-        if (data.paging) {
-          //append images to display from response
-          this.images.push(...data.data);
-          //if there are less than 16 posts then no more content.. hide button
-          if (data.data.length < 16) {
-            this.after = '';
-            return;
-          }
-          //set after to target next batch of posts
-          this.after = data.paging.cursors.after;
-          console.log('after', this.after);
-        } else {
-          //if !paging (request body was empty array) hide button
-          this.after = '';
-        }
+    //if the stamp is expired
+    if (this.cacheService.isInstaCacheExpired()) {
+      //reInit the instagram call
+      console.log('instagramCache is stale')
+      this.instagramService.getMedia().subscribe((data: any) => {
+        this.requestNewPosts();
       });
+      //cache is still fresh
+    } else {
+      //if there is a valid 'after' value to page to more posts
+      if (this.after) {
+        //fetch next batch of posts
+        this.instagramService.getMediaByCursor(this.after).subscribe((data: any) => {
+          //paging only exists if data array had posts
+          if (data.paging) {
+            //append images to display from response
+            this.images.push(...data.data);
+            //if there are less than 16 posts appended then no more content.. hide button
+            if (data.data.length < 16) {
+              this.after = '';
+              // return;
+            } else {
+              //16 posts means more like set after
+              this.after = data.paging.cursors.after;
+              console.log('after', this.after);
+            }
+            //append cache images and update after accordingly (since values present images appended)
+            this.cacheService.cacheInstagramData(data.data, this.after);
+            console.log('loaded from cache', this.images, this.after)
+
+          } else {
+            //if paging was empty there are no more posts.
+            this.after = '';
+          }
+        });
+      }
     }
   }
-
-  //suggested changes... please edit carefully
-  //broken.. doesn't change to after, but reinitializes bad values
-  // loadMore() {
-  //   //if the stamp is expired
-  //   if (this.cacheService.isInstaCacheExpired()) {
-  //     //reInit the instagram call
-  //     console.log('instagramCache is stale')
-  //     this.instagramService.getMedia().subscribe((data: any) => {
-  //       this.requestNewPosts();
-  //     });
-  //     //cache is still fresh
-  //   } else {
-  //     //if there is a valid 'after' value to page to more posts
-  //     if (this.after) {
-  //       //fetch next batch of posts
-  //       this.instagramService.getMediaByCursor(this.after).subscribe((data: any) => {
-  //         //if response includes a 'paging' prop (there are more posts)
-  //         if (data.paging) {
-  //           //append images to display from response
-  //           this.images.push(...data.data);
-  //           //if there are less than 16 posts appended then no more content.. hide button
-  //           if (data.data.length < 16) {
-  //             this.after = '';
-  //             return;
-  //           }
-  //           //if 16 posts fetched likely more.. set 'after'
-  //           this.after = data.paging.cursors.after;
-  //           console.log('after', this.after);
-  //         } else {
-  //           //if !paging (request body was empty array) hide button
-  //           this.after = '';
-  //         }
-  //       });
-  //     }
-
-
-  //   }
-  // }
 
 
 }
