@@ -6,7 +6,6 @@
       <!-- {{model | json}} -->
       <div class=" form-group">
         <label for="name">Name</label>
-        <br>
         <!-- truthy if the element with #name template attached is falsey -->
         <div [hidden]="name.valid || name.pristine" class="alert-danger">
           <p>Name is required</p>
@@ -14,17 +13,19 @@
         <input type="text" #name='ngModel' class="form-control" id="name" required [(ngModel)]="model.name" name="name">
       </div>
 
+      <br>
+
       <div class="form-group">
         <label for="requstType">Request Type</label>
-        <br>
         <select class="form-control" id="requestType" required [(ngModel)]="model.subject" name="requestType">
           <option *ngFor="let req of requestType" [value]="req">{{req}}</option>
         </select>
       </div>
 
+      <br>
+
       <div class="form-group">
         <label for="email">Email</label>
-        <br>
         <div [hidden]="email.valid || email.pristine" class="alert-danger">
           <p>Email is required</p>
         </div>
@@ -32,15 +33,17 @@
           name="email">
       </div>
 
+      <br>
+
       <div class="form-group">
         <label for="phone">Phone Number</label>
-        <br>
         <input type="text" class="form-control" id="phone" [(ngModel)]="model.phone" name="phone">
       </div>
 
+      <br>
+
       <div class="form-group">
         <label for="fileInput">Upload File</label>
-        <br>
         <input type="file" #upload='ngModel' class="form-control" id="fileInput" [(ngModel)]="model.selectedFile"
           name="files" (change)="onFileSelected($event)" multiple>
       </div>
@@ -60,7 +63,6 @@
       <div class="form-group">
         <div class="checkbox-element">
           <label class="checkbox-label" for="listOpt">*Subscribe to Email List?</label>
-          <br>
           <input type="checkbox" name="listOpt" class="form-control" id="listOpt" #listOpt='ngModel'
             [(ngModel)]="model.listOpt">
           <div class="checkbox-description">
@@ -75,11 +77,9 @@
 
       <div class="form-group">
         <label for="message">Message</label>
-        <br>
         <div [hidden]="message.valid || message.pristine" class="alert-danger">
           Please enter a message
         </div>
-        <br>
         <textarea type="text" #message='ngModel' class="form-control" id="message" required [(ngModel)]="model.message"
           name="message"></textarea>
       </div>
