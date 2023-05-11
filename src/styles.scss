@@ -40,3 +40,22 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+//import Baskerville font into project
+@font-face {
+  font-family: 'Libre Baskerville';
+  src: url('../src/assets/fonts/LibreBaskerville-Regular.ttf') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Libre Baskerville';
+  src: url('../src/assets/fonts/LibreBaskerville-Bold.ttf') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Libre Baskerville';
+  src: url('../src/assets/fonts/LibreBaskerville-Italic.ttf') format('truetype');
+  font-style: italic;
+}

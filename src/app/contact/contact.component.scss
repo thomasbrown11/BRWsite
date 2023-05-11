@@ -1,63 +1,45 @@
+.container {
+  text-align: center;
+}
+
+.contact-page-title {
+  font-family: 'Libre Baskerville', serif;
+  clear: both;
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
 //style form elements that are required and valid (currently meet requirements)
 .ng-valid[required],
 .ng-valid.required {
-  border-left: 5px solid #42A948;
-  /* green */
+  border: 1px solid black;
 }
 
-//style any (currently invalid form elements
+//style any currently invalid form elements
 .ng-invalid:not(form) {
-  border-left: 5px solid #a94442;
-  /* red */
+  border: 2px solid red;
+}
+
+//style hovering
+.ng-valid[required]:hover,
+.ng-valid.required:hover {
+  border-width: 2px;
+}
+
+//style hovering
+.ng-invalid:not(form):hover {
+  border-width: 2px;
+}
+
+input[type="text"]:hover {
+  border: 2px solid black;
 }
 
 //required warnings
 .alert-danger {
-  background-color: red;
+  color: red;
 }
-
-//handle x placement over preview images
-// .preview-image-container {
-//   position: relative;
-//   display: inline-block;
-//   margin-right:10px
-// }
-
-// .preview-image-container:hover img {
-//   filter: brightness(70%);
-// }
-
-// .preview-image-title {
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   max-width: 100%;
-//   text-align: center;
-//   font-size: 10px;
-//   color: #fff;
-//   background-color: rgba(0, 0, 0, 0.7);
-//   padding: 8px;
-//   box-sizing: border-box;
-// }
-
-// .preview-image-remove {
-//   position: absolute;
-//   top: 0;
-//   right: 0;
-//   width: 20px;
-//   height: 20px;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   color: #ffffff;
-//   font-size: 16px;
-//   font-weight: bold;
-//   cursor: pointer;
-//   z-index: 1;
-//   background: transparent;
-//   border: none;
-//   outline: none;
-// }
 
 .preview-image-container {
   position: relative;
@@ -143,4 +125,38 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+.formBox {
+  margin: 50px auto;
+  max-width: 500px;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: block;
+}
+
+/* Style form labels */
+label {
+  font-family: 'Libre Baskerville', serif;
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Style input fields */
+input,
+textarea,
+select {
+  font-family: 'Libre Baskerville', serif;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  color: #333;
+  box-sizing: border-box;
 }
