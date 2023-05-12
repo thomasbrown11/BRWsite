@@ -14,15 +14,6 @@
   margin-top: 20px;
 }
 
-// .container {
-//   display: grid;
-//   grid-template-columns: 1fr;
-//   grid-template-rows: auto 1fr;
-//   grid-template-areas:
-//     "title"
-//     "form";
-// }
-
 //style form elements that are required and valid (currently meet requirements)
 .ng-valid[required],
 .ng-valid.required {
@@ -211,4 +202,16 @@ button {
   // background-color: #ceddd1;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.thank-you {
+  // background-color: #F2F2F2;
+  // border: 1px solid #CCCCCC;
+  border: 1px solid black;
+  padding: 20px;
+  text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
