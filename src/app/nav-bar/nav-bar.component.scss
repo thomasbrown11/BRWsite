@@ -1,7 +1,66 @@
-mat-sidenav-container {
-  height: 100%
+mat-toolbar.mat-primary {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
 }
 
-mat-icon {
-  size: 10%
+// .sidenav-container {
+//   position: fixed;
+//   top: 64px;
+//   left: 0;
+//   bottom: 0;
+//   width: 250px;
+//   z-index: 5;
+//   transition: background-color 0.3s ease;
+// }
+
+// .sidenav-container.open {
+//   background-color: green;
+// }
+
+// .sidenav-container:not(.open) {
+//   transition: background-color 0.3s;
+//   /* add a transition to the background-color property when the 'open' class is removed */
+// }
+
+.sidenav-container {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  bottom: 0;
+  width: 250px;
+  z-index: 5;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+  /* add a transition for the opacity property */
+  opacity: 1;
+  /* set the initial opacity to 1 */
+}
+
+.sidenav-container.open {
+  background-color: green;
+  opacity: 1;
+  /* make sure the opacity is 1 when the sidenav is open */
+}
+
+.sidenav-container:not(.open) {
+  background-color: transparent;
+  /* change the background color to transparent when the sidenav is closed */
+  opacity: 0;
+  /* set the opacity to 0 when the sidenav is closed */
+  pointer-events: none;
+  /* disable pointer events on the closed sidenav to prevent clicks on elements behind it */
+}
+
+
+.main-content {
+  position: absolute;
+  top: 64px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  padding: 16px;
+  box-sizing: border-box;
 }
