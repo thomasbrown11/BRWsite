@@ -59,21 +59,25 @@
 
 <div class="sidenav-container" [ngClass]="{'open': isOpen}">
   <mat-sidenav [(opened)]="isOpen" #sideNav>
-    <mat-nav-list>
-      <mat-list-item [routerLink]="'home'" (click)="isOpen = !isOpen"><mat-icon>home</mat-icon>Home</mat-list-item>
-      <mat-list-item [routerLink]="'about'" (click)="isOpen = !isOpen"><mat-icon>account_box</mat-icon>About
+    <mat-nav-list class="custom-list">
+      <mat-list-item [routerLink]="'home'" (click)="isOpen = !isOpen"
+        tabindex="-1"><mat-icon>home</mat-icon>Home</mat-list-item>
+      <mat-list-item [routerLink]="'about'" (click)="isOpen = !isOpen"
+        tabindex="-1"><mat-icon>account_box</mat-icon>About
         Me</mat-list-item>
-      <mat-list-item [routerLink]="'blownglass'" (click)="isOpen = !isOpen"><mat-icon>hourglass_full</mat-icon>Blown
+      <mat-list-item [routerLink]="'blownglass'" (click)="isOpen = !isOpen"
+        tabindex="-1"><mat-icon>hourglass_full</mat-icon>Blown
         Glass</mat-list-item>
-      <mat-list-item [routerLink]="'lampwork'" (click)="isOpen = !isOpen"><mat-icon>highlight</mat-icon>Lamp
+      <mat-list-item [routerLink]="'lampwork'" (click)="isOpen = !isOpen"
+        tabindex="-1"><mat-icon>highlight</mat-icon>Lamp
         Work</mat-list-item>
-      <mat-list-item [routerLink]="'instagram'" (click)="isOpen = !isOpen"><img
+      <mat-list-item [routerLink]="'instagram'" (click)="isOpen = !isOpen" tabindex="-1"><img
           src="../assets/Instagram_Glyph_Gradient.png" alt="Instagram" width="20" height="20">Instagram</mat-list-item>
-      <mat-list-item [routerLink]="'facebook'" (click)="isOpen = !isOpen"><img
+      <mat-list-item [routerLink]="'facebook'" (click)="isOpen = !isOpen" tabindex="-1"><img
           src="../../assets/f_logo_RGB-Blue_250.png" alt="Facebook" width="20" height="20">Facebook
         Market</mat-list-item>
-      <mat-list-item [routerLink]="'contact'"
-        (click)="isOpen = !isOpen"><mat-icon>contact_support</mat-icon>Contact</mat-list-item>
+      <mat-list-item [routerLink]="'contact'" (click)="isOpen = !isOpen"
+        tabindex="-1"><mat-icon>contact_support</mat-icon>Contact</mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
 </div>
