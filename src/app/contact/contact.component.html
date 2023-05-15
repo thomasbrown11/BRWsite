@@ -27,10 +27,10 @@
       <div class="form-group">
         <label for="email">Email</label>
         <div [hidden]="email.valid || email.pristine" class="alert-danger">
-          <p>Email is required</p>
+          <p>Please Enter a Valid Email Address</p>
         </div>
         <input type="email" #email='ngModel' class="form-control" id="email" required [(ngModel)]="model.email"
-          name="email">
+          name="email" pattern="[^\s@]+@[^\s@]+\.[^\s@]+">
       </div>
 
       <br>
