@@ -127,8 +127,13 @@ export class ContactComponent {
     this.isLoading = true;
 
     // Remove existing email if it exists
-    if (this.formData.has('email')) {
-      this.formData.delete('email');
+    // if (this.formData.has('email')) {
+    //   this.formData.delete('email');
+    // }
+
+    //if submitting after an unverified email purge formData
+    if (!this.isVerifiedEmail) {
+      this.formData = new FormData();
     }
     // const formData = new FormData();
     this.formData.append('name', model.name);
