@@ -72,41 +72,6 @@ export class ContactComponent {
     }
   };
 
-  // onFileSelected(event: any) {
-  //   //reference uploaded file
-  //   let file = event.target.files[0];
-  //   //add to FormData (parses to send to email)
-  //   this.formData.append('files', file);
-  //   //clear array of previews displayed under upload (for multiple uploads in one request)
-  //   this.clearPreview(); // Clear the preview arrays before appending new files
-  //   //get File[] array of all files present on the FormData object
-  //   const files = this.formData.getAll('files') as File[]; // Get all the uploaded files from the FormData object
-  //   //loop through files array, make new FileReader(), read as data url, and onLoad push to the displayed array and make true (so html displays)
-  //   for (const f of files) {
-  //     if (f.type === 'application/pdf') {
-  //       const pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(f)); // Create a URL for the PDF file
-  //       this.previewUrls.push(pdfUrl); // Add the URL to the preview URLs array
-  //       this.fileTitles.push(f.name); // Add the title of the file to the file titles array
-  //       this.isPreviewSelected = true; // Set the flag to indicate that a PDF is selected
-
-  //       console.log('PDF URL:', pdfUrl);
-  //     } else {
-  //       const fileReader = new FileReader(); // Create a new instance of the FileReader class for each file
-  //       fileReader.readAsDataURL(f); // Read the file as a data URL
-  //       fileReader.onload = () => {
-  //         this.previewUrls.push(fileReader.result as string); // Add the data URL to the preview URLs array
-  //         this.fileTitles.push(f.name); // Add the title of the file to the file titles array
-  //         this.isPreviewSelected = true; // Set the flag to indicate that a PDF is not selected
-
-  //         console.log('Data URL:', fileReader.result);
-  //       };
-
-  //       this.fileReaders.push(fileReader); // Add the FileReader instance to the array
-  //     }
-  //   }
-  // };
-
-
   //remove file from email's formData object by clicking preview image
   removeFile(previewUrl: string) {
     const index = this.previewUrls.indexOf(previewUrl);
@@ -125,11 +90,6 @@ export class ContactComponent {
   onSubmit(model: ContactObject) {
     //trigger loader
     this.isLoading = true;
-
-    // Remove existing email if it exists
-    // if (this.formData.has('email')) {
-    //   this.formData.delete('email');
-    // }
 
     //if submitting after an unverified email purge formData
     if (!this.isVerifiedEmail) {
