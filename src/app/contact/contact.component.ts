@@ -22,8 +22,11 @@ export class ContactComponent {
   submitted = false;
   isPreviewSelected = false; //only show file preview when file selected
   previewUrls: any = []; // Create an array to store preview data URLs
-  fileTitles: any = [];
+  fileTitles: any = []; //array of file titles pushed on upload
   isLoading: boolean = false; //disable controls when loading.
+  isVerifiedEmail: boolean = true; //display error code for user if email address not verified
+  errorCode: any = ''; //errorCode to display if onSubmit fail
+
 
   constructor(private contactService: ContactService, private sanitizer: DomSanitizer) { }
 
@@ -122,6 +125,11 @@ export class ContactComponent {
   onSubmit(model: ContactObject) {
     //trigger loader
     this.isLoading = true;
+
+    // Remove existing email if it exists
+    if (this.formData.has('email')) {
+      this.formData.delete('email');
+    }
     // const formData = new FormData();
     this.formData.append('name', model.name);
     this.formData.append('email', model.email);
@@ -133,9 +141,20 @@ export class ContactComponent {
     }
     this.contactService.sendEmail(this.formData).subscribe(
       response => {
+        //if validation fails toggle error message on and displace error code
+        if (response.status === 400) {
+          const responseBody = response.error //get object from error response body
+          this.isVerifiedEmail = false;
+          this.errorCode = responseBody.errorCode;
+          console.log('Error Code:', this.errorCode);
+          console.log(this.isVerifiedEmail);
+          this.isLoading = false;
+          return
+        }
         console.log('Email sent!', response)
         this.submitted = true; //submitted triggers thank you element
         this.isLoading = false; //disables loader
+        this.isVerifiedEmail = true; //toggle verification error message if applicable
       },
       error => {
         console.log('Error sending email:', error);

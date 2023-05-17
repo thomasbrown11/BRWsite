@@ -3,7 +3,7 @@
   <div class="formBox" *ngIf="!submitted">
     <form #contactForm="ngForm" (ngSubmit)="onSubmit(model)" method="POST" enctype="multipart/form-data" #form>
       <!-- this is to see the dynamic data changes in the form.. delete when done -->
-      <!-- {{model | json}} -->
+      {{model | json}}
       <div class=" form-group">
         <label for="name">Name</label>
         <!-- truthy if the element with #name template attached is falsey -->
@@ -25,6 +25,11 @@
       <br>
 
       <div class="form-group">
+
+        <div [hidden]="isVerifiedEmail" class="alert-danger">
+          <p>Email verification failed. Error Code: {{ errorCode }}</p>
+        </div>
+
         <label for="email">Email</label>
         <div [hidden]="email.valid || email.pristine" class="alert-danger">
           <p>Please Enter a Valid Email Address</p>
