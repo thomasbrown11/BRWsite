@@ -28,6 +28,7 @@ import { TestCompComponent } from './test-comp/test-comp.component'; //?
 
 //PDF viewer for contact form
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -42,7 +43,8 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
     NavBarComponent,
     AboutMeComponent,
     FacebookComponent,
-    TestCompComponent
+    TestCompComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
