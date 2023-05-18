@@ -9,6 +9,10 @@ import { Component } from '@angular/core'; //imported HostListener for clicking 
 })
 export class NavBarComponent {
   isOpen: boolean = false;
+
+  toggleNav() {
+    this.isOpen = !this.isOpen;
+  }
 }
 
 

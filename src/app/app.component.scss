@@ -1,20 +1,28 @@
-.app-container {
-  min-height: 100vh;
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.page-container {
   display: flex;
   flex-direction: column;
+  min-height: 100%;
 }
 
-.app-container>app-nav-bar {
-  flex-shrink: 0;
+.nav-bar-container {
+  position: relative;
+  z-index: 1;
 }
 
-.router-container {
-  flex-grow: 1;
-  overflow-y: auto;
-}
-
-app-footer {
-  background-color: black;
-  color: white;
-  padding: 20px;
+.content {
+  flex: 1;
+  /* Take up remaining vertical space */
+  overflow: auto;
+  /* Enable scrolling if content overflows */
+  padding: 16px;
+  box-sizing: border-box;
+  margin-top: 64px;
+  /* Add any other styles for the content */
 }

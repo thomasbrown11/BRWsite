@@ -1,10 +1,10 @@
-mat-toolbar.mat-primary {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-}
+// mat-toolbar.mat-primary {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+//   z-index: 10;
+// }
 
 // .sidenav-container {
 //   position: fixed;
@@ -13,76 +13,171 @@ mat-toolbar.mat-primary {
 //   bottom: 0;
 //   width: 250px;
 //   z-index: 5;
-//   transition: background-color 0.3s ease;
+//   transition: background-color 0.3s ease, opacity 0.3s ease;
+//   /* add a transition for the opacity property */
+//   opacity: 1;
+//   /* set the initial opacity to 1 */
+
+//   transform: translateX(-100%);
 // }
 
 // .sidenav-container.open {
-//   background-color: green;
+//   background-color: rgb(230, 230, 230);
+//   opacity: 1;
+
+//   transform: translateX(0);
+//   /* make sure the opacity is 1 when the sidenav is open */
 // }
 
 // .sidenav-container:not(.open) {
-//   transition: background-color 0.3s;
-//   /* add a transition to the background-color property when the 'open' class is removed */
+//   background-color: transparent;
+//   /* change the background color to transparent when the sidenav is closed */
+//   opacity: 0;
+//   /* set the opacity to 0 when the sidenav is closed */
+//   pointer-events: none;
+//   /* disable pointer events on the closed sidenav to prevent clicks on elements behind it */
 // }
 
-.sidenav-container {
-  position: fixed;
-  top: 64px;
-  left: 0;
-  bottom: 0;
-  width: 250px;
-  z-index: 5;
-  transition: background-color 0.3s ease, opacity 0.3s ease;
-  /* add a transition for the opacity property */
-  opacity: 1;
-  /* set the initial opacity to 1 */
 
-  transform: translateX(-100%);
+// .main-content {
+//   position: absolute;
+//   top: 64px;
+//   left: 0;
+//   right: 0;
+//   bottom: 0;
+//   overflow: auto;
+//   padding: 16px;
+//   box-sizing: border-box;
+// }
+
+// /* Set the background color of the first mat-list-item to the same as the other items */
+// .mat-nav-list:first-child .mat-list-item:hover {
+//   background-color: rgba(0, 0, 0, 0.04);
+// }
+
+// .mat-nav-list:first-child .mat-list-item {
+//   background-color: transparent !important;
+//   color: inherit !important;
+//   opacity: 1 !important;
+//   pointer-events: auto !important;
+// }
+
+// /* Set the background color of the hovered element to a different color */
+// mat-list-item:hover {
+//   background-color: #c7c7c7;
+//   /* Change this to the desired hover color */
+// }
+
+
+
+//new stylings cause mat-tools suck
+
+// .nav-bar {
+//   background-color: white;
+
+//   display: flex;
+//   align-items: center;
+// }
+
+// .nav-toggle {
+//   margin-right: 10px;
+//   z-index: 1;
+//   /* Add a higher z-index to keep the button clickable */
+// }
+
+// .nav-toggle button {
+//   background: none;
+//   border: none;
+//   cursor: pointer;
+// }
+
+// .page-title {
+//   /* Styles for the page title */
+//   margin: 0;
+//   color: black;
+// }
+
+// .nav-links-container {
+//   /* Existing styles for nav-links-container */
+//   position: absolute;
+//   top: 100%;
+//   left: 0;
+//   background-color: #fff;
+//   width: 100%;
+//   padding: 10px;
+// }
+
+// .nav-links {
+//   display: flex;
+//   flex-direction: column;
+// }
+
+// .nav-links a {
+//   text-decoration: none;
+//   color: black;
+//   font-size: 25px;
+//   margin-bottom: 5px;
+//   font-family: 'Libre Baskerville', serif;
+//   font-weight: bold;
+// }
+
+// .nav-links a:hover {
+//   background-color: #888888;
+// }
+
+.nav-bar {
+  background-color: white;
+  display: flex;
+  align-items: center;
 }
 
-.sidenav-container.open {
-  background-color: rgb(230, 230, 230);
-  opacity: 1;
-
-  transform: translateX(0);
-  /* make sure the opacity is 1 when the sidenav is open */
+.nav-toggle {
+  margin-right: 10px;
+  z-index: 1;
 }
 
-.sidenav-container:not(.open) {
-  background-color: transparent;
-  /* change the background color to transparent when the sidenav is closed */
-  opacity: 0;
-  /* set the opacity to 0 when the sidenav is closed */
-  pointer-events: none;
-  /* disable pointer events on the closed sidenav to prevent clicks on elements behind it */
+.nav-toggle button {
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
+.page-title {
+  margin: 0;
+  color: black;
+}
 
-.main-content {
+.nav-links-container {
+  position: relative;
+}
+
+.nav-links {
+  display: none;
   position: absolute;
-  top: 64px;
-  left: 0;
+  top: calc(100% + 10px);
   right: 0;
-  bottom: 0;
-  overflow: auto;
-  padding: 16px;
-  box-sizing: border-box;
+  background-color: #fff;
+  width: 200px;
+  padding: 10px;
+  z-index: 2;
 }
 
-/* Set the background color of the first mat-list-item to the same as the other items */
-.mat-nav-list:first-child .mat-list-item:hover {
-  background-color: rgba(0, 0, 0, 0.04);
+.nav-links.show {
+  display: block;
 }
 
-.mat-nav-list:first-child .mat-list-item {
-  background-color: transparent !important;
-  color: inherit !important;
-  opacity: 1 !important;
-  pointer-events: auto !important;
+.nav-links a {
+  text-decoration: none;
+  color: black;
+  font-size: 25px;
+  margin-bottom: 10px;
+  /* Increase the margin-bottom value for more spacing between links */
+  font-family: 'Libre Baskerville', serif;
+  font-weight: bold;
+  display: block;
+  /* Add this property to display each link in a single column */
 }
 
-/* Set the background color of the hovered element to a different color */
-mat-list-item:hover {
-  background-color: #c7c7c7;
-  /* Change this to the desired hover color */
+.nav-links a:hover {
+  background-color: #888888;
 }
