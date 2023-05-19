@@ -40,27 +40,8 @@
 </div> -->
 
 
-<!-- <header class="header">
-  <nav class="nav-bar">
-    <div class="nav-toggle">
-      <button (click)="toggleNav()">
-        <img src="../../assets/hamburger-menu.png" alt="Toggle Navigation" />
-      </button>
-    </div>
-    <h1 class="page-title">Else Werner Glass</h1>
-    <div class="nav-links" *ngIf="isOpen">
-      <a class="nav-link" href="/home">Home</a>
-      <a class="nav-link" href="/about">About</a>
-      <a class="nav-link" href="/blownglass">Blown Glass</a>
-      <a class="nav-link" href="/lampwork">Lamp Work</a>
-      <a class="nav-link" href="/instagram">Instagram</a>
-      <a class="nav-link" href="/facebook">Facebook Market</a>
-      <a class="nav-link" href="/contact">Contact</a>
-    </div>
-  </nav>
-</header> -->
 
-<header class="header">
+<!-- <header class="header">
   <nav class="nav-bar">
     <div class="nav-toggle">
       <button (click)="toggleNav()">
@@ -79,5 +60,27 @@
         <a class="nav-link" href="/contact">Contact</a>
       </div>
     </div>
+  </nav>
+</header> -->
+
+<header class="header">
+  <nav class="nav-bar">
+    <div class="nav-toggle">
+      <button (click)="toggleNav()">
+        <img src="../../assets/hamburger-menu.png" alt="Toggle Navigation" />
+      </button>
+      <div class="nav-links-container">
+        <div class="nav-links" [ngClass]="{'show': isOpen}">
+          <a class="nav-link" href="/home">Home</a>
+          <a class="nav-link" href="/about">About</a>
+          <a class="nav-link" href="/blownglass">Blown Glass</a>
+          <a class="nav-link" href="/lampwork">Lamp Work</a>
+          <a class="nav-link" href="/instagram">Instagram</a>
+          <a class="nav-link" href="/facebook">Facebook</a>
+          <a class="nav-link" href="/contact">Contact</a>
+        </div>
+      </div>
+    </div>
+    <h1 class="page-title">Else Werner Glass</h1>
   </nav>
 </header>

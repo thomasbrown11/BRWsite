@@ -72,68 +72,15 @@
 
 //new stylings cause mat-tools suck
 
-// .nav-bar {
-//   background-color: white;
-
-//   display: flex;
-//   align-items: center;
-// }
-
-// .nav-toggle {
-//   margin-right: 10px;
-//   z-index: 1;
-//   /* Add a higher z-index to keep the button clickable */
-// }
-
-// .nav-toggle button {
-//   background: none;
-//   border: none;
-//   cursor: pointer;
-// }
-
-// .page-title {
-//   /* Styles for the page title */
-//   margin: 0;
-//   color: black;
-// }
-
-// .nav-links-container {
-//   /* Existing styles for nav-links-container */
-//   position: absolute;
-//   top: 100%;
-//   left: 0;
-//   background-color: #fff;
-//   width: 100%;
-//   padding: 10px;
-// }
-
-// .nav-links {
-//   display: flex;
-//   flex-direction: column;
-// }
-
-// .nav-links a {
-//   text-decoration: none;
-//   color: black;
-//   font-size: 25px;
-//   margin-bottom: 5px;
-//   font-family: 'Libre Baskerville', serif;
-//   font-weight: bold;
-// }
-
-// .nav-links a:hover {
-//   background-color: #888888;
-// }
-
 .nav-bar {
   background-color: white;
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .nav-toggle {
   margin-right: 10px;
-  z-index: 1;
 }
 
 .nav-toggle button {
@@ -145,37 +92,41 @@
 .page-title {
   margin: 0;
   color: black;
+  flex: 1;
+  //centers title on page..
+  // text-align: center;
 }
 
 .nav-links-container {
-  position: relative;
+  z-index: 999;
+  position: absolute;
+  top: 100%;
 }
 
 .nav-links {
   display: none;
-  position: absolute;
-  top: calc(100% + 10px);
-  right: 0;
-  background-color: #fff;
-  width: 200px;
-  padding: 10px;
-  z-index: 2;
+  flex-direction: column;
 }
 
 .nav-links.show {
-  display: block;
+  display: flex;
 }
 
 .nav-links a {
   text-decoration: none;
   color: black;
+  background-color: white;
   font-size: 25px;
-  margin-bottom: 10px;
-  /* Increase the margin-bottom value for more spacing between links */
   font-family: 'Libre Baskerville', serif;
   font-weight: bold;
-  display: block;
-  /* Add this property to display each link in a single column */
+  /* Add this property to prevent the text from wrapping */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 5px;
+  padding-right: 100px;
+  /* Add padding to create space between the text and container edges */
+  box-sizing: border-box;
 }
 
 .nav-links a:hover {
