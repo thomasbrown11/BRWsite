@@ -18,11 +18,6 @@ body {
 
 .content {
   flex: 1;
-  /* Take up remaining vertical space */
   overflow: auto;
-  /* Enable scrolling if content overflows */
-  padding: 16px;
   box-sizing: border-box;
-  margin-top: 64px;
-  /* Add any other styles for the content */
 }

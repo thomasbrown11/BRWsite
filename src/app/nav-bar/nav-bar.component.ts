@@ -9,9 +9,12 @@ import { Component } from '@angular/core'; //imported HostListener for clicking 
 })
 export class NavBarComponent {
   isOpen: boolean = false;
+  navIconSrc = '../../assets/hamburger-menu.png';
 
   toggleNav() {
     this.isOpen = !this.isOpen;
+    //add in
+    this.navIconSrc = this.isOpen ? '../../assets/closing-icon.png' : '../../assets/hamburger-menu.png';
   }
 }
 
