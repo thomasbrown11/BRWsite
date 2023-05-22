@@ -83,7 +83,7 @@
       <div class="form-group">
         <label for="message">Message</label>
         <div [hidden]="message.valid || message.pristine" class="alert-danger">
-          Please enter a message
+          <p>Please enter a message</p>
         </div>
         <textarea type="text" #message='ngModel' class="form-control" id="message" required [(ngModel)]="model.message"
           name="message"></textarea>
