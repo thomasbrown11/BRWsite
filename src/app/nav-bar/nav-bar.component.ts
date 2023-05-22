@@ -10,6 +10,8 @@ import { Component } from '@angular/core'; //imported HostListener for clicking 
 export class NavBarComponent {
   isOpen: boolean = false;
   navIconSrc = '../../assets/hamburger-menu.png';
+  instaLink = 'https://www.instagram.com/elsewernerglass/';
+  instaIcon = '../../assets/Instagram_Glyph_Black.png';
 
   toggleNav() {
     this.isOpen = !this.isOpen;

@@ -1,67 +1,3 @@
-<!-- <mat-toolbar>
-  <mat-toolbar-row>
-    <button mat-icon-button (click)="isOpen = !isOpen">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span></span>
-    <a routerLink="/home">
-      <h1 [routerLink]="'home'">Else Werner Glass</h1>
-    </a>
-  </mat-toolbar-row>
-</mat-toolbar>
-
-<div class="sidenav-container" [ngClass]="{'open': isOpen}">
-  <mat-sidenav [(opened)]="isOpen" #sideNav>
-    <mat-nav-list class="custom-list">
-      <mat-list-item [routerLink]="'home'" (click)="isOpen = !isOpen"
-        tabindex="-1"><mat-icon>home</mat-icon>Home</mat-list-item>
-      <mat-list-item [routerLink]="'about'" (click)="isOpen = !isOpen"
-        tabindex="-1"><mat-icon>account_box</mat-icon>About
-        Me</mat-list-item>
-      <mat-list-item [routerLink]="'blownglass'" (click)="isOpen = !isOpen"
-        tabindex="-1"><mat-icon>hourglass_full</mat-icon>Blown
-        Glass</mat-list-item>
-      <mat-list-item [routerLink]="'lampwork'" (click)="isOpen = !isOpen"
-        tabindex="-1"><mat-icon>highlight</mat-icon>Lamp
-        Work</mat-list-item>
-      <mat-list-item [routerLink]="'instagram'" (click)="isOpen = !isOpen" tabindex="-1"><img
-          src="../assets/Instagram_Glyph_Gradient.png" alt="Instagram" width="20" height="20">Instagram</mat-list-item>
-      <mat-list-item [routerLink]="'facebook'" (click)="isOpen = !isOpen" tabindex="-1"><img
-          src="../../assets/f_logo_RGB-Blue_250.png" alt="Facebook" width="20" height="20">Facebook
-        Market</mat-list-item>
-      <mat-list-item [routerLink]="'contact'" (click)="isOpen = !isOpen"
-        tabindex="-1"><mat-icon>contact_support</mat-icon>Contact</mat-list-item>
-    </mat-nav-list>
-  </mat-sidenav>
-</div>
-
-<div class="main-content">
-  <router-outlet></router-outlet>
-</div> -->
-
-
-<!-- <header class="header">
-  <nav class="nav-bar">
-    <div class="nav-toggle">
-      <button (click)="toggleNav()">
-        <img src="../../assets/hamburger-menu.png" alt="Toggle Navigation" />
-      </button>
-      <div class="nav-links-container">
-        <div class="nav-links" [ngClass]="{'show': isOpen}">
-          <a class="nav-link" href="/home">Home</a>
-          <a class="nav-link" href="/about">About</a>
-          <a class="nav-link" href="/blownglass">Blown Glass</a>
-          <a class="nav-link" href="/lampwork">Lamp Work</a>
-          <a class="nav-link" href="/instagram">Instagram</a>
-          <a class="nav-link" href="/facebook">Facebook</a>
-          <a class="nav-link" href="/contact">Contact</a>
-        </div>
-      </div>
-    </div>
-    <h1 class="page-title">Else Werner Glass</h1>
-  </nav>
-</header> -->
-
 <header class="header">
   <nav class="nav-bar">
     <div class="nav-toggle" (click)="toggleNav()">
@@ -80,6 +16,9 @@
         </div>
       </div>
     </div>
-    <h1 class="page-title">Else Werner Glass</h1>
+    <!-- <h1 class="page-title">Else Werner Glass</h1> -->
+    <a class="page-title" href="/home">Else Werner Glass</a>
+    <a class="header-icon" href="https://www.instagram.com/elsewernerglass/">
+      <img [src]="instaIcon"> </a>
   </nav>
 </header>

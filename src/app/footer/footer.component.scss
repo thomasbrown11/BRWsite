@@ -1,11 +1,41 @@
+// .footer {
+//   display: flex;
+//   //horizontal
+//   justify-content: center;
+//   //vertical
+//   align-items: center;
+//   //readjust as needed
+//   height: 75px;
+//   background-color: brown;
+//   // margin-top: auto;
+// }
+
+// .icon {
+//   width: 30px;
+//   height: 30px;
+// }
+
 .footer {
   display: flex;
-  //horizontal
-  justify-content: center;
-  //vertical
+  justify-content: space-between;
   align-items: center;
-  //readjust as needed
   height: 75px;
   background-color: brown;
-  // margin-top: auto;
+  padding: 0 20px;
+}
+
+.footer p {
+  flex-grow: 1;
+  /* Allow the <p> element to grow and occupy available space */
+  text-align: center;
+  margin: 0;
+  font-size: 15px;
+  font-family: 'Libre Baskerville', serif;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  margin-left: auto;
+  /* Push the image to the right by setting auto margin on the left */
 }
