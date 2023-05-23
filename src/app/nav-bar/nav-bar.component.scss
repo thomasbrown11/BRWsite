@@ -44,9 +44,18 @@
   font-weight: bold;
 }
 
+.page-title:hover {
+  color: gray;
+}
+
 .header-icon img {
   width: 30px;
   height: 30px;
+}
+
+.header-icon img:hover {
+  background-color: gray;
+  border-radius: 10px;
 }
 
 .nav-links-container {

@@ -7,6 +7,7 @@ import { FacebookComponent } from './facebook/facebook.component';
 import { HomeComponent } from './home/home.component';
 import { InstagramComponent } from './instagram/instagram.component';
 import { LampworkComponent } from './lampwork/lampwork.component';
+import { TermsOfServiceComponent } from './terms-of-service/terms-of-service.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'facebook', component: FacebookComponent },
   { path: 'blownglass', component: BlownGlassComponent },
   { path: 'lampwork', component: LampworkComponent },
+  { path: 'terms', component: TermsOfServiceComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 

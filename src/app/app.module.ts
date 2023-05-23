@@ -29,6 +29,7 @@ import { TestCompComponent } from './test-comp/test-comp.component'; //?
 //PDF viewer for contact form
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { FooterComponent } from './footer/footer.component';
+import { TermsOfServiceComponent } from './terms-of-service/terms-of-service.component';
 
 
 
@@ -44,7 +45,8 @@ import { FooterComponent } from './footer/footer.component';
     AboutMeComponent,
     FacebookComponent,
     TestCompComponent,
-    FooterComponent
+    FooterComponent,
+    TermsOfServiceComponent
   ],
   imports: [
     BrowserModule,

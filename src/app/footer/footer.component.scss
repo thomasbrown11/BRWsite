@@ -12,14 +12,15 @@
   /* Allow the <p> element to grow and occupy available space */
   text-align: center;
   margin: 0;
-  margin-left: 100px; //cheated this but still looks good?
+  margin-left: 300px; //cheated this but still looks good?
   font-size: 15px;
   font-family: 'Libre Baskerville', serif;
+  font-weight: bold;
 }
 
 .icon {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   margin-left: auto;
   /* Push the image to the right by setting auto margin on the left */
 }
@@ -30,6 +31,7 @@
 }
 
 .link {
+  font-size: 15px;
   padding-right: 5px;
   text-decoration: none;
   color: black;
