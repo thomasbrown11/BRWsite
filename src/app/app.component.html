@@ -1,6 +1,6 @@
 <div class="page-container">
   <header class="header">
-    <!-- <app-nav-bar [navIsOpen]="navIsOpen"></app-nav-bar> -->
+    <app-nav-bar [navIsOpen]="navIsOpen" (navIsOpenChange)="toggleNavIsOpenInApp($event)"></app-nav-bar>
     <app-header [navIsOpen]="navIsOpen" (navIsOpenChange)="toggleNavIsOpenInApp($event)"></app-header>
   </header>
 

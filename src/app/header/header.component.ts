@@ -27,6 +27,6 @@ export class HeaderComponent {
       void container.offsetWidth; // Trigger reflow
       container.classList.add('slide-in-animation');
     }
-    this.navIsOpenChange.emit(this.navIsOpen); // Emit the updated value
+    this.navIsOpenChange.emit(this.navIsOpen); // Emit the updated value for app.component toggle
   }
 }
