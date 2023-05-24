@@ -1,0 +1,115 @@
+.nav-bar {
+  background-color: brown;
+  padding: 1%;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.nav-toggle {
+  margin-right: 10px;
+}
+
+.nav-toggle:hover {
+  background-color: rgb(112, 30, 30)
+}
+
+.nav-toggle button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.nav-toggle button img {
+  /* Add the transition property for smooth animation */
+  transition: transform 0.3s ease;
+  width: 40px;
+  height: 40px;
+}
+
+.nav-toggle button img.open {
+  transform: rotate(90deg);
+  width: 40px;
+  height: 40px;
+}
+
+.page-title {
+  margin: 0;
+  color: black;
+  flex: 1;
+  text-decoration: none;
+  font-size: 25px;
+  font-family: 'Libre Baskerville', serif;
+  font-weight: bold;
+}
+
+.page-title:hover {
+  color: gray;
+}
+
+.header-icon img {
+  width: 30px;
+  height: 30px;
+}
+
+.header-icon img:hover {
+  background-color: gray;
+  border-radius: 10px;
+}
+
+//old css from nav-links
+// .nav-links-container {
+//   z-index: 999;
+//   position: absolute;
+//   top: 100%;
+//   left: -100%; //was 0
+// }
+
+// .slide-in-animation {
+//   animation: slideInFromLeft 0.5s forwards;
+// }
+
+
+// @keyframes slideInFromLeft {
+//   0% {
+//     left: -100%;
+//   }
+
+//   100% {
+//     left: 0;
+//   }
+// }
+
+// .nav-links {
+//   display: none;
+//   flex-direction: column;
+// }
+
+// .nav-links.show {
+//   display: flex;
+// }
+
+// .nav-links a {
+//   text-decoration: none;
+//   color: black;
+//   background-color: brown;
+//   font-size: 25px;
+//   font-family: 'Libre Baskerville', serif;
+//   font-weight: bold;
+//   /* Add this property to prevent the text from wrapping */
+//   white-space: nowrap;
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+//   padding: 5px;
+//   /* Add padding to create space between the text and container edges */
+//   padding-right: 100px;
+//   box-sizing: border-box;
+//   transition: max-height 0.3s ease;
+
+//   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+// }
+
+// .nav-links a:hover {
+//   background-color: rgb(112, 30, 30);
+// }

@@ -1,0 +1,11 @@
+<nav class="nav-bar">
+  <div class="nav-toggle" (click)="toggleNav()">
+    <button>
+      <img [src]="navIconSrc" alt="Toggle Navigation" [ngClass]="{'open': navIsOpen}" />
+    </button>
+  </div>
+  <a class="page-title" href="/home">Else Werner Glass</a>
+  <a class="header-icon" href="https://www.instagram.com/elsewernerglass/">
+    <img [src]="instaIcon">
+  </a>
+</nav>

@@ -30,6 +30,7 @@ import { TestCompComponent } from './test-comp/test-comp.component'; //?
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { FooterComponent } from './footer/footer.component';
 import { TermsOfServiceComponent } from './terms-of-service/terms-of-service.component';
+import { HeaderComponent } from './header/header.component';
 
 
 
@@ -46,7 +47,8 @@ import { TermsOfServiceComponent } from './terms-of-service/terms-of-service.com
     FacebookComponent,
     TestCompComponent,
     FooterComponent,
-    TermsOfServiceComponent
+    TermsOfServiceComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
