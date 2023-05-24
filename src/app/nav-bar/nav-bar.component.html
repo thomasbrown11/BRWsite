@@ -1,26 +1,26 @@
 <!-- <header class="header"> -->
-<nav class="nav-bar">
-  <!-- <div class="nav-toggle" (click)="toggleNav()">
+<!-- <nav class="nav-bar"> -->
+<!-- <div class="nav-toggle" (click)="toggleNav()">
       <button>
         <img [src]="navIconSrc" alt="Toggle Navigation" [ngClass]="{'open': isOpen}" />
       </button> -->
 
-  <div class="nav-links-container">
-    <div class="nav-links" [ngClass]="{'show': navIsOpen}">
-      <button (click)="toggleNav()">x</button>
-      <a class="nav-link" href="/home">Home</a>
-      <a class="nav-link" href="/about">About</a>
-      <a class="nav-link" href="/blownglass">Blown Glass</a>
-      <a class="nav-link" href="/lampwork">Lamp Work</a>
-      <a class="nav-link" href="/instagram">Instagram</a>
-      <a class="nav-link" href="/facebook">Facebook</a>
-      <a class="nav-link" href="/contact">Contact</a>
-    </div>
-  </div>
-  <!-- </div> -->
-  <!-- <a class="page-title" href="/home">Else Werner Glass</a> -->
-  <!-- <a class="header-icon" href="https://www.instagram.com/elsewernerglass/"> -->
-  <!-- <img [src]="instaIcon"> -->
-  <!-- </a> -->
-</nav>
+<!-- <div class="nav-links-container" *ngIf="sharedService.navIsOpen"> -->
+<div class="nav-links" *ngIf="sharedService.navIsOpen" [ngClass]="{'show': sharedService.navIsOpen}">
+  <button (click)="toggleNav()">x</button>
+  <a class="nav-link" href="/home">Home</a>
+  <a class="nav-link" href="/about">About</a>
+  <a class="nav-link" href="/blownglass">Blown Glass</a>
+  <a class="nav-link" href="/lampwork">Lamp Work</a>
+  <a class="nav-link" href="/instagram">Instagram</a>
+  <a class="nav-link" href="/facebook">Facebook</a>
+  <a class="nav-link" href="/contact">Contact</a>
+</div>
+<!-- </div> -->
+<!-- </div> -->
+<!-- <a class="page-title" href="/home">Else Werner Glass</a> -->
+<!-- <a class="header-icon" href="https://www.instagram.com/elsewernerglass/"> -->
+<!-- <img [src]="instaIcon"> -->
+<!-- </a> -->
+<!-- </nav> -->
 <!-- </header> -->

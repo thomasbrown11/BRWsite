@@ -7,10 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Else Werner Glass';
-  navIsOpen: boolean = false;
-
-  toggleNavIsOpenInApp(updatedNavIsOpen: boolean) {
-    this.navIsOpen = updatedNavIsOpen;
-    console.log('navIsOpen in app.component.ts:', this.navIsOpen);
-  }
 }

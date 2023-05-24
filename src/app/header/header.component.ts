@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
+import { SharedService } from '../shared.service';
 
 
 @Component({
@@ -7,26 +8,22 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  // isOpen: boolean = false;
-  @Input() navIsOpen!: boolean;
-  @Output() navIsOpenChange = new EventEmitter<boolean>();
+
   navIconSrc = '../../assets/hamburger-menu.png';
   instaLink = 'https://www.instagram.com/elsewernerglass/';
   instaIcon = '../../assets/Instagram_Glyph_Black.png';
 
+  constructor(public sharedService: SharedService) { }
+
   toggleNav() {
-    // this.isOpen = !this.isOpen;
-    // console.log(`isOpen: ${this.isOpen}`);
-    // this.navIconSrc = this.isOpen ? '../../assets/closing-icon.png' : '../../assets/hamburger-menu.png';
-    this.navIsOpen = !this.navIsOpen;
-    console.log(`navIsOpen: ${this.navIsOpen}`);
-    this.navIconSrc = this.navIsOpen ? '../../assets/closing-icon.png' : '../../assets/hamburger-menu.png';
+    this.sharedService.toggleNavIsOpen()
+    console.log(`navIsOpen: ${this.sharedService.navIsOpen}`);
+    this.navIconSrc = this.sharedService.navIsOpen ? '../../assets/closing-icon.png' : '../../assets/hamburger-menu.png';
     const container = document.querySelector('.nav-links-container') as HTMLElement;
     if (container) {
       container.classList.remove('slide-in-animation');
       void container.offsetWidth; // Trigger reflow
       container.classList.add('slide-in-animation');
     }
-    this.navIsOpenChange.emit(this.navIsOpen); // Emit the updated value for app.component toggle
   }
 }
