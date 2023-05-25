@@ -19,25 +19,32 @@ body {
   min-height: 100vh;
 }
 
+.page-container.nav-open::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+}
+
 .header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   height: 4rem;
-  /* Adjust the height of the header as needed */
   background-color: #f0f0f0;
-  /* Example background color */
   z-index: 999;
 }
 
 .content {
   padding-top: 4rem;
   flex: 1;
-  // min-height: 91.18vh; //adjusted manually to push footer
   overflow-y: visible;
   box-sizing: border-box;
   flex-grow: 1;
-  // padding: 10;
   padding-bottom: 25px;
 }
