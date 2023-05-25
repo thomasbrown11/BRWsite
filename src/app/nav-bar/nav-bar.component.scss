@@ -1,24 +1,14 @@
-.slide-in-animation {
-  animation: slideInFromLeft 0.5s forwards;
-}
-
-
-@keyframes slideInFromLeft {
-  0% {
-    left: -100%;
-  }
-
-  100% {
-    left: 0;
-  }
-}
+// .slide-in-animation {
+//   animation: slideInFromLeft 0.5s forwards;
+// }
 
 .nav-links {
   background-color: brown;
   display: none;
   flex-direction: column;
   min-height: 100vh;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  // box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2), 0px 0px 20px rgba(0, 0, 0, 0.2);
 }
 
 .nav-links.show {
@@ -40,8 +30,13 @@ button {
   /* Add padding to create space between the text and container edges */
   padding-right: 200px;
   box-sizing: border-box;
-  transition: max-height 0.3s ease;
 }
+
+.nav-links.show {
+  display: flex;
+  transform: translateX(0); //Slide the component into the viewport
+}
+
 
 .nav-links a:hover {
   background-color: rgb(112, 30, 30);

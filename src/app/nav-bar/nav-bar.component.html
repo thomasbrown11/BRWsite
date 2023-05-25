@@ -1,5 +1,4 @@
-<div class="nav-links" *ngIf="sharedService.navIsOpen" [ngClass]="{'show': sharedService.navIsOpen}">
-  <!-- <button (click)="toggleNav()">x</button> -->
+<div class="nav-links" [@inFromLeft] *ngIf="sharedService.navIsOpen" [ngClass]="{'show': sharedService.navIsOpen}">
   <a class="nav-link" href="/home">Home</a>
   <a class="nav-link" href="/about">About</a>
   <a class="nav-link" href="/blownglass">Blown Glass</a>

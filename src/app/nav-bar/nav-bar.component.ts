@@ -1,11 +1,25 @@
 import { Component, AfterViewInit, Inject } from '@angular/core'; //imported HostListener for clicking out of menu event
+
+//animation handling
+import { trigger, state, style, animate, transition } from '@angular/animations';
+
+
+//shared variable for toggling
 import { SharedService } from '../shared.service';
+
 
 /** @title Sidenav with custom escape and backdrop click behavior */
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss'],
+  //animations
+  animations: [
+    trigger('inFromLeft', [
+      state('void', style({ transform: 'translateX(-100%)' })),
+      transition('void <=> *', animate('.3s'))
+    ])
+  ]
 })
 
 export class NavBarComponent implements AfterViewInit {
