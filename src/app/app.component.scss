@@ -5,6 +5,12 @@ body {
   padding: 0;
 }
 
+.nav-bar-container {
+  position: fixed;
+  top: 4.75rem;
+  z-index: 999;
+}
+
 .page-container {
   display: flex;
   flex-direction: column;
@@ -12,17 +18,25 @@ body {
   flex-grow: 1;
 }
 
-.nav-bar-container {
-  position: relative;
-  z-index: 1;
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4rem;
+  /* Adjust the height of the header as needed */
+  background-color: #f0f0f0;
+  /* Example background color */
+  z-index: 999;
 }
 
 .content {
+  padding-top: 4rem;
   flex: 1;
-  min-height: 86vh; //adjusted manually to see footer can change
+  min-height: 91.18vh; //adjusted manually to see footer can change
   overflow-y: visible;
   box-sizing: border-box;
   flex-grow: 1;
   // padding: 10;
-  padding-bottom: 20px;
+  padding-bottom: 25px;
 }

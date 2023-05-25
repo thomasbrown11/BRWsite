@@ -14,12 +14,7 @@ export class NavBarComponent implements AfterViewInit {
   instaIcon = '../../assets/Instagram_Glyph_Black.png';
   // navIsOpen: boolean = false;
 
-  constructor(public sharedService: SharedService) {
-    // this.sharedService.navIsOpen$.subscribe((value) => {
-    //   this.navIsOpen = value;
-    //   // Perform any necessary actions based on the value change
-    // });
-  }
+  constructor(public sharedService: SharedService) { }
 
   toggleNav() {
     // this.isOpen = !this.isOpen;
