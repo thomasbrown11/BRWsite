@@ -32,8 +32,6 @@ import { FooterComponent } from './footer/footer.component';
 import { TermsOfServiceComponent } from './terms-of-service/terms-of-service.component';
 import { HeaderComponent } from './header/header.component';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +64,6 @@ import { HeaderComponent } from './header/header.component';
     NgxExtendedPdfViewerModule
   ],
   providers: [
-
   ],
   bootstrap: [AppComponent]
 })
