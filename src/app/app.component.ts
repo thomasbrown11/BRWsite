@@ -10,4 +10,10 @@ export class AppComponent {
 
   constructor(public sharedService: SharedService) { }
   title = 'Else Werner Glass';
+
+  closeNav(): void {
+    if (this.sharedService.navIsOpen) {
+      this.sharedService.toggleNavIsOpen();
+    }
+  }
 }
