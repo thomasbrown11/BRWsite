@@ -7,8 +7,9 @@ body {
 
 .nav-bar-container {
   position: fixed;
-  top: 4.75rem;
+  top: 4rem;
   z-index: 999;
+  // min-height: 1000px;
 }
 
 .page-container {
@@ -16,6 +17,7 @@ body {
   flex-direction: column;
   overflow: auto;
   flex-grow: 1;
+  min-height: 100vh;
 }
 
 .header {
@@ -33,7 +35,7 @@ body {
 .content {
   padding-top: 4rem;
   flex: 1;
-  min-height: 91.18vh; //adjusted manually to see footer can change
+  // min-height: 91.18vh; //adjusted manually to push footer
   overflow-y: visible;
   box-sizing: border-box;
   flex-grow: 1;
