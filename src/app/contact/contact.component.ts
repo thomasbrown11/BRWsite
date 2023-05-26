@@ -26,6 +26,8 @@ export class ContactComponent {
   isLoading: boolean = false; //disable controls when loading.
   isVerifiedEmail: boolean = true; //display error code for user if email address not verified
   errorCode: any = ''; //errorCode to display if onSubmit fail
+  fileLimitExceeded: boolean = false; //trigger warning if file limit exceeded
+  remainingSizeLimit: number = 512 * 1024 * 1024; // 512 MB in bytes
 
 
   constructor(private contactService: ContactService, private sanitizer: DomSanitizer) { }
@@ -46,6 +48,23 @@ export class ContactComponent {
   onFileSelected(event: any) {
     //refence uploaded file
     let file = event.target.files[0]
+
+
+    // Check file size
+    const fileSizeInBytes = file.size;
+
+    // Check if file size exceeds the remaining limit
+    if (fileSizeInBytes > this.remainingSizeLimit) {
+      // File size exceeds the remaining limit, handle the error here (e.g., display an error message)
+      this.fileLimitExceeded = true;
+      console.log('File size exceeds the remaining limit');
+      return; // Abort further processing
+    }
+
+    // Subtract the file size from the remaining limit
+    this.remainingSizeLimit -= fileSizeInBytes;
+    console.log(`Remaining size limit is ${this.remainingSizeLimit}`);
+
     //add to FormData (parses to send to email)
     this.formData.append('files', file);
     //clear array of previews displayed under upload (for multiple uploads in one request)

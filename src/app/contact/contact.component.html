@@ -49,6 +49,10 @@
 
       <div class="form-group">
         <label for="fileInput">Upload File</label>
+        <div [hidden]="!fileLimitExceeded" class="alert-danger">
+          <p>File Size Limit Exceeded. File Not added</p>
+          <button (click)="fileLimitExceeded = false">Ok</button>
+        </div>
         <input type="file" #upload='ngModel' class="form-control" id="fileInput" [(ngModel)]="model.selectedFile"
           name="files" (change)="onFileSelected($event)" multiple>
       </div>
