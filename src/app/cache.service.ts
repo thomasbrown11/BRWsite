@@ -43,9 +43,14 @@ export class CacheService {
     const cacheValues = this.getInstagramCache();
     const timestamp = cacheValues.timestamp;
     const now = new Date().getTime();
-    const hour = 60 * 60 * 1000;
-    //returns true if data is expired .. also false if timestamp doesn't exist?
-    return now - timestamp > hour;
+    // const hour = 60 * 60 * 1000;
+    // //returns true if data is expired .. also false if timestamp doesn't exist?
+    // return now - timestamp > hour;
+
+    const tenMinutes = 10 * 60 * 1000; // 10 minutes in milliseconds
+
+    // Returns true if data is expired or if the timestamp doesn't exist
+    return !timestamp || now - timestamp > tenMinutes;
   }
 
 }

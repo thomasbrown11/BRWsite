@@ -44,9 +44,9 @@ export class InstagramComponent implements OnInit {
     if (cachedValues.images && cachedValues.images.length > 0 && now - timestamp < 3600000) {
       this.images = cachedValues.images;
       this.after = cachedValues.after;
-      console.log('Loaded from cache:', this.images, this.after);
+      console.log('Loaded from session cache:', this.images, this.after);
       //prints size metrics in bytes (comes out to maybe 18 kilobytes out of 2 mb limit)
-      console.log('Size of instagramCache:', this.cacheService.getInstagramCacheSize(), 'bytes');
+      console.log('Size of session instagramCache:', this.cacheService.getInstagramCacheSize(), 'bytes');
     } else {
       //if no cache or invalid request new values from instagram
       this.requestNewPosts();

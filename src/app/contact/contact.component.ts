@@ -27,7 +27,7 @@ export class ContactComponent {
   isVerifiedEmail: boolean = true; //display error code for user if email address not verified
   errorCode: any = ''; //errorCode to display if onSubmit fail
   fileLimitExceeded: boolean = false; //trigger warning if file limit exceeded
-  remainingSizeLimit: number = 512 * 1024 * 1024; // 512 MB in bytes
+  remainingSizeLimit: number = 512 * 1024 * 1024; // 512 MB in bytes.. general caching limit
 
 
   constructor(private contactService: ContactService, private sanitizer: DomSanitizer) { }
