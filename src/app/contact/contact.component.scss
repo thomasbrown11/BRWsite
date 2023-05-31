@@ -221,3 +221,11 @@ button {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+/* Media query for phone-sized screens */
+@media (max-width: 480px) {
+  .formBox {
+    border: 0px;
+    box-shadow: none;
+  }
+}
