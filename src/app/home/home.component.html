@@ -1,1 +1,11 @@
 <p>home works!</p>
+
+<div class="email-sub">
+  <label for="email">Subscribe to our newsletter</label>
+  <div [hidden]="email.valid || email.pristine" class="alert-danger">
+    <p>Please enter a valid email address</p>
+  </div>
+  <input type="email" #email="ngModel" class="form-control" id="email" required [(ngModel)]="emailValue" name="email"
+    pattern="[^\s@]+@[^\s@]+\.[^\s@]+">
+  <button (click)="submitEmail()" [disabled]="email.invalid || email.pristine">Subscribe</button>
+</div>
