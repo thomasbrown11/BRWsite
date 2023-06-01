@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MatMenuModule } from '@angular/material/menu';
+import { ContactService } from '../contact.service';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +11,8 @@ export class HomeComponent {
   emailSubmitted: boolean = false; //show thank you after successful submission
   isVerifiedEmail: boolean = true; //show error if email validation fails
   errorCode: any = ''; //returned error from email validation
+
+  constructor(private contactService: ContactService) { }
 
   submitEmail() {
     // Implement your logic for submitting the email here

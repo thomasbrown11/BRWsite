@@ -17,58 +17,39 @@ export class ContactService {
 
   constructor(private http: HttpClient) { }
 
-
-
-
-
-// sendEmail(data: FormData): Observable<any> {
-//   return this.http.post<any>(this.apiUrl, data).pipe(
-//     switchMap(response => {
-//       const fileNames = data.getAll('files');
-//       console.log('File names:', fileNames);
-//       const deleteRequests = fileNames.map(fileName => {
-//         if (fileName instanceof File) {
-//           fileName = fileName.name; // Assign the file name to fileName variable
-//         }
-//         const url = `http://localhost:3000/uploads/${fileName}`;
-//         console.log('Deleting file:', fileName);
-//         return this.http.delete(url);
-//       });
-//       return forkJoin(deleteRequests).pipe(
-//         map(() => response),
-//         catchError(error => of(error))
-//       );
-//     }),
-//     catchError(error => of(error))
-//   );
-// }
-
-sendEmail(data: FormData): Observable<any> {
-  return this.http.post<any>(this.apiUrl, data).pipe(
-    switchMap(response => {
-      const fileNames = data.getAll('files');
-      console.log('File names:', fileNames);
-      if (fileNames.length === 0) {
-        return of(response);
-      }
-      const deleteRequests = fileNames.map(fileName => {
-        if (fileName instanceof File) {
-          fileName = fileName.name; // Assign the file name to fileName variable
+  sendEmail(data: FormData): Observable<any> {
+    return this.http.post<any>(this.apiUrl, data).pipe(
+      switchMap(response => {
+        const fileNames = data.getAll('files');
+        console.log('File names:', fileNames);
+        if (fileNames.length === 0) {
+          return of(response);
         }
-        const url = `http://localhost:3000/uploads/${fileName}`;
-        console.log('Deleting file:', fileName);
-        return this.http.delete(url);
-      });
-      return forkJoin(deleteRequests).pipe(
-        map(() => response),
-        catchError(error => of(error))
-      );
-    }),
-    catchError(error => of(error))
-  );
-}
+        const deleteRequests = fileNames.map(fileName => {
+          if (fileName instanceof File) {
+            fileName = fileName.name; // Assign the file name to fileName variable
+          }
+          const url = `http://localhost:3000/uploads/${fileName}`;
+          console.log('Deleting file:', fileName);
+          return this.http.delete(url);
+        });
+        return forkJoin(deleteRequests).pipe(
+          map(() => response),
+          catchError(error => of(error))
+        );
+      }),
+      catchError(error => of(error))
+    );
+  }
 
-
+  sendNewsletterSub(email: string): Observable<any> {
+    const payload = { email };
+    return this.http.post<any>(`${this.apiUrl}/newsletter-sub`, payload).pipe(
+      catchError(error => {
+        return of(error);
+      })
+    );
+  }
 
 
 }
