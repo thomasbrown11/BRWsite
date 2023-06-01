@@ -14,6 +14,7 @@
         pattern="[^\s@]+@[^\s@]+\.[^\s@]+">
       <button (click)="submitEmail()" [disabled]="email.invalid || email.pristine">Subscribe</button>
     </div>
+    <div class="loader" *ngIf="isLoading"></div>
   </div>
   <div class="email-sub" *ngIf="emailSubmitted">
     <p>Thank you for your subscription! You'll be receiving a confirmation email shortly</p>
