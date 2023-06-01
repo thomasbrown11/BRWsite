@@ -7,10 +7,15 @@ import { MatMenuModule } from '@angular/material/menu';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  emailValue: string = ''; // Variable to store the email value
+  emailValue: string = 'jane@example.com'; // Variable to store the email value
+  emailSubmitted: boolean = false; //show thank you after successful submission
+  isVerifiedEmail: boolean = true; //show error if email validation fails
+  errorCode: any = ''; //returned error from email validation
 
   submitEmail() {
     // Implement your logic for submitting the email here
     console.log(this.emailValue); // Example: Logging the email value to the console
+    this.emailValue = '';
+    this.emailSubmitted = true;
   }
 }

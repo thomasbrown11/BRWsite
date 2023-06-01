@@ -1,7 +1,55 @@
+.container {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
 .email-sub {
-  background-color: gray;
+  text-align: center;
+  // background-color: rgb(204, 204, 204);
+  border: 1px solid black;
+  // font-family: 'Libre Baskerville', serif;
+  max-width: 1000px;
+  max-height: 1000px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Media query for phone-sized screens */
+@media (max-width: 550px) {
+  .email-sub {
+    border: none;
+    box-shadow: none;
+    background-color: rgb(245, 245, 245);
+  }
+}
+
+.input-container {
+  margin-top: 10px;
 }
 
 .alert-danger {
   color: red;
+}
+
+.email-sub input:hover,
+button:hover {
+  border: 3px solid black;
+}
+
+.email-sub input.ng-invalid {
+  /* Styles to apply to the input when it is invalid */
+  border: 3px solid red;
+}
+
+button,
+input {
+  font-family: 'Libre Baskerville', serif;
+  border: 1px solid black;
+  box-sizing: border-box;
+  color: black;
+}
+
+button {
+  background-color: #e5e5e5;
 }
