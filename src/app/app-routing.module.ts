@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { InstagramComponent } from './instagram/instagram.component';
 import { LampworkComponent } from './lampwork/lampwork.component';
 import { TermsOfServiceComponent } from './terms-of-service/terms-of-service.component';
+import { NewsletterUnsubscribeComponent } from './newsletter-unsubscribe/newsletter-unsubscribe.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'blownglass', component: BlownGlassComponent },
   { path: 'lampwork', component: LampworkComponent },
   { path: 'terms', component: TermsOfServiceComponent },
+  { path: 'unsubscribe', component: NewsletterUnsubscribeComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 

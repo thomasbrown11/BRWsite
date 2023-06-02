@@ -1,0 +1,99 @@
+.container {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  //trying it?
+  // position: relative;
+}
+
+.email-sub {
+  text-align: center;
+  // background-color: rgb(204, 204, 204);
+  border: 1px solid black;
+  // font-family: 'Libre Baskerville', serif;
+  max-width: 1000px;
+  max-height: 1000px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  //trying it?
+  position: relative;
+}
+
+/* Media query for phone-sized screens */
+@media (max-width: 550px) {
+  .email-sub {
+    border: none;
+    box-shadow: none;
+    background-color: rgb(245, 245, 245);
+  }
+}
+
+.input-container {
+  margin-top: 10px;
+}
+
+.alert-danger {
+  color: red;
+}
+
+.email-sub input:hover,
+button:hover {
+  border: 3px solid black;
+}
+
+.email-sub input.ng-invalid {
+  /* Styles to apply to the input when it is invalid */
+  border: 3px solid red;
+}
+
+button,
+input {
+  font-family: 'Libre Baskerville', serif;
+  border: 1px solid black;
+  box-sizing: border-box;
+  color: black;
+}
+
+h3 {
+  font-family: 'Libre Baskerville', serif;
+}
+
+button {
+  background-color: #e5e5e5;
+}
+
+//loader
+.loader {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(228, 228, 228, 0.5);
+  z-index: 9999;
+}
+
+.loader:before {
+  content: "";
+  position: absolute;
+  top: calc(50% - 15px);
+  left: calc(50% - 15px);
+  transform: translate(-50%, -50%);
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid black;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

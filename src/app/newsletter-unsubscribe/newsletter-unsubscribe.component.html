@@ -1,0 +1,23 @@
+<p>newsletter-unsubscribe works!</p>
+
+<div class="container">
+  <div class="email-sub" *ngIf="!emailSubmitted">
+    <h3>We're sorry to see you go</h3>
+    <label for="email">Enter your email to stop recieving updates about sales, events, news</label>
+    <div [hidden]="isVerifiedEmail" class="alert-danger">
+      <p>Email verification failed. Error Code: {{ errorCode }}. Please try another email.</p>
+    </div>
+    <div [hidden]="email.valid || email.pristine" class="alert-danger">
+      <p>Please enter a valid email address</p>
+    </div>
+    <div class="input-container">
+      <input type="email" #email="ngModel" id="email" required [(ngModel)]="emailValue" name="email"
+        pattern="[^\s@]+@[^\s@]+\.[^\s@]+">
+      <button (click)="submitEmail()" [disabled]="email.invalid || email.pristine">Unsubscribe</button>
+    </div>
+    <div class="loader" *ngIf="isLoading"></div>
+  </div>
+  <div class="email-sub" *ngIf="emailSubmitted">
+    <p>We've received your request. You'll recieve a confirmation email once processed.</p>
+  </div>
+</div>

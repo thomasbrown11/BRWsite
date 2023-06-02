@@ -31,6 +31,7 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { FooterComponent } from './footer/footer.component';
 import { TermsOfServiceComponent } from './terms-of-service/terms-of-service.component';
 import { HeaderComponent } from './header/header.component';
+import { NewsletterUnsubscribeComponent } from './newsletter-unsubscribe/newsletter-unsubscribe.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { HeaderComponent } from './header/header.component';
     TestCompComponent,
     FooterComponent,
     TermsOfServiceComponent,
-    HeaderComponent
+    HeaderComponent,
+    NewsletterUnsubscribeComponent
   ],
   imports: [
     BrowserModule,
