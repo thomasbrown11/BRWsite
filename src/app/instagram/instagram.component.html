@@ -66,6 +66,8 @@
   </div>
 </div>
 
-<div class="next-page-button" [hidden]="!after">
+<!-- <div class="next-page-button" [hidden]="!after">
   <button (click)="loadMore()">Load More Content</button>
-</div>
+</div> -->
+
+<div class="loader" *ngIf="isLoading"></div>

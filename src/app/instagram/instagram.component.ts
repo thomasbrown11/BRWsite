@@ -17,6 +17,8 @@ export class InstagramComponent implements OnInit {
   carouselIndex: number = 0
   //from api request providing key to next 16 posts. Hides more post button if empty
   after: string = '';
+  //show loader on post loading
+  isLoading: boolean = false;
 
   constructor(private instagramService: InstagramService, private cacheService: CacheService, private elementRef: ElementRef) { }
 
@@ -76,6 +78,8 @@ export class InstagramComponent implements OnInit {
 
   //loadMore content and update cache
   loadMore() {
+
+    this.isLoading = true;
     //if the stamp is expired
     if (this.cacheService.isInstaCacheExpired()) {
       //reInit the instagram call
@@ -110,22 +114,28 @@ export class InstagramComponent implements OnInit {
             //if paging was empty there are no more posts.
             this.after = '';
           }
-        });
+          //kill loader after page load
+          this.isLoading = false;
+        },
+          (error) => {
+            console.error('Failed to load more posts:', error);
+            this.isLoading = false;
+          });
       }
     }
-  }
-
-  scrollToBottom() {
-    // Add your logic here to handle scrolling to the bottom
-    console.log('Reached the bottom of the image-container!');
   }
 
   @HostListener('window:scroll', ['$event'])
   onScroll(event: Event) {
     const element = this.elementRef.nativeElement.querySelector('.image-container');
     const atBottom = window.innerHeight + window.scrollY >= element.offsetHeight;
-    if (atBottom) {
-      this.scrollToBottom();
+    if (atBottom && !this.isLoading) {
+      // this.scrollToBottom();
+      console.log('reached bottom of element.')
+      if (this.after) {
+        console.log('more posts to load. Loading...')
+        this.loadMore();
+      }
     }
   }
 
