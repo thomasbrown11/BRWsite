@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, ElementRef } from '@angular/core';
 import { InstagramService } from './instagram.service';
 
 import { CacheService } from '../cache.service';
@@ -18,7 +18,7 @@ export class InstagramComponent implements OnInit {
   //from api request providing key to next 16 posts. Hides more post button if empty
   after: string = '';
 
-  constructor(private instagramService: InstagramService, private cacheService: CacheService) { }
+  constructor(private instagramService: InstagramService, private cacheService: CacheService, private elementRef: ElementRef) { }
 
   //instagram api call
   requestNewPosts() {
@@ -115,5 +115,18 @@ export class InstagramComponent implements OnInit {
     }
   }
 
+  scrollToBottom() {
+    // Add your logic here to handle scrolling to the bottom
+    console.log('Reached the bottom of the image-container!');
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll(event: Event) {
+    const element = this.elementRef.nativeElement.querySelector('.image-container');
+    const atBottom = window.innerHeight + window.scrollY >= element.offsetHeight;
+    if (atBottom) {
+      this.scrollToBottom();
+    }
+  }
 
 }
