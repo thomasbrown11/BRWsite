@@ -9,6 +9,8 @@ import { ContactService } from '../contact.service';
 export class NewsletterUnsubscribeComponent {
 
   emailValue: string = 'jane@example.com'; // Variable to store the email value
+  feedbackValue: string = '';
+  showOtherInput: boolean = false;
   emailSubmitted: boolean = false; //show thank you after successful submission
   isVerifiedEmail: boolean = true; //show error if email validation fails
   errorCode: any = ''; //returned error from email validation
@@ -16,12 +18,19 @@ export class NewsletterUnsubscribeComponent {
 
   constructor(private contactService: ContactService) { }
 
+  toggleInput() {
+    this.showOtherInput = this.feedbackValue === 'Other';
+    if (this.showOtherInput) {
+      this.feedbackValue = '';
+    }
+  }
+
   //send email address to business and thank you to user
   submitEmail() {
 
     this.isLoading = true;
 
-    this.contactService.confirmUnsubscribe(this.emailValue).subscribe(
+    this.contactService.confirmUnsubscribe(this.emailValue, this.feedbackValue).subscribe(
       response => {
         //if validation fails toggle error message on and displace error code
         if (response.status === 400) {

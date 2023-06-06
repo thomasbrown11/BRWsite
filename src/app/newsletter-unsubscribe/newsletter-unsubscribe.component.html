@@ -1,8 +1,29 @@
-<p>newsletter-unsubscribe works!</p>
-
 <div class="container">
   <div class="email-sub" *ngIf="!emailSubmitted">
-    <h3>We're sorry to see you go</h3>
+    <h3>Your feedback matters to us!</h3>
+
+    <p>We would greatly appreciate it if you could take a moment to let us know why you're
+      unsubscribing from our newsletter. Your insights will help us understand how we can improve our content and better
+      serve our customers in the future. Thank you for sharing your thoughts with us!</p>
+    <div class="feedback-section">
+      <label for="feedback">Reason for Unsubscribing:</label>
+      <br>
+      <br>
+      <select id="feedback" [(ngModel)]="feedbackValue" name="feedback" (change)="toggleInput()">
+        <option value="" disabled selected>Select a reason</option>
+        <option value="No longer looking for glass">No longer looking for glass</option>
+        <option value="Budget constraints">Budget constraints</option>
+        <option value="Too many emails">Too many emails</option>
+        <option value="Uninterested in events">Uninterested in events</option>
+        <option value="Other">Other</option>
+      </select>
+      <br>
+      <div *ngIf="showOtherInput">
+        <textarea [(ngModel)]="feedbackValue" name="otherReason" rows="4" placeholder="Share your opinions"></textarea>
+      </div>
+      <p class="optional-message">*Feedback is optional, but highly appreciated.</p>
+    </div>
+
     <label for="email">Enter your email to stop recieving updates about sales, events, news</label>
     <div [hidden]="isVerifiedEmail" class="alert-danger">
       <p>Email verification failed. Error Code: {{ errorCode }}. Please try another email.</p>
@@ -15,7 +36,9 @@
         pattern="[^\s@]+@[^\s@]+\.[^\s@]+">
       <button (click)="submitEmail()" [disabled]="email.invalid || email.pristine">Unsubscribe</button>
     </div>
+
     <div class="loader" *ngIf="isLoading"></div>
+
   </div>
   <div class="email-sub" *ngIf="emailSubmitted">
     <p>We've received your request. You'll recieve a confirmation email once processed.</p>

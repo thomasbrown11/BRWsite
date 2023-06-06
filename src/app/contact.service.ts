@@ -51,8 +51,8 @@ export class ContactService {
     );
   }
 
-  confirmUnsubscribe(email: string): Observable<any> {
-    const payload = { email };
+  confirmUnsubscribe(email: string, feedback: string): Observable<any> {
+    const payload = { email, feedback };
     return this.http.post<any>(`${this.apiUrl}/news-unsubscribe`, payload).pipe(
       catchError(error => {
         return of(error);
