@@ -32,7 +32,7 @@ import { FooterComponent } from './footer/footer.component';
 import { TermsOfServiceComponent } from './terms-of-service/terms-of-service.component';
 import { HeaderComponent } from './header/header.component';
 import { NewsletterUnsubscribeComponent } from './newsletter-unsubscribe/newsletter-unsubscribe.component';
-import { SquareComponent } from './square/square/square.component';
+import { SquareComponent } from './square/square.component';
 
 @NgModule({
   declarations: [

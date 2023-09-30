@@ -5,7 +5,7 @@ import { BlownGlassComponent } from './blown-glass/blown-glass.component';
 import { ContactComponent } from './contact/contact.component';
 import { FacebookComponent } from './facebook/facebook.component';
 import { HomeComponent } from './home/home.component';
-import { SquareComponent } from './square/square/square.component';
+import { SquareComponent } from './square/square.component';
 import { InstagramComponent } from './instagram/instagram.component';
 import { LampworkComponent } from './lampwork/lampwork.component';
 import { TermsOfServiceComponent } from './terms-of-service/terms-of-service.component';
