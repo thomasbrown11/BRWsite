@@ -5,6 +5,7 @@ import { BlownGlassComponent } from './blown-glass/blown-glass.component';
 import { ContactComponent } from './contact/contact.component';
 import { FacebookComponent } from './facebook/facebook.component';
 import { HomeComponent } from './home/home.component';
+import { SquareComponent } from './square/square/square.component';
 import { InstagramComponent } from './instagram/instagram.component';
 import { LampworkComponent } from './lampwork/lampwork.component';
 import { TermsOfServiceComponent } from './terms-of-service/terms-of-service.component';
@@ -12,6 +13,7 @@ import { NewsletterUnsubscribeComponent } from './newsletter-unsubscribe/newslet
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'shop', component: SquareComponent},
   { path: 'about', component: AboutMeComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'instagram', component: InstagramComponent },
