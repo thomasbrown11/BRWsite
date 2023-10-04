@@ -7,6 +7,7 @@ export class CacheService {
 
   constructor() { }
 
+  //instagram caching methods
   public getInstagramCache(): any {
     const cachedValues = JSON.parse(sessionStorage.getItem('instagramCache') || '{}');
     return {
@@ -51,6 +52,16 @@ export class CacheService {
 
     // Returns true if data is expired or if the timestamp doesn't exist
     return !timestamp || now - timestamp > tenMinutes;
+  }
+
+  //square caching methods
+  public getSquareCache(): any {
+    const cachedValues = JSON.parse(sessionStorage.getItem('squareCache') || '{}');
+    return {
+      categories: cachedValues.categories || [], //categories for nav bar list and future component implementing 'category_id' matching type:CATEGORY id property value
+      items: cachedValues.items || [], //will eventually house array of objects
+      timestamp: cachedValues.timestamp || 0
+    };
   }
 
 }

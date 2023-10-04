@@ -26,7 +26,10 @@ export class NavBarComponent implements AfterViewInit {
 
   instaLink = 'https://www.instagram.com/elsewernerglass/';
   instaIcon = '../../assets/Instagram_Glyph_Black.png';
+  // shopToggle: boolean = false;
+  isMouseOver: Boolean = false;
   // navIsOpen: boolean = false;
+  menuItems: string[] = ['hello','there'];
 
   constructor(public sharedService: SharedService) { }
 
@@ -40,6 +43,19 @@ export class NavBarComponent implements AfterViewInit {
       void container.offsetWidth; // Trigger reflow
       container.classList.add('slide-in-animation');
     }
+  }
+
+  // toggleShopDropdown(event: MouseEvent): void {
+  //   event.preventDefault();
+  //   this.shopToggle = !this.shopToggle;
+  // }
+
+  showDropdown(): void {
+    this.isMouseOver = true;
+  }
+
+  hideDropdown(): void {
+    this.isMouseOver = false;
   }
 
   ngAfterViewInit() {
