@@ -14,7 +14,7 @@ export class SquareService {
 
   getCatalogue(): Observable<any> {
     return this.http.get<any>(this.apiUrl).pipe(
-      // shareReplay(1) // cache the most recent value and share it with subscribers
+      shareReplay(1) // cache the most recent value and share it with subscribers
     );
   }
 }
