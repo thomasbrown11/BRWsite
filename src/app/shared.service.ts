@@ -19,7 +19,25 @@ export class SharedService {
     this.navIconSrc = this.navIsOpen ? '../../assets/closing-icon.png' : '../../assets/hamburger-menu.png';
 
     //update square cache here?
-    this.squareCache();
+    // if (!this.cacheService.getSquareCache()) {
+    //   this.squareCache();
+    // }
+    // this.squareCache();
+
+    let cachedValues = this.cacheService.getSquareCache();
+
+    //get and set timestamps
+    const timestamp = cachedValues.timestamp;
+    const now = new Date().getTime();
+    //if cache has image array > 0 and time isn't expired display cache data
+    if (cachedValues.categories.length > 0 && cachedValues.items.length > 0 && now - timestamp < 3600000) {
+      // this.images = cachedValues.images;
+      // this.after = cachedValues.after;
+      return
+    } else {
+      //if no cache or invalid request new values from instagram
+      this.squareCache();
+    }
   }
 
   squareCache() {
