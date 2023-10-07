@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, Inject } from '@angular/core'; //imported HostListener for clicking out of menu event
+import { Component, AfterViewInit, Inject, OnInit } from '@angular/core'; //imported HostListener for clicking out of menu event
 
 //animation handling
 import { trigger, state, style, animate, transition } from '@angular/animations';
@@ -6,6 +6,8 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 
 //shared variable for toggling
 import { SharedService } from '../shared.service';
+import { CacheService } from '../cache.service';
+import { share } from 'rxjs';
 
 
 /** @title Sidenav with custom escape and backdrop click behavior */
@@ -29,6 +31,8 @@ export class NavBarComponent implements AfterViewInit {
   // shopToggle: boolean = false;
   isMouseOver: Boolean = false;
   // navIsOpen: boolean = false;
+
+  squareCategories: any[] = [];
   menuItems: string[] = ['hello','there'];
 
   constructor(public sharedService: SharedService) { }
@@ -37,12 +41,15 @@ export class NavBarComponent implements AfterViewInit {
     // this.isOpen = !this.isOpen;
     this.sharedService.toggleNavIsOpen(); // toggle shared variable
     console.log(`toggled from nav-bar: ${this.sharedService.navIsOpen} `)
+
     const container = document.querySelector('.nav-links-container') as HTMLElement;
     if (container) {
       container.classList.remove('slide-in-animation');
       void container.offsetWidth; // Trigger reflow
       container.classList.add('slide-in-animation');
     }
+
+
   }
 
   // toggleShopDropdown(event: MouseEvent): void {

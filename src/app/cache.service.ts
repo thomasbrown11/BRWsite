@@ -19,7 +19,9 @@ export class CacheService {
 
   public cacheInstagramData(images: any[], after: string): void {
     const cachedValues = JSON.parse(sessionStorage.getItem('instagramCache') || '{}');
+    //generate current time stamp
     const now = new Date().getTime();
+    //update cached timestamp to current time
     cachedValues.timestamp = now;
     if (!cachedValues.images) {
       //if no images present then initialize images and after
@@ -50,7 +52,7 @@ export class CacheService {
 
     const tenMinutes = 10 * 60 * 1000; // 10 minutes in milliseconds
 
-    // Returns true if data is expired or if the timestamp doesn't exist
+    // Returns true if data is expired (older than 10 mintues) or if the timestamp doesn't exist
     return !timestamp || now - timestamp > tenMinutes;
   }
 
@@ -74,12 +76,13 @@ export class CacheService {
       //if no categories (or any cache data really) present then initialize categories and images
       cachedValues.categories = categories;
       cachedValues.items = items;
-    } else {
-      //if cache exists then you can use this method to add items to either cached array.. may not need for now
-      //if array present append new posts to items... is there utility to appending categories? This is from instagram method and had pagination in mind
-      cachedValues.items = cachedValues.items.concat(items);
-      cachedValues.categories = cachedValues.categories.concat(categories);
     }
+    // else {
+    //   //if cache exists then you can use this method to add items to either cached array.. may not need for now
+    //   //if array present append new posts to items... is there utility to appending categories? This is from instagram method and had pagination in mind
+    //   cachedValues.items = cachedValues.items.concat(items);
+    //   cachedValues.categories = cachedValues.categories.concat(categories);
+    // }
     sessionStorage.setItem('squareCache', JSON.stringify(cachedValues));
   }
 
@@ -89,17 +92,12 @@ export class CacheService {
     return new Blob([squareCache]).size;
   }
 
-  //test to see if logged timeStamp is over an hour old
+  //test to see if logged timeStamp is over 10 minutes old
   public isSquareCacheExpired() {
     const cacheValues = this.getSquareCache();
     const timestamp = cacheValues.timestamp;
     const now = new Date().getTime();
-    // const hour = 60 * 60 * 1000;
-    // //returns true if data is expired .. also false if timestamp doesn't exist?
-    // return now - timestamp > hour;
-
     const tenMinutes = 10 * 60 * 1000; // 10 minutes in milliseconds
-
     // Returns true if data is expired or if the timestamp doesn't exist
     return !timestamp || now - timestamp > tenMinutes;
   }
