@@ -20,13 +20,14 @@ export class SquareService {
       const cachedValues = this.cacheService.getSquareCache();
       if (cachedValues) {
         // Data is cached and not expired, return it
+        console.log('getCatalogue values are cached')
         return new Observable(observer => {
           observer.next(cachedValues);
           observer.complete();
         });
       }
     }
-
+    console.log('square not cached.. caching')
     // If not cached or expired, make the HTTP request and cache the response
     return this.http.get<any>(this.apiUrl).pipe(
       shareReplay(1), // Cache the most recent value and share it with subscribers
@@ -47,39 +48,39 @@ export class SquareService {
     );
   }
 
-  //testing conditions to be placed elsewehre (like app initiation function)
-  // let cachedValues = this.cacheService.getSquareCache();
-  //   //get and set timestamps
-  //   const timestamp = cachedValues.timestamp;
-  //   const now = new Date().getTime();
-    //if cache has image array > 0 and time isn't expired display cache data
-  // if (cachedValues.categories.length > 0 && cachedValues.items.length > 0 && now - timestamp < 3600000) {
-  //   // this.images = cachedValues.images;
-  //   // this.after = cachedValues.after;
-  //   return
-  // } else {
-  //   //if no cache or invalid request new values from instagram
-  //   this.squareCache();
-  // }
-
-  // //this needs to be converted to do everything locally in this file rather than external file (copied from sharedService.. no longer using)
-  // squareCache() {
-  //   this.squareService.getCatalogue().subscribe((data: any) => {
-  //     let categories: any[] = [];
-  //     let items: any[] = [];
-
-  //     // Parse the JSON response and populate arrays
-  //     data.objects.forEach((object: any) => {
-  //     if (object.type === 'CATEGORY') {
-  //       categories.push(object);
-  //     } else if (object.type === 'ITEM') {
-  //       items.push(object);
+  // getCatalogue(): Promise<any> {
+  //   return new Promise((resolve, reject) => {
+  //     // Check if the cache is available and not expired
+  //     if (!this.cacheService.isSquareCacheExpired()) {
+  //       const cachedValues = this.cacheService.getSquareCache();
+  //       if (cachedValues) {
+  //         // Data is cached and not expired, resolve with cached data
+  //         resolve(cachedValues);
+  //         return;
+  //       }
   //     }
-  //   });
-
-  //     console.log('categories', categories, 'items', items);
-  //     //cache data for next call
-  //     this.cacheService.cacheSquareData(categories, items);
+  //     console.log('square not cached.. caching');
+  //     // If not cached or expired, make the HTTP request and cache the response
+  //     this.http.get<any>(this.apiUrl).pipe(
+  //       shareReplay(1), // Cache the most recent value and share it with subscribers
+  //       tap(data => {
+  //         // Separate objects into categories and items arrays
+  //         const categories: any[] = [];
+  //         const items: any[] = [];
+  //         data.objects.forEach((object: any) => {
+  //           if (object.type === 'CATEGORY') {
+  //             categories.push(object);
+  //           } else if (object.type === 'ITEM') {
+  //             items.push(object);
+  //           }
+  //         });
+  //         // Cache the separated data using your CacheService
+  //         this.cacheService.cacheSquareData(categories, items);
+  //         // Resolve with the fetched data
+  //         resolve(data);
+  //       })
+  //     ).subscribe(); // Subscribe to trigger the HTTP request
   //   });
   // }
+
 }

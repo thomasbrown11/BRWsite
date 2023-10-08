@@ -33,6 +33,7 @@ import { TermsOfServiceComponent } from './terms-of-service/terms-of-service.com
 import { HeaderComponent } from './header/header.component';
 import { NewsletterUnsubscribeComponent } from './newsletter-unsubscribe/newsletter-unsubscribe.component';
 import { SquareComponent } from './square/square.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { SquareComponent } from './square/square.component';
     TermsOfServiceComponent,
     HeaderComponent,
     NewsletterUnsubscribeComponent,
-    SquareComponent
+    SquareComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

@@ -11,8 +11,12 @@ import { LampworkComponent } from './lampwork/lampwork.component';
 import { TermsOfServiceComponent } from './terms-of-service/terms-of-service.component';
 import { NewsletterUnsubscribeComponent } from './newsletter-unsubscribe/newsletter-unsubscribe.component';
 
+import { LoadingComponent } from './loading/loading.component';
+import { HomeDataResolver } from './home-data-resolver.service';
+
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: 'loading', component: LoadingComponent },
+  { path: 'home', component: HomeComponent, resolve: {data: HomeDataResolver,} },
   { path: 'shop', component: SquareComponent},
   { path: 'about', component: AboutMeComponent },
   { path: 'contact', component: ContactComponent },
@@ -22,7 +26,7 @@ const routes: Routes = [
   { path: 'lampwork', component: LampworkComponent },
   { path: 'terms', component: TermsOfServiceComponent },
   { path: 'unsubscribe', component: NewsletterUnsubscribeComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' }
+  { path: '**', redirectTo: '/loading', pathMatch: 'full' }
 ];
 
 @NgModule({

@@ -1,19 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ContactService } from '../contact.service';
+
+import { SquareService } from '../square/square.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   emailValue: string = 'jane@example.com'; // Variable to store the email value
   emailSubmitted: boolean = false; //show thank you after successful submission
   isVerifiedEmail: boolean = true; //show error if email validation fails
   errorCode: any = ''; //returned error from email validation
   isLoading: boolean = false;
 
-  constructor(private contactService: ContactService) { }
+  constructor(private contactService: ContactService, private squareService: SquareService) { }
+
+  ngOnInit(): void {
+    this.squareService.getCatalogue();
+  }
 
   //send email address to business and thank you to user
   submitEmail() {
