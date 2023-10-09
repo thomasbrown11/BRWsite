@@ -52,7 +52,7 @@ import { LoadingComponent } from './loading/loading.component';
     HeaderComponent,
     NewsletterUnsubscribeComponent,
     SquareComponent,
-    LoadingComponent
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,

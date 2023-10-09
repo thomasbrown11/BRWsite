@@ -5,8 +5,8 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 
 
 //shared variable for toggling
+import { SquareService } from '../square/square.service';
 import { SharedService } from '../shared.service';
-import { CacheService } from '../cache.service';
 import { share } from 'rxjs';
 
 
@@ -24,7 +24,7 @@ import { share } from 'rxjs';
   ]
 })
 
-export class NavBarComponent implements AfterViewInit {
+export class NavBarComponent implements AfterViewInit, OnInit {
 
   instaLink = 'https://www.instagram.com/elsewernerglass/';
   instaIcon = '../../assets/Instagram_Glyph_Black.png';
@@ -35,7 +35,13 @@ export class NavBarComponent implements AfterViewInit {
   squareCategories: any[] = [];
   menuItems: string[] = ['hello','there'];
 
-  constructor(public sharedService: SharedService) { }
+  constructor(public sharedService: SharedService, private squareService: SquareService) { }
+
+  ngOnInit(): void {
+    this.squareService.getCatalogue().subscribe(data => {
+      this.squareCategories = data.categories;
+    })
+  }
 
   toggleNav() {
     // this.isOpen = !this.isOpen;

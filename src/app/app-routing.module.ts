@@ -17,7 +17,7 @@ import { HomeDataResolver } from './home-data-resolver.service';
 const routes: Routes = [
   { path: 'loading', component: LoadingComponent },
   { path: 'home', component: HomeComponent, resolve: {data: HomeDataResolver,} },
-  { path: 'shop', component: SquareComponent},
+  { path: 'shop/:id', component: SquareComponent},
   { path: 'about', component: AboutMeComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'instagram', component: InstagramComponent },
