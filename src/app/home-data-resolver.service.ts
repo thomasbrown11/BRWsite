@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable, of, forkJoin } from 'rxjs';
 import { catchError, finalize, switchMap } from 'rxjs/operators';
 import { SquareService } from './square/square.service';
 
@@ -10,9 +10,26 @@ import { SquareService } from './square/square.service';
 export class HomeDataResolver implements Resolve<any> {
   constructor(private squareService: SquareService) {}
 
+  // resolve(): Observable<any> {
+  //   return this.squareService.getCatalogue().pipe(
+  //     switchMap(() => of(null)), // Use switchMap to wait for the HTTP request
+  //     catchError(() => of(null)), // Handle errors gracefully
+  //     finalize(() => {
+  //       // The cache is now populated or the request failed
+  //     })
+  //   );
+  // }
+
   resolve(): Observable<any> {
-    return this.squareService.getCatalogue().pipe(
-      switchMap(() => of(null)), // Use switchMap to wait for the HTTP request
+    // Use forkJoin to combine multiple observables
+    return forkJoin([
+      this.squareService.getCatalogue(),
+      this.squareService.getImages(),
+    ]).pipe(
+      switchMap(([catalogueData, imagesData]) => {
+        // Process the data here if needed
+        return of({ catalogueData, imagesData });
+      }),
       catchError(() => of(null)), // Handle errors gracefully
       finalize(() => {
         // The cache is now populated or the request failed

@@ -11,6 +11,8 @@ import { CacheService } from '../cache.service';
 export class SquareService {
 
   private apiUrl = 'http://localhost:3000/api/square';
+  private imageUrl = 'http://localhost:3000/api/square_images'
+
 
   constructor(private http: HttpClient, private cacheService: CacheService) { }
 
@@ -82,5 +84,34 @@ export class SquareService {
   //     ).subscribe(); // Subscribe to trigger the HTTP request
   //   });
   // }
+
+  getImages(): Observable<any> {
+    //if cache isn't expired(and therefore exists)
+    if (!this.cacheService.isSquareCacheExpired()) {
+      const cachedValues = this.cacheService.getSquareCache();
+      if (cachedValues.images) {
+        // image data is cached and not expired, return it
+        console.log('image values are cached')
+        return new Observable(observer => {
+          observer.next(cachedValues.images);
+          observer.complete();
+        });
+      }
+    }
+    console.log('square images not cached.. caching')
+    // If not cached or expired, make the HTTP request and cache the response
+    return this.http.get<any>(this.imageUrl).pipe(
+      shareReplay(1), // Cache the most recent value and share it with subscribers
+      tap(data => {
+          // Separate objects into categories and items arrays
+          const images: any = {};
+          data.objects.forEach((object: any) => {
+            images[object.id] = object.image_data.url;
+          });
+        // Cache the separated data using your CacheService
+        this.cacheService.cacheSquareImage(images);
+      })
+    );
+  }
 
 }

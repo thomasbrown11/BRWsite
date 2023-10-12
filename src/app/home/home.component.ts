@@ -18,7 +18,8 @@ export class HomeComponent implements OnInit {
   constructor(private contactService: ContactService, private squareService: SquareService) { }
 
   ngOnInit(): void {
-    this.squareService.getCatalogue();
+    // this.squareService.getCatalogue();
+    // this.squareService.getImages(); // testing
   }
 
   //send email address to business and thank you to user

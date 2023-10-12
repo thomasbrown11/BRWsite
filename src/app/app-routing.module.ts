@@ -16,8 +16,10 @@ import { HomeDataResolver } from './home-data-resolver.service';
 
 const routes: Routes = [
   { path: 'loading', component: LoadingComponent },
-  { path: 'home', component: HomeComponent, resolve: {data: HomeDataResolver,} },
-  { path: 'shop/:id', component: SquareComponent},
+  { path: 'home', component: HomeComponent,
+  resolve: {data: HomeDataResolver,}
+  },
+  { path: 'shop/:id', component: SquareComponent },
   { path: 'about', component: AboutMeComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'instagram', component: InstagramComponent },
@@ -26,7 +28,7 @@ const routes: Routes = [
   { path: 'lampwork', component: LampworkComponent },
   { path: 'terms', component: TermsOfServiceComponent },
   { path: 'unsubscribe', component: NewsletterUnsubscribeComponent },
-  { path: '**', redirectTo: '/loading', pathMatch: 'full' }
+  { path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];
 
 @NgModule({

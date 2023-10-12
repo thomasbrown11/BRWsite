@@ -8,6 +8,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 import { SquareService } from '../square/square.service';
 import { SharedService } from '../shared.service';
 import { share } from 'rxjs';
+import { CacheService } from '../cache.service';
 
 
 /** @title Sidenav with custom escape and backdrop click behavior */
@@ -35,12 +36,20 @@ export class NavBarComponent implements AfterViewInit, OnInit {
   squareCategories: any[] = [];
   menuItems: string[] = ['hello','there'];
 
-  constructor(public sharedService: SharedService, private squareService: SquareService) { }
+  constructor(public sharedService: SharedService, private squareService: SquareService, private cacheService: CacheService) { }
 
   ngOnInit(): void {
-    this.squareService.getCatalogue().subscribe(data => {
-      this.squareCategories = data.categories;
-    })
+    // this.squareService.getCatalogue().subscribe(data => {
+    //   this.squareCategories = data.categories;
+    // })
+    // this.squareService.getImages();
+    // let categories = this.cacheService.getSquareCache().categories;
+    // for (let i of categories) {
+    //   this.squareCategories.push(i.category_data.name);
+    // }
+    // console.log(this.squareCategories)
+    this.squareCategories = this.cacheService.getSquareCache().categories;
+
   }
 
   toggleNav() {

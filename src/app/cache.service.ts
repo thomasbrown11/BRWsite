@@ -64,6 +64,8 @@ export class CacheService {
       categories: cachedValues.categories || [], //categories for nav bar list and future component implementing 'category_id' matching type:CATEGORY id property value
       items: cachedValues.items || [], //will eventually house array of objects with type:ITEM that house all pertinent catalogue item data
       //add more later? will need to add parameters in cacheSquareData method
+
+      images: cachedValues.images || [],//TESTING THIS
       timestamp: cachedValues.timestamp || 0
     };
   }
@@ -76,6 +78,23 @@ export class CacheService {
       //if no categories (or any cache data really) present then initialize categories and images
       cachedValues.categories = categories;
       cachedValues.items = items;
+    }
+    // else {
+    //   //if cache exists then you can use this method to add items to either cached array.. may not need for now
+    //   //if array present append new posts to items... is there utility to appending categories? This is from instagram method and had pagination in mind
+    //   cachedValues.items = cachedValues.items.concat(items);
+    //   cachedValues.categories = cachedValues.categories.concat(categories);
+    // }
+    sessionStorage.setItem('squareCache', JSON.stringify(cachedValues));
+  }
+
+  public cacheSquareImage(images: any): void {
+    const cachedValues = JSON.parse(sessionStorage.getItem('squareCache') || '{}');
+    // const now = new Date().getTime();
+    // cachedValues.timestamp = now;
+    if (!cachedValues.images) {
+      //if no images present then initialize images
+      cachedValues.images = images;
     }
     // else {
     //   //if cache exists then you can use this method to add items to either cached array.. may not need for now
@@ -101,5 +120,11 @@ export class CacheService {
     // Returns true if data is expired or if the timestamp doesn't exist
     return !timestamp || now - timestamp > tenMinutes;
   }
+
+
+
+
+
+
 
 }
