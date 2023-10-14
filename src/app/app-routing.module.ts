@@ -10,14 +10,15 @@ import { InstagramComponent } from './instagram/instagram.component';
 import { LampworkComponent } from './lampwork/lampwork.component';
 import { TermsOfServiceComponent } from './terms-of-service/terms-of-service.component';
 import { NewsletterUnsubscribeComponent } from './newsletter-unsubscribe/newsletter-unsubscribe.component';
+import { AppComponent } from './app.component';
 
 import { LoadingComponent } from './loading/loading.component';
 import { HomeDataResolver } from './home-data-resolver.service';
 
 const routes: Routes = [
-  { path: 'loading', component: LoadingComponent },
-  { path: 'home', component: HomeComponent,
-  resolve: {data: HomeDataResolver,}
+  { path: 'loading', component: LoadingComponent, resolve: {data: HomeDataResolver,} },
+  { path: 'home', component: HomeComponent
+  // resolve: {data: HomeDataResolver,}
   },
   { path: 'shop/:id', component: SquareComponent },
   { path: 'about', component: AboutMeComponent },

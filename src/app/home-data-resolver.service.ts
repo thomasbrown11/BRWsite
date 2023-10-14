@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
 import { Observable, of, forkJoin } from 'rxjs';
-import { catchError, finalize, switchMap } from 'rxjs/operators';
+import { catchError, finalize, switchMap, delay } from 'rxjs/operators';
 import { SquareService } from './square/square.service';
 
 @Injectable({
@@ -26,13 +26,14 @@ export class HomeDataResolver implements Resolve<any> {
       this.squareService.getCatalogue(),
       this.squareService.getImages(),
     ]).pipe(
+      // delay(3000), // Add a delay of 1 second
       switchMap(([catalogueData, imagesData]) => {
         // Process the data here if needed
         return of({ catalogueData, imagesData });
       }),
       catchError(() => of(null)), // Handle errors gracefully
       finalize(() => {
-        // The cache is now populated or the request failed
+        console.log('Resolver completed... cached from resolver');// The cache is now populated or the request failed
       })
     );
   }

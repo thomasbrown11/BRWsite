@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, Inject, OnInit } from '@angular/core'; //imported HostListener for clicking out of menu event
+import { Component, AfterViewInit, Inject, OnInit, ChangeDetectorRef } from '@angular/core'; //imported HostListener for clicking out of menu event
 
 //animation handling
 import { trigger, state, style, animate, transition } from '@angular/animations';
@@ -7,7 +7,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 //shared variable for toggling
 import { SquareService } from '../square/square.service';
 import { SharedService } from '../shared.service';
-import { share } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { CacheService } from '../cache.service';
 
 
@@ -33,24 +33,29 @@ export class NavBarComponent implements AfterViewInit, OnInit {
   isMouseOver: Boolean = false;
   // navIsOpen: boolean = false;
 
+  // squareCategories$: Observable<any[]> = of([]); // Initialize as an empty array
   squareCategories: any[] = [];
-  menuItems: string[] = ['hello','there'];
 
   constructor(public sharedService: SharedService, private squareService: SquareService, private cacheService: CacheService) { }
 
   ngOnInit(): void {
     // this.squareService.getCatalogue().subscribe(data => {
-    //   this.squareCategories = data.categories;
+    //   this.squareCategories$ = of(data.categories); // Create an observable with categories
     // })
+    // console.log(`cached from navBar.. ${this.squareCategories$}`)
     // this.squareService.getImages();
-    // let categories = this.cacheService.getSquareCache().categories;
-    // for (let i of categories) {
-    //   this.squareCategories.push(i.category_data.name);
-    // }
-    // console.log(this.squareCategories)
-    this.squareCategories = this.cacheService.getSquareCache().categories;
+    // console.log(`nav bar cats: ${this.squareCategories}`)
+
+    this.squareCategories = this.cacheService.getSquareCache().categories
 
   }
+
+  // private checkDataAndRender() {
+  //   // Check if both categoryData and itemData are available
+  //   if (this.squareCategories) {
+  //     this.dataReady = true; // Set the dataReady flag to true
+  //   }
+  // }
 
   toggleNav() {
     // this.isOpen = !this.isOpen;
@@ -63,7 +68,6 @@ export class NavBarComponent implements AfterViewInit, OnInit {
       void container.offsetWidth; // Trigger reflow
       container.classList.add('slide-in-animation');
     }
-
 
   }
 

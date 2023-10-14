@@ -6,6 +6,10 @@
    (mouseleave)="hideDropdown()">Shop
     <div class="dropdown-content" *ngIf="isMouseOver">
      <a href="shop/{{category.id}}" *ngFor="let category of squareCategories">{{ category.category_data.name }}</a>
+
+     <!-- <a *ngFor="let category of (squareCategories$ | async)" [href]="'shop/' + category.id">
+      {{ category.category_data.name }}
+    </a> -->
     </div>
   </a>
   <a class="nav-link" href="/about">About</a>

@@ -16,6 +16,7 @@ export class LoadingComponent implements OnInit {
   constructor(private squareService : SquareService, private cacheService: CacheService, private router: Router) {}
 
   ngOnInit(): void {
+    console.log('loading...');
     // this.waitForCache();
     this.router.navigateByUrl('/home');
   }
