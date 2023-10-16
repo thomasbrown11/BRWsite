@@ -9,9 +9,10 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class SquareComponent implements OnInit {
 
-  id: string | null = '';
-  categoryName: string | null = '';
-  saleItems: any[] = [];
+  id: string | null = ''; //id pulled from the link route parameter
+  categoryName: string | null = ''; //populate category name for display
+  saleItems: any[] = []; //pulls square cache or api response and populates all items filtered by category id
+  imageMap: any = {}; //imageMap contains urls with keys equal to item id
 
   constructor(private route: ActivatedRoute, private squareService: SquareService) {}
 
@@ -29,20 +30,50 @@ export class SquareComponent implements OnInit {
 
   }
 
+  // fetchCatalogData() {
+  //   this.squareService.getCatalogue().subscribe(data => {
+  //     // Find the category in the data array that matches the ID from the URL
+  //     const matchedCategory = data.categories.find((category: any) => category.id === this.id);
+
+  //     // If a matching category is found, save its name
+  //     if (matchedCategory) {
+  //       this.categoryName = matchedCategory.category_data.name;
+  //     } else {
+  //       this.categoryName = 'Shop'; //display shop if no category selected
+  //       this.saleItems = data.items;
+  //       return;
+  //     }
+
+  //     // Loop through items array to filter items that match the categoryId
+  //     this.saleItems = data.items.filter((item: any) => item.item_data.category_id === this.id);
+  //   });
+
+  //   this.squareService.getImages().subscribe(data => {
+  //     this.imageMap = data
+  //   })
+  // }
+
   fetchCatalogData() {
     this.squareService.getCatalogue().subscribe(data => {
       // Find the category in the data array that matches the ID from the URL
       const matchedCategory = data.categories.find((category: any) => category.id === this.id);
 
-      // If a matching category is found, save its name
       if (matchedCategory) {
         this.categoryName = matchedCategory.category_data.name;
+
+        // Filter items based on category
+        this.saleItems = data.items.filter((item: any) => item.item_data.category_id === this.id);
+      } else {
+        this.categoryName = 'Shop'; // Display 'Shop' if no category selected
+        this.saleItems = data.items;
       }
 
-      // Loop through items array to filter items that match the categoryId
-      this.saleItems = data.items.filter((item: any) => item.item_data.category_id === this.id);
+      this.squareService.getImages().subscribe(data => {
+        this.imageMap = data;
+      });
     });
   }
+
 
   formatPrice(price: number): string {
     // Divide the price by 100 to convert it to dollars

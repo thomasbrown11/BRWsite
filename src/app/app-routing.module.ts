@@ -20,6 +20,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent
   // resolve: {data: HomeDataResolver,}
   },
+  { path: 'shop', component: SquareComponent, pathMatch: 'full' },
   { path: 'shop/:id', component: SquareComponent },
   { path: 'about', component: AboutMeComponent },
   { path: 'contact', component: ContactComponent },
