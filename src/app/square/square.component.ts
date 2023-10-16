@@ -14,6 +14,8 @@ export class SquareComponent implements OnInit {
   saleItems: any[] = []; //pulls square cache or api response and populates all items filtered by category id
   imageMap: any = {}; //imageMap contains urls with keys equal to item id
 
+  imageEnlarged: any; //controls single item view
+
   constructor(private route: ActivatedRoute, private squareService: SquareService) {}
 
   ngOnInit(): void {
@@ -29,29 +31,6 @@ export class SquareComponent implements OnInit {
     console.log(this.saleItems);
 
   }
-
-  // fetchCatalogData() {
-  //   this.squareService.getCatalogue().subscribe(data => {
-  //     // Find the category in the data array that matches the ID from the URL
-  //     const matchedCategory = data.categories.find((category: any) => category.id === this.id);
-
-  //     // If a matching category is found, save its name
-  //     if (matchedCategory) {
-  //       this.categoryName = matchedCategory.category_data.name;
-  //     } else {
-  //       this.categoryName = 'Shop'; //display shop if no category selected
-  //       this.saleItems = data.items;
-  //       return;
-  //     }
-
-  //     // Loop through items array to filter items that match the categoryId
-  //     this.saleItems = data.items.filter((item: any) => item.item_data.category_id === this.id);
-  //   });
-
-  //   this.squareService.getImages().subscribe(data => {
-  //     this.imageMap = data
-  //   })
-  // }
 
   fetchCatalogData() {
     this.squareService.getCatalogue().subscribe(data => {
@@ -74,7 +53,6 @@ export class SquareComponent implements OnInit {
     });
   }
 
-
   formatPrice(price: number): string {
     // Divide the price by 100 to convert it to dollars
     const dollars = price / 100;
@@ -82,4 +60,17 @@ export class SquareComponent implements OnInit {
     // Format the price with two decimal places and add the "$" symbol
     return `$${dollars}`;
   }
+
+    //added to toggle image enlargement
+    toggleImageEnlarged(image: any) {
+      console.log('Toggle image:', image);
+      // console.log('carouselIndex', this.carouselIndex)
+      if (this.imageEnlarged === image) {
+        this.imageEnlarged = null;
+      } else {
+        // this.carouselIndex = 0; //set back to 0 in case multiple post click throughs
+        this.imageEnlarged = image;
+      }
+      console.log('Image enlarged:', this.imageEnlarged);
+    }
 }
