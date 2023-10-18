@@ -24,62 +24,65 @@
 }
 
 
-.image-enlarged {
-  /* Positioning and layout properties */
-  position: fixed;
-  top: 12.5%; /* Adjust this value to position it lower or higher */
-  left: 10%;
-  right: 10%;
-  z-index: 9999;
-  background-color: rgba(255, 255, 255, 0.9);
-  overflow: hidden;
+.single-view {
+  background-color:rgb(236, 236, 224);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.enlarged-image-container {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  max-height: 80vh;
 }
 
-
-/* Style the enlarged image */
-/* Style the enlarged image */
-
 .enlarged-image img {
-  max-width: 750px; /* Set a fixed width */
-  max-height: 750px; /* Limit the height to a maximum of 500px */
+  max-width: 600px; /* Set a fixed width */
+  max-height: 600px; /* Limit the height to a maximum of 500px */
   padding-top: 20px;
-  padding-left: 20px;
+  // padding-left: 20px;
+  padding-bottom: 20px;
 }
 
 /* Style the text container */
 .enlarged-text-container {
-  padding: 20px;
-  box-sizing: border-box;
-  flex: 1; /* Make the text container take up available space */
+  flex: 1;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
 }
 
 .enlarged-title {
+  padding-top: 20px;
+  padding-bottom: 5px;
   font-weight: bold;
   font-size: 1.5rem; /* Adjust the font size as needed */
   color: black; /* Set the text color to black or your desired color */
 }
 
-.enlarged-caption {
+.enlarged-caption, hr {
   margin-top: 10px;
+  margin-right: 20px;
   font-size: 1rem; /* Adjust the font size as needed */
   color: black; /* Set the text color to black or your desired color */
+  // word-wrap: break-word;
 }
 
-// .preview-image-remove {
-//   position: fixed;
-//   top: 10px;
-//   right: 10px;
-//   cursor: pointer;
-//   font-size: 1.2rem;
-//   font-weight: bold;
-//   z-index: 1;
-//   padding: 5px;
-//   color: #fff;
-// }
+.preview-image-remove {
+  position: absolute;
+  margin-right: 20px;
+  margin-top: 20px;
+  right: 0;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: bold;
+  z-index: 1;
+  // padding: 5px;
+  color: black;
+}
 
 // .enlarged-timestamp {
 //   color: #bebbbb;
