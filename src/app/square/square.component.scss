@@ -101,8 +101,14 @@ button.next:hover {
 //bubbles for under images gallery
 
 .bubble-selectors {
+  // display: flex;
+  // justify-content: center;
+
   display: flex;
+  flex-direction: row; /* Arrange items vertically */
+  align-items: center;
   justify-content: center;
+  margin-top: 10px; /* Adjust the distance from the enlarged-image-container */
 }
 
 .bubble-selector {
