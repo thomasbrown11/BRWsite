@@ -1,15 +1,11 @@
 .square-page-title {
   text-align: center;
-  // background-color: beige;
 }
 
 .image-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   justify-items: center;
-  // grid-gap: 20px;
-  // padding: 20px;
-  // background-color: beige;
 }
 
 .image-wrapper {
@@ -59,9 +55,6 @@
 /* Style the text container */
 .enlarged-text-container {
   flex: 1;
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
 }
 
 .enlarged-title {
@@ -93,36 +86,6 @@
   color: black;
 }
 
-// .enlarged-timestamp {
-//   color: #bebbbb;
-// }
-
-// .insta-link-container {
-//   display: flex;
-//   align-items: center;
-// }
-
-// .insta-permalink {
-//   display: inline-block;
-//   position: absolute;
-//   bottom: 0;
-//   right: 0;
-//   margin-bottom: 20px;
-//   margin-right: 20px;
-
-//   text-decoration: none;
-//   color: white
-// }
-
-// .insta-icon {
-//   max-width: 24px !important;
-//   max-height: 24px !important;
-// }
-
-// .insta-label {
-//   margin-left: 5px;
-// }
-
 // hr {
 //   width: 100%;
 //   border: none;
@@ -144,11 +107,11 @@
 //   background-color: transparent;
 // }
 
-// button.previous:hover,
-// button.next:hover {
-//   border: 1px solid #000;
-//   cursor: pointer;
-// }
+button.previous:hover,
+button.next:hover {
+  border: 1px solid #000;
+  cursor: pointer;
+}
 
 // /* Position the previous button on the left */
 // button.previous {

@@ -14,7 +14,11 @@ export class SquareComponent implements OnInit {
   saleItems: any[] = []; //pulls square cache or api response and populates all items filtered by category id
   imageMap: any = {}; //imageMap contains urls with keys equal to item id
 
-  imageEnlarged: any; //controls single item view
+  itemEnlarged: any; //controls single item view
+  currentImage: any = {};  //current image shown in enlarged image view
+  currentImageIndex: number = 0; //used to toggle via item_data.image_ids array
+  variantArray: any[] = []; //populate array with array values
+  variationIsSelected: boolean = false; //toggle image array views to color variants
 
   constructor(private route: ActivatedRoute, private squareService: SquareService) {}
 
@@ -61,16 +65,27 @@ export class SquareComponent implements OnInit {
     return `$${dollars}`;
   }
 
-    //added to toggle image enlargement
-    toggleImageEnlarged(image: any) {
-      console.log('Toggle image:', image);
+    //added to toggle to single item view
+    toggleImageEnlarged(item: any) {
+      console.log('Toggle image:', item);
       // console.log('carouselIndex', this.carouselIndex)
-      if (this.imageEnlarged === image) {
-        this.imageEnlarged = null;
+      if (this.itemEnlarged === item) {
+        this.itemEnlarged = null; //close single item view
+        this.currentImage = null; //clear image from carousel
+        this.currentImageIndex = 0; //clear out any toggled index values
       } else {
-        // this.carouselIndex = 0; //set back to 0 in case multiple post click throughs
-        this.imageEnlarged = image;
+        this.itemEnlarged = item; //update current single item.. triggers ngIf
+        this.currentImage = this.imageMap[this.itemEnlarged.item_data.image_ids[0]]; //initiate viewable image in item as first image id in array
+        console.log(`itemEnlarged toggled... instantiating current image as ${this.currentImage}.. index is ${this.currentImageIndex}`)
       }
-      console.log('Image enlarged:', this.imageEnlarged);
+      console.log('Image enlarged:', this.itemEnlarged);
     }
+
+
+    //this is fucked need to think through references
+    //logic for next and previous requires referencing the currentImageIndex.. so bubble clicks will needs to update the currentImageIndex to retain function
+   chooseImage(id: string) {
+    this.currentImage = this.imageMap[id];
+    console.log(`fired choseImage.. ${this.currentImage}, ${this.currentImageIndex}`)
+   }
 }

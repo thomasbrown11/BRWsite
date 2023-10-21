@@ -2,7 +2,7 @@
   <h1>{{categoryName}}</h1>
 </div>
 
-<div class="image-container" *ngIf="!imageEnlarged">
+<div class="image-container" *ngIf="!itemEnlarged">
   <div class='image-wrapper' *ngFor="let item of saleItems" (click)="toggleImageEnlarged(item)">
     <div class="image-cover">
       <img class='image' [src]="imageMap[item.item_data.image_ids[0]]" alt="item.item_data.name">
@@ -12,20 +12,30 @@
   </div>
 </div>
 
-<div class="single-view" *ngIf="imageEnlarged">
+<div class="single-view" *ngIf="itemEnlarged">
 
   <div class="enlarged-image-container">
-    <a [href]="imageMap[imageEnlarged.item_data.image_ids[0]]" target="_blank" class="enlarged-image">
-      <img [src]="imageMap[imageEnlarged.item_data.image_ids[0]]" alt="{{ imageEnlarged.item_data.caption }}" title="{{ imageEnlarged.item_data.caption }}">
+    <a [href]="imageMap[currentImage]" target="_blank" class="enlarged-image">
+      <img [src]="currentImage" alt="{{ itemEnlarged.item_data.caption }}" title="{{ itemEnlarged.item_data.caption }}">
     </a>
+
+
+    <div [hidden]="currentImageIndex<=0">
+      <button (click)="currentImageIndex = currentImageIndex - 1; chooseImage(itemEnlarged.item_data.image_ids[currentImageIndex]); $event.stopPropagation()"class="previous">Previous</button>
+    </div>
+
+    <div [hidden]="currentImageIndex >= itemEnlarged.item_data.image_ids.length - 1">
+      <button (click)="currentImageIndex = currentImageIndex + 1; chooseImage(itemEnlarged.item_data.image_ids[currentImageIndex]); $event.stopPropagation()" class="next">Next</button>
+    </div>
+
   </div>
 
   <div class="enlarged-text-container">
-    <div class="preview-image-remove" (click)="toggleImageEnlarged(imageEnlarged)">x</div>
-    <div class="enlarged-title">{{imageEnlarged.item_data.name}}</div>
-    <div class="enlarged-caption">{{ formatPrice(imageEnlarged.item_data.variations[0].item_variation_data.price_money.amount) }}</div>
+    <div class="preview-image-remove" (click)="toggleImageEnlarged(itemEnlarged)">x</div>
+    <div class="enlarged-title">{{itemEnlarged.item_data.name}}</div>
+    <div class="enlarged-caption">{{ formatPrice(itemEnlarged.item_data.variations[0].item_variation_data.price_money.amount) }}</div>
     <hr>
-    <div class="enlarged-caption">{{ imageEnlarged.item_data.description }}</div>
+    <div class="enlarged-caption">{{ itemEnlarged.item_data.description }}</div>
   </div>
 
 </div>
