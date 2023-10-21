@@ -15,16 +15,16 @@
 <div class="single-view" *ngIf="itemEnlarged">
 
   <div class="enlarged-image-container">
+
+    <div [hidden]="(currentImageIndex<=0)" class="previous">
+      <button (click)="currentImageIndex = currentImageIndex - 1; chooseImage(itemEnlarged.item_data.image_ids[currentImageIndex]); $event.stopPropagation()"class="previous">Previous</button>
+    </div>
+
     <a [href]="imageMap[currentImage]" target="_blank" class="enlarged-image">
       <img [src]="currentImage" alt="{{ itemEnlarged.item_data.caption }}" title="{{ itemEnlarged.item_data.caption }}">
     </a>
 
-
-    <div [hidden]="currentImageIndex<=0">
-      <button (click)="currentImageIndex = currentImageIndex - 1; chooseImage(itemEnlarged.item_data.image_ids[currentImageIndex]); $event.stopPropagation()"class="previous">Previous</button>
-    </div>
-
-    <div [hidden]="currentImageIndex >= itemEnlarged.item_data.image_ids.length - 1">
+    <div [hidden]="currentImageIndex >= itemEnlarged.item_data.image_ids.length - 1" class="next">
       <button (click)="currentImageIndex = currentImageIndex + 1; chooseImage(itemEnlarged.item_data.image_ids[currentImageIndex]); $event.stopPropagation()" class="next">Next</button>
     </div>
 

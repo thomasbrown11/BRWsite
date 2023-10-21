@@ -189,7 +189,7 @@ button.next:hover {
 /* Position the previous button on the left */
 button.previous {
   left: 0;
-  background: url('../../assets/white_arrow_before.png') no-repeat;
+  background: url('../../assets/black_arrow_before.png') no-repeat;
   background-size: contain;
   text-indent: -9999px;
 }
@@ -197,7 +197,7 @@ button.previous {
 /* Position the next button on the right */
 button.next {
   right: 0;
-  background: url('../../assets/white_arrow_next.png') no-repeat;
+  background: url('../../assets/black_arrow_next.png') no-repeat;
   background-size: contain;
   text-indent: -9999px;
 }

@@ -35,6 +35,8 @@
   align-items: flex-start;
   justify-content: space-between;
   height: 100vh;
+  gap: 25px;
+  position: relative;
 }
 
 .enlarged-image-container {
@@ -50,6 +52,43 @@
   padding-top: 20px;
   // padding-left: 20px;
   padding-bottom: 20px;
+  text-align: center;
+  margin-left: 25px;
+  align-items: center;
+}
+
+/* Position the previous button on the left */
+button.previous {
+  position: absolute;
+  order: 1;
+  background: url('../../assets/black_arrow_before.png') no-repeat;
+  background-size: contain;
+  text-indent: -9999px; //removes text
+  border: 0;
+  height: 25px;
+  width: 25px;
+  display: flex;
+  align-items: center;
+}
+
+/* Position the next button on the right */
+button.next {
+  position: absolute;
+  order: 3;
+  background: url('../../assets/black_arrow_next.png') no-repeat;
+  background-size: contain;
+  text-indent: -9999px; //removes text
+  border: 0;
+  height: 25px;
+  width: 25px;
+  display: flex;
+  align-items: center;
+}
+
+button.previous:hover,
+button.next:hover {
+  border: 1px solid #000;
+  cursor: pointer;
 }
 
 /* Style the text container */
@@ -67,7 +106,7 @@
 
 .enlarged-caption, hr {
   margin-top: 10px;
-  margin-right: 20px;
+  // margin-right: 20px;
   font-size: 1rem; /* Adjust the font size as needed */
   color: black; /* Set the text color to black or your desired color */
   // word-wrap: break-word;
@@ -93,25 +132,6 @@
 //   margin: 10px 0;
 //   align-self: flex-start;
 // }
-
-// //next buttons on carousel images
-// /* Position the previous and next buttons */
-// button.previous,
-// button.next {
-//   position: absolute;
-//   top: 50%;
-//   transform: translateY(-50%);
-//   width: 30px;
-//   height: 30px;
-//   border: none;
-//   background-color: transparent;
-// }
-
-button.previous:hover,
-button.next:hover {
-  border: 1px solid #000;
-  cursor: pointer;
-}
 
 // /* Position the previous button on the left */
 // button.previous {
