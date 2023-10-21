@@ -46,6 +46,13 @@
   justify-content: center;
 }
 
+// .horizontal-alignment {
+//   flex: 1;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// }
+
 .enlarged-image img {
   max-width: 600px; /* Set a fixed width */
   max-height: 600px; /* Limit the height to a maximum of 500px */
@@ -90,6 +97,27 @@ button.next:hover {
   border: 1px solid #000;
   cursor: pointer;
 }
+
+//bubbles for under images gallery
+
+.bubble-selectors {
+  display: flex;
+  justify-content: center;
+}
+
+.bubble-selector {
+  width: 20px; /* Adjust the size as needed */
+  height: 20px; /* Adjust the size as needed */
+  border: 2px solid #000; /* Set outline color */
+  border-radius: 50%; /* Create a circle */
+  margin: 0 10px; /* Adjust spacing as needed */
+  cursor: pointer;
+}
+
+.bubble-selector.selected {
+  background-color: #000; /* Fill the center when selected */
+}
+
 
 /* Style the text container */
 .enlarged-text-container {

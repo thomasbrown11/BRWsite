@@ -16,6 +16,7 @@
 
   <div class="enlarged-image-container">
 
+    <!-- <div clas="horizontal-align"> -->
     <div [hidden]="(currentImageIndex<=0)" class="previous">
       <button (click)="currentImageIndex = currentImageIndex - 1; chooseImage(itemEnlarged.item_data.image_ids[currentImageIndex]); $event.stopPropagation()"class="previous">Previous</button>
     </div>
@@ -27,11 +28,12 @@
     <div [hidden]="currentImageIndex >= itemEnlarged.item_data.image_ids.length - 1" class="next">
       <button (click)="currentImageIndex = currentImageIndex + 1; chooseImage(itemEnlarged.item_data.image_ids[currentImageIndex]); $event.stopPropagation()" class="next">Next</button>
     </div>
+    <!-- </div> -->
 
-    <!-- <div *ngFor="let image of itemEnlarged.item_data.image_ids">
-      <a>hello</a>
-    </div> -->
+  </div>
 
+  <div *ngFor="let image of itemEnlarged.item_data.image_ids; let i = index" class="bubble-selectors">
+    <div class="bubble-selector" [class.selected]="isBubbleSelected && i === currentImageIndex" (click)="chooseImage(image); selectBubble(i)"></div>
   </div>
 
   <div class="enlarged-text-container">

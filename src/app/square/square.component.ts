@@ -17,6 +17,8 @@ export class SquareComponent implements OnInit {
   itemEnlarged: any; //controls single item view
   currentImage: any = {};  //current image shown in enlarged image view
   currentImageIndex: number = 0; //used to toggle via item_data.image_ids array
+  isBubbleSelected: boolean = false; // handle styling on bubble selected
+
   variantArray: any[] = []; //populate array with array values
   variationIsSelected: boolean = false; //toggle image array views to color variants
 
@@ -88,4 +90,10 @@ export class SquareComponent implements OnInit {
     this.currentImage = this.imageMap[id];
     console.log(`fired choseImage.. ${this.currentImage}, ${this.currentImageIndex}`)
    }
+
+   //handles events when bubble is clicked for image selection in single view
+   selectBubble(index: number): void {
+    this.currentImageIndex = index; // Update the selected index
+    this.isBubbleSelected = true; // Enable the class on the selected bubble
+  }
 }
