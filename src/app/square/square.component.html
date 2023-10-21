@@ -20,7 +20,7 @@
       <button (click)="currentImageIndex = currentImageIndex - 1; chooseImage(itemEnlarged.item_data.image_ids[currentImageIndex]); $event.stopPropagation()"class="previous">Previous</button>
     </div>
 
-    <a [href]="imageMap[currentImage]" target="_blank" class="enlarged-image">
+    <a [href]="currentImage" target="_blank" class="enlarged-image">
       <img [src]="currentImage" alt="{{ itemEnlarged.item_data.caption }}" title="{{ itemEnlarged.item_data.caption }}">
     </a>
 
