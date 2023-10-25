@@ -33,10 +33,6 @@
 
     </div>
 
-    <!-- <div *ngFor="let image of itemEnlarged.item_data.image_ids; let i = index" class="bubble-selectors">
-      <div class="bubble-selector" [class.selected]="isBubbleSelected && i === currentImageIndex" (click)="chooseImage(image); selectBubble(i)"></div>
-    </div> -->
-
     <div class="bubble-selectors">
       <div *ngFor="let image of itemEnlarged.item_data.image_ids; let i = index" class="bubble-selector" [class.selected]="isBubbleSelected && i === currentImageIndex" (click)="chooseImage(image); selectBubble(i)"></div>
     </div>
@@ -48,6 +44,11 @@
     <div class="enlarged-caption">{{ formatPrice(itemEnlarged.item_data.variations[0].item_variation_data.price_money.amount) }}</div>
     <hr>
     <div class="enlarged-caption">{{ itemEnlarged.item_data.description }}</div>
+    <!-- if there's no colors present then a single variation named regular with ordinal 1 appears, whereas colors are given indexed ordinal values -->
+    <div *ngIf="itemEnlarged.item_data.variations[0].item_variation_data.ordinal !== 1">
+      <h2>Color Options</h2>
+      <div *ngFor = "let variation of itemEnlarged.item_data.variations">{{variation.item_variation_data.name}}</div>
+    </div>
   </div>
 
 </div>
