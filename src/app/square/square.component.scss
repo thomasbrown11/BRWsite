@@ -122,13 +122,35 @@ button.next:hover {
   transition: border-color 0.3s, background-color 0.3s;
 }
 
+.color-bubble-selector {
+  width: 20px; /* Adjust the size as needed */
+  height: 20px; /* Adjust the size as needed */
+  border: 2px solid #000; /* Set outline color */
+  border-radius: 50%; /* Create a circle */
+  margin: 0 10px; /* Adjust spacing as needed */
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+.color-bubble-selector::before {
+  content: ''; /* Required for pseudo-elements */
+  width: 15px; /* Adjust the size of the smaller circle */
+  height: 15px; /* Adjust the size of the smaller circle */
+  background-color: transparent; /* Transparent background to create the space */
+  border: 3px solid rgb(236, 236, 224); /* Black border for the outer circle */
+  border-radius: 50%; /* Create the smaller circle */
+  position: absolute;
+  top: 50%; /* Position vertically in the middle */
+  left: 50%; /* Position horizontally in the middle */
+  transform: translate(-50%, -50%); /* Center the smaller circle */
+}
+
 .bubble-selector:hover {
   background-color: black;
 }
 
 .bubble-selector.selected {
-  // background-color: #000; /* Fill the center when selected */
-
   &::before {
     content: ''; /* Required for pseudo-elements */
     width: 15px; /* Adjust the size of the smaller circle */
@@ -140,6 +162,25 @@ button.next:hover {
     left: 50%; /* Position horizontally in the middle */
     transform: translate(-50%, -50%); /* Center the smaller circle */
   }
+
+  /* Add a persistent inner circle using ::before pseudo-element */
+  &::before {
+    content: '';
+    width: 10px; /* Adjust the size of the inner circle */
+    height: 10px; /* Adjust the size of the inner circle */
+    background-color: #000; /* Color of the inner circle */
+    border-radius: 50%; /* Create the inner circle */
+    position: absolute;
+    top: 50%; /* Position vertically in the middle */
+    left: 50%; /* Position horizontally in the middle */
+    transform: translate(-50%, -50%); /* Center the inner circle */
+  }
+}
+
+.color-bubble-selector:hover {
+  /* Style for hover effect */
+  /* You can add a shadow here */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 

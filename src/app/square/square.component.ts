@@ -19,8 +19,18 @@ export class SquareComponent implements OnInit {
   currentImageIndex: number = 0; //used to toggle via item_data.image_ids array
   isBubbleSelected: boolean = false; // handle styling on bubble selected
 
-  variantArray: any[] = []; //populate array with array values
-  variationIsSelected: boolean = false; //toggle image array views to color variants
+  colorMap: any = {
+    "Spotted Veridian": "#1A8F72",
+    "Translucent Blue Emerald": "#07ADAD",
+    "Red": "#FF0000",
+    "Blue": "#5174D1",
+    "Yellow": "#F7C03E",
+    "White": "#FFFFFF"
+  }
+
+  colorArray: any[] = []; //populate array with array values
+  colorIsSelected: boolean = false; //toggle image array views to color variants
+  currentColorIndex: number = 0;
 
   constructor(private route: ActivatedRoute, private squareService: SquareService) {}
 
@@ -95,5 +105,10 @@ export class SquareComponent implements OnInit {
    selectBubble(index: number): void {
     this.currentImageIndex = index; // Update the selected index
     this.isBubbleSelected = true; // Enable the class on the selected bubble
+  }
+
+  selectColor(variantIndex: number): void {
+    this.currentColorIndex = variantIndex;
+    this.colorIsSelected = true;
   }
 }
