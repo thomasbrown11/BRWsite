@@ -24,11 +24,15 @@
     </div>
   </div>
 
+  <!-- <div *ngIf="inStock"> -->
+
   <div class="enlarged-text-container">
     <div class="enlarged-title">{{itemEnlarged.item_data.name}}</div>
     <div class="enlarged-caption">{{ formatPrice(itemEnlarged.item_data.variations[0].item_variation_data.price_money.amount) }}</div>
     <hr>
     <div class="enlarged-caption">{{ itemEnlarged.item_data.description_plaintext }}</div>
+
+    <div *ngIf="inStock">
 
       <div class="choose-amount">
         <div class="previous">
@@ -55,9 +59,19 @@
         </div>
       </div>
 
+    </div>
+
+    <div *ngIf="!inStock">
+      <h4>This Item is Currently Unavailable</h4>
+      <h5>Please send an email if you'd like to make a custom order here: </h5>
+      <a href="contact" class="contact-button">Contact Me</a>
+      <h6>*Time delays, extra charges, and other conditions may apply</h6>
+    </div>
+
   </div>
 
 </div>
+
 
 <div *ngIf="!itemEnlarged">
   <h1>Error: Please reload page</h1>

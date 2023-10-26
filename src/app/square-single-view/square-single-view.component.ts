@@ -16,6 +16,8 @@ export class SquareSingleViewComponent implements OnInit {
   currentImageIndex: number = 0; //used to toggle via item_data.image_ids array
   isBubbleSelected: boolean = false; // handle styling on bubble selected
 
+  inStock: boolean = true;
+
   colorMap: any = {
     "Spotted Veridian": "#1A8F72",
     "Translucent Blue Emerald": "#07ADAD",
@@ -35,14 +37,18 @@ export class SquareSingleViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
-      // Get the 'category' parameter and parse it back to an object
+      // save route parameter id for item match
       const itemId = params.get('id');
       this.id = itemId;
     });
 
+    //call square getCatalogue to get loop match for item id, populate imageMap
     this.fetchCatalogData();
 
     console.log(this.itemEnlarged);
+
+    //check if item in stock
+    this.checkStock();
   }
 
 
@@ -62,6 +68,18 @@ export class SquareSingleViewComponent implements OnInit {
         this.currentImage = this.imageMap[this.itemEnlarged.item_data.image_ids[0]]; //initiate viewable image in item as first image id in array
       }
     });
+  }
+
+  checkStock(): void {
+
+    //if item has no variants and is out of stock
+    if (this.itemEnlarged.item_data.variations[0].item_variation_data.location_overrides?.[0]?.sold_out && this.itemEnlarged.item_data.variations[0].item_variation_data.name === 'Regular') {
+      console.log(`no stock: sold out?: ${this.itemEnlarged.item_data.variations[0].item_variation_data.location_overrides?.[0]?.sold_out}, name: ${this.itemEnlarged.item_data.variations[0].item_variation_data.name}`);
+      this.inStock = false;
+    } else {
+      //item is in stock or has variants.. maybe need to do some else ifs... want to do the loop through to test all variants absolutely last somehow
+      console.log(`in stock: sold out?: ${this.itemEnlarged.item_data.variations[0].item_variation_data.location_overrides?.[0]?.sold_out}, name: ${this.itemEnlarged.item_data.variations[0].item_variation_data.name}`);
+    }
   }
 
   formatPrice(price: number): string {
