@@ -30,28 +30,31 @@
     <hr>
     <div class="enlarged-caption">{{ itemEnlarged.item_data.description_plaintext }}</div>
 
-    <div [hidden]="(currentImageIndex<=0)" class="previous">
-      <button (click)="currentImageIndex = currentImageIndex - 1; chooseImage(itemEnlarged.item_data.image_ids[currentImageIndex]); $event.stopPropagation(); selectBubble(currentImageIndex)"class="previous">Previous</button>
-    </div>
+      <div class="choose-amount">
+        <div class="previous">
+          <button (click)="decrementQuantity()"class="previous">Previous</button>
+       </div>
 
-    <div class="amount">{{quantity}}</div>
+        <div class="amount">{{quantity}}</div>
 
-    <div [hidden]="currentImageIndex >= itemEnlarged.item_data.image_ids.length - 1" class="next">
-      <button (click)="currentImageIndex = currentImageIndex + 1; chooseImage(itemEnlarged.item_data.image_ids[currentImageIndex]); $event.stopPropagation(); ; selectBubble(currentImageIndex)" class="next">Next</button>
-    </div>
-
-
-    <!-- if there's no colors present then a single variation named regular with ordinal 1 appears, whereas colors are given indexed ordinal values -->
-    <div *ngIf="itemEnlarged.item_data.variations[0].item_variation_data.ordinal !== 1">
-      <h2>Color</h2>
-      <h2>{{itemEnlarged.item_data.variations[currentColorIndex].item_variation_data.name}}</h2>
-      <div *ngFor = "let variation of itemEnlarged.item_data.variations; let j = index" class="color-bubble-selectors">
-        <div class="color-bubble-selector"
-          [style.background-color]=colorMap[variation.item_variation_data.name]
-          (click)="selectColor(j)">
+        <div class="next">
+          <button (click)="incrementQuantity()" class="next">Next</button>
         </div>
       </div>
-    </div>
+
+
+      <!-- if there's no colors present then a single variation named regular with ordinal 1 appears, whereas colors are given indexed ordinal values -->
+      <div *ngIf="itemEnlarged.item_data.variations[0].item_variation_data.ordinal !== 1">
+        <h2>Color</h2>
+        <h2>{{itemEnlarged.item_data.variations[currentColorIndex].item_variation_data.name}}</h2>
+        <div *ngFor = "let variation of itemEnlarged.item_data.variations; let j = index" class="color-bubble-selectors">
+          <div class="color-bubble-selector"
+            [style.background-color]=colorMap[variation.item_variation_data.name]
+            (click)="selectColor(j)">
+          </div>
+        </div>
+      </div>
+
   </div>
 
 </div>

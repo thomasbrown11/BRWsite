@@ -84,17 +84,27 @@ export class SquareSingleViewComponent implements OnInit {
     this.isBubbleSelected = true; // Enable the class on the selected bubble
   }
 
+  itemIsStocked(): boolean {
+    if (this.itemEnlarged.item_data.variations[0].item_variation_data.name ) {
+      console.log('item is out of stock');
+      return false;
+    } else {
+      console.log('item is in stock')
+      return true;
+    }
+  }
+
   selectColor(variantIndex: number): void {
     this.currentColorIndex = variantIndex;
     this.colorIsSelected = true;
   }
 
   incrementQuantity(): void {
-    this.quantity = this.quantity ++;
+    this.quantity = this.quantity + 1;
   }
 
   decrementQuantity(): void {
-    this.quantity = this.quantity --;
+    this.quantity = this.quantity - 1;
   }
 
 }
