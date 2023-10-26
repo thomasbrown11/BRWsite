@@ -34,6 +34,9 @@ import { HeaderComponent } from './header/header.component';
 import { NewsletterUnsubscribeComponent } from './newsletter-unsubscribe/newsletter-unsubscribe.component';
 import { SquareComponent } from './square/square.component';
 import { LoadingComponent } from './loading/loading.component';
+import { SquareSingleViewComponent } from './square-single-view/square-single-view.component';
+import { CartComponent } from './cart/cart.component';
+import { AttributionsComponent } from './attributions/attributions.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +56,9 @@ import { LoadingComponent } from './loading/loading.component';
     NewsletterUnsubscribeComponent,
     SquareComponent,
     LoadingComponent,
+    SquareSingleViewComponent,
+    CartComponent,
+    AttributionsComponent,
   ],
   imports: [
     BrowserModule,

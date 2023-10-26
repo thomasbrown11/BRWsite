@@ -14,6 +14,9 @@ import { AppComponent } from './app.component';
 
 import { LoadingComponent } from './loading/loading.component';
 import { HomeDataResolver } from './home-data-resolver.service';
+import { SquareSingleViewComponent } from './square-single-view/square-single-view.component';
+import { CartComponent } from './cart/cart.component';
+import { AttributionsComponent } from './attributions/attributions.component';
 
 const routes: Routes = [
   { path: 'loading', component: LoadingComponent, resolve: {data: HomeDataResolver,} },
@@ -22,6 +25,8 @@ const routes: Routes = [
   },
   { path: 'shop', component: SquareComponent, pathMatch: 'full' },
   { path: 'shop/:id', component: SquareComponent },
+  { path: 'item/:id', component: SquareSingleViewComponent},
+  { path: 'cart', component: CartComponent},
   { path: 'about', component: AboutMeComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'instagram', component: InstagramComponent },
@@ -30,6 +35,7 @@ const routes: Routes = [
   { path: 'lampwork', component: LampworkComponent },
   { path: 'terms', component: TermsOfServiceComponent },
   { path: 'unsubscribe', component: NewsletterUnsubscribeComponent },
+  { path: 'attribution', component: AttributionsComponent},
   { path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];
 

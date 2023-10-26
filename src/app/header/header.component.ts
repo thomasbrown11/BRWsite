@@ -11,6 +11,7 @@ export class HeaderComponent {
 
   instaLink = 'https://www.instagram.com/elsewernerglass/';
   instaIcon = '../../assets/Instagram_Glyph_Black.png';
+  cartIcon = '../../assets/shopping-cart.png';
 
   constructor(public sharedService: SharedService) {
     // // this.sharedService.navIsOpen$.subscribe((value) => {
