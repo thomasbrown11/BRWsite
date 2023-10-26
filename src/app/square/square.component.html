@@ -2,10 +2,22 @@
   <h1>{{categoryName}}</h1>
 </div>
 
-<div class="image-container" *ngIf="!itemEnlarged">
+<!-- <div class="image-container" *ngIf="!itemEnlarged">
   <div class='image-wrapper' *ngFor="let item of saleItems" (click)="toggleImageEnlarged(item)">
     <div class="image-cover">
       <img class='image' [src]="imageMap[item.item_data.image_ids[0]]" alt="item.item_data.name">
+    </div>
+    <p>{{ item.item_data.name }}</p>
+    <p>{{ formatPrice(item.item_data.variations[0].item_variation_data.price_money.amount) }}</p>
+  </div>
+</div> -->
+
+<div class="image-container" *ngIf="!itemEnlarged">
+  <div class='image-wrapper' *ngFor="let item of saleItems" (click)="toggleImageEnlarged(item)">
+    <div class="image-cover">
+      <a href="item/{{item.id}}">
+      <img class='image' [src]="imageMap[item.item_data.image_ids[0]]" alt="item.item_data.name">
+    </a>
     </div>
     <p>{{ item.item_data.name }}</p>
     <p>{{ formatPrice(item.item_data.variations[0].item_variation_data.price_money.amount) }}</p>
