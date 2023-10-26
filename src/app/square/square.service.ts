@@ -115,19 +115,9 @@ export class SquareService {
     );
   }
 
-  getInventory(ids: string[]) {
+  getInventory(ids: string[]): Observable<any> {
     const requestData = { catalogObjectIds: ids };
-    this.http.post(this.stockUrl, requestData)
-    .subscribe(
-      (response) => {
-        // Handle the response from your Express API here
-        console.log(response);
-      },
-      (error) => {
-        // Handle any errors here
-        console.error(error);
-      }
-    );
+    return this.http.post<any>(this.stockUrl, requestData);
   }
 
 }

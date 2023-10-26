@@ -17,6 +17,7 @@ export class SquareSingleViewComponent implements OnInit {
   isBubbleSelected: boolean = false; // handle styling on bubble selected
 
   inStock: boolean = true;
+  stockArray: any = {};
 
   colorMap: any = {
     "Spotted Veridian": "#1A8F72",
@@ -49,6 +50,11 @@ export class SquareSingleViewComponent implements OnInit {
 
     //check if item in stock
     this.checkStock();
+
+    if(this.inStock) {
+      this.getStockCount();
+      console.log(`stock count array: ${this.stockArray}`);
+    }
   }
 
 
@@ -80,6 +86,29 @@ export class SquareSingleViewComponent implements OnInit {
       //item is in stock or has variants.. maybe need to do some else ifs... want to do the loop through to test all variants absolutely last somehow
       console.log(`in stock: sold out?: ${this.itemEnlarged.item_data.variations[0].item_variation_data.location_overrides?.[0]?.sold_out}, name: ${this.itemEnlarged.item_data.variations[0].item_variation_data.name}`);
     }
+  }
+
+  getStockCount(): void {
+    const ids: string[] = [];
+
+    // Loop through the variations and push their IDs to the `ids` array
+    this.itemEnlarged.item_data.variations.forEach((variation: any) => {
+      ids.push(variation.id);
+    });
+
+    // Call the `getInventory` method with the `ids` array as an argument
+    this.squareService.getInventory(ids).subscribe(
+      (response) => {
+        // Store the response in the stockCountArray
+        this.stockArray = response;
+        // Now you can work with the stockCountArray as needed
+        console.log(this.stockArray);
+      },
+      (error) => {
+        // Handle any errors here
+        console.error(error);
+      }
+    );
   }
 
   formatPrice(price: number): string {
