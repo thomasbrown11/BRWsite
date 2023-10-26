@@ -11,7 +11,8 @@ import { CacheService } from '../cache.service';
 export class SquareService {
 
   private apiUrl = 'http://localhost:3000/api/square';
-  private imageUrl = 'http://localhost:3000/api/square_images'
+  private imageUrl = 'http://localhost:3000/api/square_images';
+  private stockUrl = 'http://localhost:3000/api/square_item_stock';
 
 
   constructor(private http: HttpClient, private cacheService: CacheService) { }
@@ -111,6 +112,21 @@ export class SquareService {
         // Cache the separated data using your CacheService
         this.cacheService.cacheSquareImage(images);
       })
+    );
+  }
+
+  getInventory(ids: string[]) {
+    const requestData = { catalogObjectIds: ids };
+    this.http.post(this.stockUrl, requestData)
+    .subscribe(
+      (response) => {
+        // Handle the response from your Express API here
+        console.log(response);
+      },
+      (error) => {
+        // Handle any errors here
+        console.error(error);
+      }
     );
   }
 
