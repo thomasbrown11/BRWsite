@@ -77,6 +77,19 @@ export class SquareComponent implements OnInit {
     return `$${dollars}`;
   }
 
+
+  isRegularVariantOutOfStock(item: any) {
+    // Check if the 'Regular' variant is out of stock
+    const isRegularOutOfStock =
+      item.item_data.variations[0].item_variation_data.location_overrides?.[0]?.sold_out === true &&
+      //if no colors the first variant is always the 'Regular' variant which is the standard one
+      item.item_data.variations[0].item_variation_data.name === 'Regular';
+
+    return isRegularOutOfStock;
+  }
+
+  //probably no longer need any of these items...
+
     //added to toggle to single item view
     toggleImageEnlarged(item: any) {
       console.log('Toggle image:', item);
