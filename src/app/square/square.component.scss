@@ -28,6 +28,28 @@
   overflow: hidden;
 }
 
+.image:hover{
+  filter: brightness(0.7);
+}
+
+.out-of-stock {
+  filter: brightness(0.4); /* Darkens the image */
+  /* Add other styling as needed */
+  // position: relative;
+}
+
+.warning {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  // background-color: black; /* Background color for the text */
+  color: black; /* Text color */
+  padding: 5px; /* Adjust padding as needed */
+  font-size: 24px; /* Adjust the font size as needed */
+  font-weight: bold;
+}
+
 
 .single-view {
   background-color:rgb(236, 236, 224);

@@ -12,24 +12,25 @@
   </div>
 </div> -->
 
-<div class="image-container" *ngIf="!itemEnlarged">
+<div class="image-container">
   <div class='image-wrapper' *ngFor="let item of saleItems" (click)="toggleImageEnlarged(item)">
     <div class="image-cover">
       <a href="item/{{item.id}}">
-      <img class='image' [src]="imageMap[item.item_data.image_ids[0]]" alt="item.item_data.name">
-    </a>
+        <img class='image' [src]="imageMap[item.item_data.image_ids[0]]" alt="item.item_data.name" [class.out-of-stock]="item.item_data.variations[0].item_variation_data.location_overrides?.[0]?.sold_out">
+      </a>
     </div>
+    <p class="warning" *ngIf="item.item_data.variations[0].item_variation_data.location_overrides?.[0]?.sold_out">Out of Stock</p>
     <p>{{ item.item_data.name }}</p>
     <p>{{ formatPrice(item.item_data.variations[0].item_variation_data.price_money.amount) }}</p>
   </div>
 </div>
 
-<div class="single-view" *ngIf="itemEnlarged">
+<!-- <div class="single-view" *ngIf="itemEnlarged">
 
   <div class="image-and-selectors">
     <div class="enlarged-image-container">
 
-      <!-- <div clas="horizontal-align"> -->
+      <div clas="horizontal-align">
       <div [hidden]="(currentImageIndex<=0)" class="previous">
         <button (click)="currentImageIndex = currentImageIndex - 1; chooseImage(itemEnlarged.item_data.image_ids[currentImageIndex]); $event.stopPropagation(); selectBubble(currentImageIndex)"class="previous">Previous</button>
       </div>
@@ -41,7 +42,7 @@
       <div [hidden]="currentImageIndex >= itemEnlarged.item_data.image_ids.length - 1" class="next">
         <button (click)="currentImageIndex = currentImageIndex + 1; chooseImage(itemEnlarged.item_data.image_ids[currentImageIndex]); $event.stopPropagation(); ; selectBubble(currentImageIndex)" class="next">Next</button>
       </div>
-      <!-- </div> -->
+      </div>
 
     </div>
 
@@ -56,7 +57,7 @@
     <div class="enlarged-caption">{{ formatPrice(itemEnlarged.item_data.variations[0].item_variation_data.price_money.amount) }}</div>
     <hr>
     <div class="enlarged-caption">{{ itemEnlarged.item_data.description }}</div>
-    <!-- if there's no colors present then a single variation named regular with ordinal 1 appears, whereas colors are given indexed ordinal values -->
+    if there's no colors present then a single variation named regular with ordinal 1 appears, whereas colors are given indexed ordinal values
     <div *ngIf="itemEnlarged.item_data.variations[0].item_variation_data.ordinal !== 1">
       <h2>Color</h2>
       <h2>{{itemEnlarged.item_data.variations[currentColorIndex].item_variation_data.name}}</h2>
@@ -73,4 +74,7 @@
     </div>
   </div>
 
+</div> -->
+<div *ngIf="!saleItems">
+  <h1>Error: Please reload page</h1>
 </div>
