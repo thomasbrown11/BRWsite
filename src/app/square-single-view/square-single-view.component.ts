@@ -96,6 +96,8 @@ export class SquareSingleViewComponent implements OnInit {
       ids.push(variation.id);
     });
 
+    console.log(`ids array before request: ${ids}`);
+
     // Call the `getInventory` method with the `ids` array as an argument
     this.squareService.getInventory(ids).subscribe(
       (response) => {
@@ -131,15 +133,15 @@ export class SquareSingleViewComponent implements OnInit {
     this.isBubbleSelected = true; // Enable the class on the selected bubble
   }
 
-  itemIsStocked(): boolean {
-    if (this.itemEnlarged.item_data.variations[0].item_variation_data.name ) {
-      console.log('item is out of stock');
-      return false;
-    } else {
-      console.log('item is in stock')
-      return true;
-    }
-  }
+  // itemIsStocked(): boolean {
+  //   if (this.itemEnlarged.item_data.variations[0].item_variation_data.name ) {
+  //     console.log('item is out of stock');
+  //     return false;
+  //   } else {
+  //     console.log('item is in stock')
+  //     return true;
+  //   }
+  // }
 
   selectColor(variantIndex: number): void {
     this.currentColorIndex = variantIndex;
