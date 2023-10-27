@@ -154,14 +154,14 @@ export class SquareSingleViewComponent implements OnInit {
   selectColor(variantIndex: number): void {
     this.currentColorIndex = variantIndex;
     this.colorIsSelected = true;
+    this.quantity = 0; //zero out to avoid over-ordering issues
   }
 
   incrementQuantity(): void {
-    //CHANGE SO THAT IT WORKS WITH ANY VARIANT
-    if (this.quantity < this.stockMap[this.itemEnlarged.item_data.variations[0].id]) {
+    //Selecting a color changes this.currentColorIndex so limits based on selected color
+    if (this.quantity < this.stockMap[this.itemEnlarged.item_data.variations[this.currentColorIndex].id]) {
       this.quantity = this.quantity + 1;
     }
-    // this.quantity = this.quantity + 1;
   }
 
   decrementQuantity(): void {
