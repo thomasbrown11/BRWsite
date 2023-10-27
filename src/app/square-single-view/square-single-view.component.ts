@@ -157,8 +157,11 @@ export class SquareSingleViewComponent implements OnInit {
   }
 
   incrementQuantity(): void {
-    //add limiter logic here based on selected variant
-    this.quantity = this.quantity + 1;
+    //CHANGE SO THAT IT WORKS WITH ANY VARIANT
+    if (this.quantity < this.stockMap[this.itemEnlarged.item_data.variations[0].id]) {
+      this.quantity = this.quantity + 1;
+    }
+    // this.quantity = this.quantity + 1;
   }
 
   decrementQuantity(): void {
