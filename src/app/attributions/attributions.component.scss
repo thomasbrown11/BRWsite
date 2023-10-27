@@ -1,0 +1,21 @@
+
+
+h1 {
+  text-align: center;
+}
+
+.icon-box {
+  margin: 0 auto; /* Center horizontally */
+  text-align: center; /* Center the content inside the box */
+  display: block; /* Makes it a block-level element to center horizontally */
+}
+
+.icon {
+  height: 100px;
+  width: 100px;
+  transition: background-color 0.3s;
+}
+
+.icon:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
