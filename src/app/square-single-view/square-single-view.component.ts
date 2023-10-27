@@ -17,7 +17,7 @@ export class SquareSingleViewComponent implements OnInit {
   isBubbleSelected: boolean = false; // handle styling on bubble selected
 
   inStock: boolean = true;
-  stockArray: any = {};
+  stockMap: any = {}; //populate with stock counts for item purchase limiting
 
   colorMap: any = {
     "Spotted Veridian": "#1A8F72",
@@ -53,7 +53,6 @@ export class SquareSingleViewComponent implements OnInit {
 
     if(this.inStock) {
       this.getStockCount();
-      console.log(`stock count array: ${this.stockArray}`);
     }
   }
 
@@ -101,10 +100,19 @@ export class SquareSingleViewComponent implements OnInit {
     // Call the `getInventory` method with the `ids` array as an argument
     this.squareService.getInventory(ids).subscribe(
       (response) => {
-        // Store the response in the stockCountArray
-        this.stockArray = response;
-        // Now you can work with the stockCountArray as needed
-        console.log(this.stockArray);
+
+          // Initialize a map to store catalog_object_id: quantity pairs
+          const stockMap: { [key: string]: number } = {}; // Type annotations added here
+
+        // Loop through the "counts" array in the API response
+        response.counts.forEach((countItem: any) => {
+        // Create a map entry with catalog_object_id as the key and quantity as the value
+        stockMap[countItem.catalog_object_id] = countItem.quantity;
+        });
+        // Store the response in the stockMap
+        this.stockMap = stockMap;
+        // Now you can work with the stockMap as needed
+        console.log(this.stockMap);
       },
       (error) => {
         // Handle any errors here
@@ -149,6 +157,7 @@ export class SquareSingleViewComponent implements OnInit {
   }
 
   incrementQuantity(): void {
+    //add limiter logic here based on selected variant
     this.quantity = this.quantity + 1;
   }
 
