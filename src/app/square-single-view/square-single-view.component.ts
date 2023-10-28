@@ -34,7 +34,7 @@ export class SquareSingleViewComponent implements OnInit {
 
   quantity: number = 1;
 
-  inStockItems: string[] = [];
+  inStockItems: string[] = []; //populated by checkStock method to check inventory on all in stock items
 
   constructor(private route: ActivatedRoute, private squareService: SquareService) {}
 
@@ -97,16 +97,19 @@ export class SquareSingleViewComponent implements OnInit {
     //Item has variants: loop through and push and in stock items to inStockArray for inventory check
     for (let i = 0; i < this.itemEnlarged.item_data.variations.length; i++) {
       const variation = this.itemEnlarged.item_data.variations[i];
+      // console.log(variation);
       // if variant is in stock
       if (!variation.item_variation_data.location_overrides?.[0]?.sold_out) {
+        console.log('color in stock and being pushed to inStockItems.. color is:', variation.item_variation_data.name);
         this.inStockItems.push(variation.id);
+        // console.log(this.inStockItems);
       }
     }
 
     // If there are no variations in stock, set this.inStock to false
-  if (this.inStockItems.length === 0) {
-    this.inStock = false;
-  }
+    if (this.inStockItems.length === 0) {
+      this.inStock = false;
+    }
   }
 
   getStockCount(ids: string[]): void {
