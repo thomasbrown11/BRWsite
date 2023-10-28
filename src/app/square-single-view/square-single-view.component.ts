@@ -34,6 +34,8 @@ export class SquareSingleViewComponent implements OnInit {
 
   quantity: number = 1;
 
+  inStockItems: string[] = [];
+
   constructor(private route: ActivatedRoute, private squareService: SquareService) {}
 
   ngOnInit(): void {
@@ -81,10 +83,30 @@ export class SquareSingleViewComponent implements OnInit {
     if (this.itemEnlarged.item_data.variations[0].item_variation_data.location_overrides?.[0]?.sold_out && this.itemEnlarged.item_data.variations[0].item_variation_data.name === 'Regular') {
       console.log(`no stock: sold out?: ${this.itemEnlarged.item_data.variations[0].item_variation_data.location_overrides?.[0]?.sold_out}, name: ${this.itemEnlarged.item_data.variations[0].item_variation_data.name}`);
       this.inStock = false;
+      return;
     } else {
       //item is in stock or has variants.. maybe need to do some else ifs... want to do the loop through to test all variants absolutely last somehow
       console.log(`in stock: sold out?: ${this.itemEnlarged.item_data.variations[0].item_variation_data.location_overrides?.[0]?.sold_out}, name: ${this.itemEnlarged.item_data.variations[0].item_variation_data.name}`);
     }
+     // If the 'Regular' variant is not out of stock and it's the first variant return in stock and break method
+     if (this.itemEnlarged.item_data.variations[0].item_variation_data.name === 'Regular') {
+      // this.inStock = true;
+      return
+    }
+
+    //Item has variants: loop through and push and in stock items to inStockArray for inventory check
+    for (let i = 0; i < this.itemEnlarged.item_data.variations.length; i++) {
+      const variation = this.itemEnlarged.item_data.variations[i];
+      // if variant is in stock
+      if (!variation.item_variation_data.location_overrides?.[0]?.sold_out) {
+        this.inStockItems.push(variation.id);
+      }
+    }
+
+    // If there are no variations in stock, set this.inStock to false
+  if (this.inStockItems.length === 0) {
+    this.inStock = false;
+  }
   }
 
   getStockCount(): void {
