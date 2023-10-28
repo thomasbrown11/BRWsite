@@ -54,7 +54,7 @@ export class SquareSingleViewComponent implements OnInit {
     this.checkStock();
 
     if(this.inStock) {
-      this.getStockCount();
+      this.getStockCount(this.inStockItems);
     }
   }
 
@@ -109,15 +109,9 @@ export class SquareSingleViewComponent implements OnInit {
   }
   }
 
-  getStockCount(): void {
-    const ids: string[] = [];
+  getStockCount(ids: string[]): void {
 
-    // Loop through the variations and push their IDs to the `ids` array
-    this.itemEnlarged.item_data.variations.forEach((variation: any) => {
-      ids.push(variation.id);
-    });
-
-    console.log(`ids array before request: ${ids}`);
+    console.log('in getStockCount method. current ids checked: ', ids);
 
     // Call the `getInventory` method with the `ids` array as an argument
     this.squareService.getInventory(ids).subscribe(
