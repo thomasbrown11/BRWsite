@@ -79,14 +79,29 @@ export class SquareComponent implements OnInit {
 
 
   isRegularVariantOutOfStock(item: any) {
-    // Check if the 'Regular' variant is out of stock
+    // Check if the 'Regular' variant is out of stock ie there are no color variants added, skipping variant testing
     const isRegularOutOfStock =
       item.item_data.variations[0].item_variation_data.location_overrides?.[0]?.sold_out === true &&
-      //if no colors the first variant is always the 'Regular' variant which is the standard one
       item.item_data.variations[0].item_variation_data.name === 'Regular';
 
-    return isRegularOutOfStock;
-  }
+      // If the 'Regular' variant is not out of stock and it's the first variant, return true immediately since no color variants
+    if (!isRegularOutOfStock && item.item_data.variations[0].item_variation_data.name === 'Regular') {
+      return false;
+    }
+
+      if (!isRegularOutOfStock) {
+        // Loop through color variants starting from index 1
+        for (let i = 0; i < item.item_data.variations.length; i++) {
+          const variation = item.item_data.variations[i];
+          // Check if this color variant is in stock
+          if (!variation.item_variation_data.location_overrides?.[0]?.sold_out) {
+            return false; // At least one color variant is in stock, so return false
+          }
+        }
+      }
+
+      return true; // All color variants are out of stock
+    }
 
   //probably no longer need any of these items...
 
