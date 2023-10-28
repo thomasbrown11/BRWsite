@@ -32,6 +32,7 @@ export class SquareSingleViewComponent implements OnInit {
   colorArray: any[] = []; //populate array with array values
   colorIsSelected: boolean = false; //toggle image array views to color variants
   currentColorIndex: number = 0; //tracks selected color or set to 0 for Regular variant (ie no colors on item)
+  currentColorId: string = '';
 
   quantity: number = 1; //denotes how many of the item is being added to cart
 

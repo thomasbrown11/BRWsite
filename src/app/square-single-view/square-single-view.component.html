@@ -52,8 +52,9 @@
         <div *ngFor = "let variation of itemEnlarged.item_data.variations; let j = index" class="color-bubble-selectors">
           <div class="color-bubble-selector"
             [style.background-color]=colorMap[variation.item_variation_data.name]
-            [ngClass]="{ 'bubble-selector-shadow': isSoldOut(variation) }"
-            (click)="selectColor(j)">
+            [ngClass]="{ 'color-bubble-selector-dim': isSoldOut(variation) }"
+            [class.selected]="colorIsSelected && variation.id === currentColorId"
+            (click)="selectColor(j); currentColorId = variation.id">
           </div>
         </div>
       </div>
