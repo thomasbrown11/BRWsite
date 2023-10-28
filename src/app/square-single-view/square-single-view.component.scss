@@ -154,6 +154,10 @@ button.next:hover {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
+.bubble-selector-shadow {
+  filter: brightness(0.7)
+}
+
 
 /* Style the text container */
 .enlarged-text-container {

@@ -24,15 +24,12 @@
     </div>
   </div>
 
-  <!-- <div *ngIf="inStock"> -->
-
   <div class="enlarged-text-container">
     <div class="enlarged-title">{{itemEnlarged.item_data.name}}</div>
     <div class="enlarged-caption">{{ formatPrice(itemEnlarged.item_data.variations[0].item_variation_data.price_money.amount) }}</div>
     <hr>
     <div class="enlarged-caption">{{ itemEnlarged.item_data.description_plaintext }}</div>
 
-    <!-- <div *ngIf="inStock"> -->
     <div>
 
       <div class="choose-amount" *ngIf="this.inStock">
@@ -55,6 +52,7 @@
         <div *ngFor = "let variation of itemEnlarged.item_data.variations; let j = index" class="color-bubble-selectors">
           <div class="color-bubble-selector"
             [style.background-color]=colorMap[variation.item_variation_data.name]
+            [ngClass]="{ 'bubble-selector-shadow': isSoldOut(variation) }"
             (click)="selectColor(j)">
           </div>
         </div>

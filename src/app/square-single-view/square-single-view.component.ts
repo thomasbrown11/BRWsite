@@ -166,16 +166,7 @@ export class SquareSingleViewComponent implements OnInit {
     this.isBubbleSelected = true; // Enable the class on the selected bubble
   }
 
-  // itemIsStocked(): boolean {
-  //   if (this.itemEnlarged.item_data.variations[0].item_variation_data.name ) {
-  //     console.log('item is out of stock');
-  //     return false;
-  //   } else {
-  //     console.log('item is in stock')
-  //     return true;
-  //   }
-  // }
-
+  //color selector bubble handler
   selectColor(variantIndex: number): void {
     this.currentColorIndex = variantIndex;
     this.colorIsSelected = true;
@@ -192,6 +183,12 @@ export class SquareSingleViewComponent implements OnInit {
     } else {
       this.inStock = true;
     }
+  }
+
+  //handles styling changes on out of stock color variant
+  isSoldOut(variation: any): boolean {
+    // Check if the item is sold out
+    return variation.item_variation_data.location_overrides?.[0]?.sold_out === true;
   }
 
   incrementQuantity(): void {
