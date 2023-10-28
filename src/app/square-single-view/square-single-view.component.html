@@ -32,9 +32,10 @@
     <hr>
     <div class="enlarged-caption">{{ itemEnlarged.item_data.description_plaintext }}</div>
 
-    <div *ngIf="inStock">
+    <!-- <div *ngIf="inStock"> -->
+    <div>
 
-      <div class="choose-amount">
+      <div class="choose-amount" *ngIf="this.inStock">
         <div class="previous">
           <button (click)="decrementQuantity()"class="previous">Previous</button>
        </div>
@@ -48,9 +49,9 @@
 
 
       <!-- if there's no colors present then a single variation named regular with ordinal 1 appears, whereas colors are given indexed ordinal values -->
-      <div *ngIf="itemEnlarged.item_data.variations[0].item_variation_data.ordinal !== 1">
+      <div *ngIf="itemEnlarged.item_data.variations[0].item_variation_data.name !== 'Regular'">
         <h2>Color</h2>
-        <h2>{{itemEnlarged.item_data.variations[currentColorIndex].item_variation_data.name}}</h2>
+        <p>{{itemEnlarged.item_data.variations[currentColorIndex].item_variation_data.name}}</p>
         <div *ngFor = "let variation of itemEnlarged.item_data.variations; let j = index" class="color-bubble-selectors">
           <div class="color-bubble-selector"
             [style.background-color]=colorMap[variation.item_variation_data.name]

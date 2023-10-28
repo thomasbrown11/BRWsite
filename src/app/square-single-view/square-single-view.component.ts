@@ -16,9 +16,10 @@ export class SquareSingleViewComponent implements OnInit {
   currentImageIndex: number = 0; //used to toggle via item_data.image_ids array
   isBubbleSelected: boolean = false; // handle styling on bubble selected
 
-  inStock: boolean = true;
+  inStock: boolean = true; //controls whether out of stock screen appears
   stockMap: any = {}; //populate with stock counts for item purchase limiting
 
+  //color map for item select display
   colorMap: any = {
     "Spotted Veridian": "#1A8F72",
     "Translucent Blue Emerald": "#07ADAD",
@@ -30,11 +31,13 @@ export class SquareSingleViewComponent implements OnInit {
 
   colorArray: any[] = []; //populate array with array values
   colorIsSelected: boolean = false; //toggle image array views to color variants
-  currentColorIndex: number = 0;
+  currentColorIndex: number = 0; //tracks selected color or set to 0 for Regular variant (ie no colors on item)
 
-  quantity: number = 1;
+  quantity: number = 1; //denotes how many of the item is being added to cart
 
   inStockItems: string[] = []; //populated by checkStock method to check inventory on all in stock items
+
+  // itemImageArray: any[] = []; //should save all image_ids from object here so that you can alter it when colors selected
 
   constructor(private route: ActivatedRoute, private squareService: SquareService) {}
 
@@ -72,6 +75,9 @@ export class SquareSingleViewComponent implements OnInit {
         });
         //set itemEnlarged to matched item
         this.itemEnlarged = matchedItem;
+        //populate local array with the image_ids array from api response
+        // this.itemImageArray = this.itemEnlarged.item_data.image_ids;
+        // this.currentImage = this.imageMap[this.itemImageArray[0]]; //MAY NOT NEED THIS IF YOU CAN MANIPULATE ARRAY FROM ITEMENLARGED INSTEAD
         this.currentImage = this.imageMap[this.itemEnlarged.item_data.image_ids[0]]; //initiate viewable image in item as first image id in array
       }
     });
@@ -173,7 +179,19 @@ export class SquareSingleViewComponent implements OnInit {
   selectColor(variantIndex: number): void {
     this.currentColorIndex = variantIndex;
     this.colorIsSelected = true;
-    this.quantity = 0; //zero out to avoid over-ordering issues
+    this.quantity = 1; //zero out to avoid over-ordering issues
+    //only display images from current color
+    if (this.itemEnlarged.item_data.variations[variantIndex].item_variation_data.image_ids) {
+      this.itemEnlarged.item_data.image_ids = this.itemEnlarged.item_data.variations[variantIndex].item_variation_data.image_ids;
+      this.currentImageIndex = 0; //reset so first image with color match is first image to appear
+      this.currentImage = this.imageMap[this.itemEnlarged.item_data.image_ids[0]]; //reset displayed image to first in new image_ids array
+    }
+    //remove selectors by setting out of stock if item has no stock
+    if (this.itemEnlarged.item_data.variations[variantIndex].item_variation_data.location_overrides?.[0]?.sold_out) {
+      this.inStock = false;
+    } else {
+      this.inStock = true;
+    }
   }
 
   incrementQuantity(): void {
@@ -184,7 +202,9 @@ export class SquareSingleViewComponent implements OnInit {
   }
 
   decrementQuantity(): void {
-    this.quantity = this.quantity - 1;
+    if (this.quantity > 1) {
+      this.quantity = this.quantity - 1;
+    }
   }
 
 }
