@@ -35,8 +35,10 @@ export class SquareSingleViewComponent implements OnInit {
   currentColorId: string = '';
 
   quantity: number = 1; //denotes how many of the item is being added to cart
+  subTotal: number = 0;
 
   inStockItems: string[] = []; //populated by checkStock method to check inventory on all in stock items
+
 
   // itemImageArray: any[] = []; //should save all image_ids from object here so that you can alter it when colors selected
 
@@ -76,6 +78,7 @@ export class SquareSingleViewComponent implements OnInit {
         });
         //set itemEnlarged to matched item
         this.itemEnlarged = matchedItem;
+        this.subTotal = this.itemEnlarged.item_data.variations[0].item_variation_data.price_money.amount;
         //populate local array with the image_ids array from api response
         // this.itemImageArray = this.itemEnlarged.item_data.image_ids;
         // this.currentImage = this.imageMap[this.itemImageArray[0]]; //MAY NOT NEED THIS IF YOU CAN MANIPULATE ARRAY FROM ITEMENLARGED INSTEAD
@@ -196,12 +199,14 @@ export class SquareSingleViewComponent implements OnInit {
     //Selecting a color changes this.currentColorIndex so limits based on selected color
     if (this.quantity < this.stockMap[this.itemEnlarged.item_data.variations[this.currentColorIndex].id]) {
       this.quantity = this.quantity + 1;
+      this.subTotal = this.itemEnlarged.item_data.variations[this.currentColorIndex].item_variation_data.price_money.amount * this.quantity;
     }
   }
 
   decrementQuantity(): void {
     if (this.quantity > 1) {
       this.quantity = this.quantity - 1;
+      this.subTotal = this.subTotal - this.itemEnlarged.item_data.variations[this.currentColorIndex].item_variation_data.price_money.amount;
     }
   }
 
