@@ -98,9 +98,10 @@ export class SquareSingleViewComponent implements OnInit {
       //item is in stock or has variants.. maybe need to do some else ifs... want to do the loop through to test all variants absolutely last somehow
       console.log(`in stock: sold out?: ${this.itemEnlarged.item_data.variations[0].item_variation_data.location_overrides?.[0]?.sold_out}, name: ${this.itemEnlarged.item_data.variations[0].item_variation_data.name}`);
     }
-     // If the 'Regular' variant is not out of stock and it's the first variant return in stock and break method
+     // If the 'Regular' variant is not out of stock and it's the first variant implies no colors.. return in stock and break method
      if (this.itemEnlarged.item_data.variations[0].item_variation_data.name === 'Regular') {
       // this.inStock = true;
+      this.inStockItems.push(this.itemEnlarged.item_data.variations[0].id);
       return
     }
 
@@ -128,16 +129,20 @@ export class SquareSingleViewComponent implements OnInit {
 
     // Call the `getInventory` method with the `ids` array as an argument
     this.squareService.getInventory(ids).subscribe(
-      (response) => {
+      // (response) => {
+      (response: { counts?: { catalog_object_id: string; quantity: number }[] }) => {
 
-          // Initialize a map to store catalog_object_id: quantity pairs
-          const stockMap: { [key: string]: number } = {}; // Type annotations added here
+        // Initialize a map to store catalog_object_id: quantity pairs
+        const stockMap: { [key: string]: number } = {}; // Type annotations added here
 
-        // Loop through the "counts" array in the API response
-        response.counts.forEach((countItem: any) => {
-        // Create a map entry with catalog_object_id as the key and quantity as the value
-        stockMap[countItem.catalog_object_id] = countItem.quantity;
-        });
+        // Check if the response has the "counts" property
+        if (response.counts) {
+          // Loop through the "counts" array in the API response
+          response.counts.forEach((countItem: any) => {
+          // Create a map entry with catalog_object_id as the key and quantity as the value
+          stockMap[countItem.catalog_object_id] = countItem.quantity;
+          });
+        }
         // Store the response in the stockMap
         this.stockMap = stockMap;
         // Now you can work with the stockMap as needed

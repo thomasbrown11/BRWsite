@@ -65,6 +65,10 @@
 
     </div>
 
+    <div *ngIf="inStock">
+      <button>Add To Cart</button>
+    </div>
+
     <div *ngIf="!inStock">
       <h4>This Item is Currently Unavailable</h4>
       <h5>Please send an email if you'd like to make a custom order here: </h5>
