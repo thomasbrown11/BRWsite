@@ -196,11 +196,19 @@ export class SquareSingleViewComponent implements OnInit {
   }
 
   incrementQuantity(): void {
-    //Selecting a color changes this.currentColorIndex so limits based on selected color
-    if (this.quantity < this.stockMap[this.itemEnlarged.item_data.variations[this.currentColorIndex].id]) {
+
+    //if the the item has stock quanitites location_overrides exists, else increment
+    if (this.itemEnlarged.item_data.variations[this.currentColorIndex].item_variation_data.location_overrides) {
+      //if location over_rides exists implies stock so check quantities attained from checkStock() through stockMap
+      if (this.quantity < this.stockMap[this.itemEnlarged.item_data.variations[this.currentColorIndex].id]) {
+        this.quantity = this.quantity + 1;
+        this.subTotal = this.itemEnlarged.item_data.variations[this.currentColorIndex].item_variation_data.price_money.amount * this.quantity;
+      }
+    } else {
       this.quantity = this.quantity + 1;
       this.subTotal = this.itemEnlarged.item_data.variations[this.currentColorIndex].item_variation_data.price_money.amount * this.quantity;
     }
+    // console.log(this.quantity);
   }
 
   decrementQuantity(): void {
