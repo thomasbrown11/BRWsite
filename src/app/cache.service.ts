@@ -122,6 +122,24 @@ export class CacheService {
   }
 
 
+  //add item to cart
+  public addToCart(item: any): void {
+    let cachedValues = JSON.parse(sessionStorage.getItem('squareCart') || '{}');
+    //if no cart
+    if (!cachedValues.cart) {
+      //initialize cart arrray to eventually be cached
+      cachedValues.cart = [];
+    }
+    cachedValues.cart.push(item); //push new item
+    sessionStorage.setItem('squareCart',JSON.stringify(cachedValues)); //set squareCart as new array with item value added
+  }
+
+  //cart component entire cart update
+  public updateCart(newCart: any[]): void {
+    const cachedValues = {cart: newCart};
+    //Update the 'squareCart' in sessionStorage with the new cart
+    sessionStorage.setItem('squareCart',JSON.stringify(cachedValues));
+  }
 
 
 
