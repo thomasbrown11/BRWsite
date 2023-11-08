@@ -127,6 +127,14 @@ button.next:hover {
   }
 }
 
+.color-bubble-selectors {
+  display: flex; /* Use flex layout to arrange items horizontally */
+  flex-direction: row; /* Arrange items in a row (horizontally) */
+  // align-items: center; /* Align items vertically in the center */
+  // justify-content: center; /* Align items horizontally in the center */
+  margin-top: 10px; /* Adjust the distance from the enlarged-image-container */
+}
+
 .color-bubble-selector {
   width: 20px; /* Adjust the size as needed */
   height: 20px; /* Adjust the size as needed */
@@ -176,6 +184,7 @@ button.next:hover {
   padding-bottom: 5px;
   font-weight: bold;
   font-size: 1.5rem; /* Adjust the font size as needed */
+  font-family: 'Libre Baskerville', serif;
   color: black; /* Set the text color to black or your desired color */
 }
 
@@ -183,6 +192,7 @@ button.next:hover {
   margin-top: 10px;
   // margin-right: 20px;
   font-size: 1rem; /* Adjust the font size as needed */
+  font-family: 'Libre Baskerville', serif;
   color: black; /* Set the text color to black or your desired color */
   // word-wrap: break-word;
   white-space: pre-line;
@@ -216,4 +226,27 @@ button.next:hover {
 .contact-button:hover {
   background-color: black; /* Button background color on hover */
   color: #fff; /* Button text color on hover */
+}
+
+.center {
+  justify-content: center;
+}
+
+button {
+  background-color: transparent;
+  font-family: 'Libre Baskerville', serif;
+  display: block;
+  width: 50%;
+  padding: 10px;
+  margin-bottom: 10px;
+  // border-radius: 5px;
+  border: 1px solid black;
+  font-size: 16px;
+  color: #333;
+  box-sizing: border-box;
+  // background-color: #ceddd1;
+}
+
+button:hover {
+  border: 2px solid #000;
 }

@@ -65,8 +65,8 @@
 
     </div>
 
-    <div *ngIf="inStock">
-      <button>Add To Cart</button>
+    <div class="center" *ngIf="inStock">
+      <button (click)="addToCart()">Add To Cart</button>
     </div>
 
     <div *ngIf="!inStock">

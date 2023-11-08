@@ -121,6 +121,20 @@ export class CacheService {
     return !timestamp || now - timestamp > tenMinutes;
   }
 
+  //populate cart with cached cart
+  // public getCart() {
+  //   const cart = JSON.parse(sessionStorage.getItem('squareCart') || '{}');
+  //   return {
+  //     cart
+  //   };
+  // }
+
+  //populate cart with cached cart
+  public getCart() {
+    const cartData = JSON.parse(sessionStorage.getItem('squareCart') || '{}');
+    return cartData.cart || [];
+  }
+
 
   //add item to cart
   public addToCart(item: any): void {

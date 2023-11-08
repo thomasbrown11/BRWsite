@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SquareService } from '../square/square.service';
+import { CacheService } from '../cache.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
@@ -42,7 +43,7 @@ export class SquareSingleViewComponent implements OnInit {
 
   // itemImageArray: any[] = []; //should save all image_ids from object here so that you can alter it when colors selected
 
-  constructor(private route: ActivatedRoute, private squareService: SquareService) {}
+  constructor(private route: ActivatedRoute, private squareService: SquareService, private cacheService: CacheService) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -220,6 +221,49 @@ export class SquareSingleViewComponent implements OnInit {
     if (this.quantity > 1) {
       this.quantity = this.quantity - 1;
       this.subTotal = this.subTotal - this.itemEnlarged.item_data.variations[this.currentColorIndex].item_variation_data.price_money.amount;
+    }
+  }
+
+  addToCart(): void {
+    // console.log('name', this.itemEnlarged.item_data.name);
+    // console.log('price', this.itemEnlarged.item_data.variations[this.currentColorIndex].item_variation_data.price_money.amount);
+    // console.log('color name', this.itemEnlarged.item_data.variations[this.currentColorIndex].item_variation_data.name);
+    // console.log('image 1 for item or color', this.imageMap[this.itemEnlarged.item_data.image_ids[0]]);
+    // console.log('item id', this.itemEnlarged.id); //always use this one to navigate back to the previous page
+    // console.log('color id', this.currentColorId);
+    // console.log('quantity', this.quantity);
+
+    const cartItem: any = {
+      name: this.itemEnlarged.item_data.name,
+      price: this.itemEnlarged.item_data.variations[this.currentColorIndex].item_variation_data.price_money.amount,
+      color: this.itemEnlarged.item_data.variations[this.currentColorIndex].item_variation_data.name,
+      imageUrl: this.imageMap[this.itemEnlarged.item_data.image_ids[0]],
+      id: this.itemEnlarged.id,
+      variant: this.currentColorId,
+      quantity: this.quantity
+    }
+
+    console.log(cartItem);
+
+    const cart: any[] = this.cacheService.getCart();
+
+    let itemAlreadyInCart = false;
+
+    for (const item of cart) {
+      if (item.id === cartItem.id) {
+        if (item.variant === cartItem.variant) {
+         itemAlreadyInCart = true;
+         break;
+        }
+      }
+    }
+
+    if (itemAlreadyInCart) {
+      // Item already exists, you can handle this case, e.g., increase quantity, show a message, etc.
+      console.log('Item already exists in the cart:');
+    } else {
+      this.cacheService.addToCart(cartItem);
+      console.log('this item could be added to the cart');
     }
   }
 
