@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SquareService } from '../square/square.service';
 import { CacheService } from '../cache.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 @Component({
   selector: 'app-square-single-view',
@@ -43,7 +43,7 @@ export class SquareSingleViewComponent implements OnInit {
 
   // itemImageArray: any[] = []; //should save all image_ids from object here so that you can alter it when colors selected
 
-  constructor(private route: ActivatedRoute, private squareService: SquareService, private cacheService: CacheService) {}
+  constructor(private route: ActivatedRoute, private router: Router, private squareService: SquareService, private cacheService: CacheService) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -225,13 +225,6 @@ export class SquareSingleViewComponent implements OnInit {
   }
 
   addToCart(): void {
-    // console.log('name', this.itemEnlarged.item_data.name);
-    // console.log('price', this.itemEnlarged.item_data.variations[this.currentColorIndex].item_variation_data.price_money.amount);
-    // console.log('color name', this.itemEnlarged.item_data.variations[this.currentColorIndex].item_variation_data.name);
-    // console.log('image 1 for item or color', this.imageMap[this.itemEnlarged.item_data.image_ids[0]]);
-    // console.log('item id', this.itemEnlarged.id); //always use this one to navigate back to the previous page
-    // console.log('color id', this.currentColorId);
-    // console.log('quantity', this.quantity);
 
     const cartItem: any = {
       name: this.itemEnlarged.item_data.name,
@@ -259,11 +252,12 @@ export class SquareSingleViewComponent implements OnInit {
     }
 
     if (itemAlreadyInCart) {
-      // Item already exists, you can handle this case, e.g., increase quantity, show a message, etc.
       console.log('Item already exists in the cart:');
+      this.router.navigate(['/cart']);
     } else {
       this.cacheService.addToCart(cartItem);
       console.log('this item could be added to the cart');
+      this.router.navigate(['/cart']);
     }
   }
 
