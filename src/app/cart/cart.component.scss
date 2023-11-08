@@ -1,0 +1,26 @@
+.cart-item {
+  display: flex;
+  margin: 10px; /* Adjust the margin as needed to control the spacing between items */
+}
+
+.item-image-link {
+  display: inline-block;
+  margin-right: 10px; /* Adjust the margin as needed to control the spacing between image and details */
+  text-align: center; /* Optionally center the content within each item */
+}
+
+.item-image-link img {
+  width: 100px;
+  height: 75px; /* Maintain the aspect ratio of the image */
+}
+
+.item-details {
+  display: flex; /* Use flexbox for horizontal layout */
+  flex-direction: row; /* Display elements within item-details in a row (horizontal) */
+  align-items: center; /* Vertically center items within item-details, if needed */
+}
+
+.item-details p, .item-details h3 {
+  margin-right: 15px;
+}
+
