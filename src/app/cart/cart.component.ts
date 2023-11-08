@@ -9,12 +9,17 @@ import { CacheService } from '../cache.service';
 export class CartComponent implements OnInit {
 
   cart : any[] = [];
+  cartEmpty : boolean = false;
 
   constructor(private cacheService: CacheService) {}
 
   ngOnInit(): void {
     // Fetch the cart data when the component initializes
     this.cart = this.cacheService.getCart();
+
+    if (this.cart.length < 1) {
+      this.cartEmpty = true;
+    }
   }
 
   formatPrice(price: number): string {

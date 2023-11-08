@@ -1,12 +1,22 @@
 <h1>Checkout</h1>
-<div *ngFor="let item of cart" class="cart-item">
-  <a [href]="'/item/' + item.id" class="item-image-link">
-    <img [src]="item.imageUrl" alt="{{ item.name }}" title="{{ item.name }}">
-  </a>
-  <div class="item-details">
-    <h3>Name: {{ item.name }}</h3>
-    <p>Price: {{ formatPrice(item.price) }}</p>
-    <p *ngIf="item.color !== 'Regular'">Color: {{ item.color }}</p>
-    <p>Quantity: {{ item.quantity }}</p>
+
+<div *ngIf="!cartEmpty">
+  <div *ngFor="let item of cart" class="cart-item">
+    <a [href]="'/item/' + item.id" class="item-image-link">
+      <img [src]="item.imageUrl" alt="{{ item.name }}" title="{{ item.name }}">
+    </a>
+    <div class="item-details">
+      <h3>Name: {{ item.name }}</h3>
+      <p>Price: {{ formatPrice(item.price) }}</p>
+      <p *ngIf="item.color !== 'Regular'">Color: {{ item.color }}</p>
+      <p>Quantity: {{ item.quantity }}</p>
+    </div>
   </div>
+
+  <a [href]="'/shop'" class="nav-button">Back to Shop</a>
+</div>
+
+<div *ngIf="cartEmpty">
+  <p>Your Cart is Empty</p>
+  <a [href]="'/shop'" class="nav-button">Shop now</a>
 </div>
