@@ -56,6 +56,7 @@ export class SquareSingleViewComponent implements OnInit {
     this.fetchCatalogData();
 
     console.log(this.itemEnlarged);
+    console.log('current color id', this.currentColorId);
 
     //check if item in stock
     this.checkStock();
@@ -84,6 +85,7 @@ export class SquareSingleViewComponent implements OnInit {
         // this.itemImageArray = this.itemEnlarged.item_data.image_ids;
         // this.currentImage = this.imageMap[this.itemImageArray[0]]; //MAY NOT NEED THIS IF YOU CAN MANIPULATE ARRAY FROM ITEMENLARGED INSTEAD
         this.currentImage = this.imageMap[this.itemEnlarged.item_data.image_ids[0]]; //initiate viewable image in item as first image id in array
+        this.currentColorId = this.itemEnlarged.item_data.variations[0].id;
       }
     });
   }
@@ -96,7 +98,7 @@ export class SquareSingleViewComponent implements OnInit {
       this.inStock = false;
       return;
     } else {
-      //item is in stock or has variants.. maybe need to do some else ifs... want to do the loop through to test all variants absolutely last somehow
+      //item is in stock or has variants
       console.log(`in stock: sold out?: ${this.itemEnlarged.item_data.variations[0].item_variation_data.location_overrides?.[0]?.sold_out}, name: ${this.itemEnlarged.item_data.variations[0].item_variation_data.name}`);
     }
      // If the 'Regular' variant is not out of stock and it's the first variant implies no colors.. return in stock and break method
@@ -226,6 +228,8 @@ export class SquareSingleViewComponent implements OnInit {
 
   addToCart(): void {
 
+    //get relevant id to stock count.. if no colors then variant 0
+
     const cartItem: any = {
       name: this.itemEnlarged.item_data.name,
       price: this.itemEnlarged.item_data.variations[this.currentColorIndex].item_variation_data.price_money.amount,
@@ -233,7 +237,8 @@ export class SquareSingleViewComponent implements OnInit {
       imageUrl: this.imageMap[this.itemEnlarged.item_data.image_ids[0]],
       id: this.itemEnlarged.id,
       variant: this.currentColorId,
-      quantity: this.quantity
+      quantity: this.quantity,
+      limit: this.stockMap[this.currentColorId]
     }
 
     console.log(cartItem);
