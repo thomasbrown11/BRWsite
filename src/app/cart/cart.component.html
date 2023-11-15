@@ -1,6 +1,6 @@
 <h1>Checkout</h1>
 
-<div *ngIf="!cartEmpty">
+<div *ngIf="!cartEmpty" class="cart-container">
   <div *ngFor="let item of cart" class="cart-item">
     <a [href]="'/item/' + item.id" class="item-image-link">
       <img [src]="item.imageUrl" alt="{{ item.name }}" title="{{ item.name }}">
@@ -12,12 +12,14 @@
       <div class="previous">
         <button (click)="decrementQuantity(item)"class="previous">Previous</button>
       </div>
-      <p>Quantity: {{ item.quantity }}</p>
+      <div class="quantity">Quantity: {{ item.quantity }}</div>
       <div class="next">
         <button (click)="incrementQuantity(item)" class="next">Next</button>
       </div>
     </div>
   </div>
+
+  <h2 class="sub-total">Sub Total: {{formatPrice(subTotal)}}</h2>
 
   <a [href]="'/shop'" class="nav-button">Back to Shop</a>
 </div>

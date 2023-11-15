@@ -11,12 +11,17 @@ export class CartComponent implements OnInit {
   cart : any[] = [];
   cartEmpty : boolean = false;
   quantity: number = 1;
+  subTotal: number = 0;
 
   constructor(private cacheService: CacheService) {}
 
   ngOnInit(): void {
     // Fetch the cart data when the component initializes
     this.cart = this.cacheService.getCart();
+
+    for(let item of this.cart) {
+      this.subTotal += item.price * item.quantity;
+    }
 
     if (this.cart.length < 1) {
       this.cartEmpty = true;
@@ -37,10 +42,12 @@ export class CartComponent implements OnInit {
       //if still below limit incrememnt
       if (item.quantity < item.limit) {
         item.quantity = item.quantity + 1;
+        this.subTotal += item.price;
       }
     } else {
       //incrmement as there is no limit
       item.quantity = item.quantity + 1;
+      this.subTotal += item.price;
     }
   }
 
@@ -48,6 +55,7 @@ export class CartComponent implements OnInit {
     //if more than 1 item you may decrement. Full removal handled elsewhere
     if (item.quantity > 1) {
       item.quantity = item.quantity - 1;
+      this.subTotal -= item.price;
     }
   }
 }

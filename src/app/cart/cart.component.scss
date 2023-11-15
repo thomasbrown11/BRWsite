@@ -2,9 +2,22 @@ h1 {
   text-align: center;
 }
 
+.cart-container {
+  width: 100%; /* Set the width of the container as needed */
+  display: flex;
+  flex-direction: column; /* Ensure a vertical layout for items */
+  align-items: center; /* Center items horizontally within the container */
+}
+
 .cart-item {
   display: flex;
-  margin: 10px; /* Adjust the margin as needed to control the spacing between items */
+  flex-direction: row;
+  justify-content: flex-start; /* Align contents to the start of the container horizontally */
+  align-items: center;
+  width: 45%; /* Ensure each item takes the full width of the container */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  padding: 10px; /* Add padding for spacing between items */
+  margin-bottom: 10px; /* Add margin to control the spacing between items */
 }
 
 .item-image-link {
@@ -33,6 +46,10 @@ h1 {
   margin-right: 15px;
 }
 
+.sub-total {
+  text-align: center;
+}
+
 .nav-button {
   display: inline-block;
   width: 100px;
@@ -54,8 +71,6 @@ h1 {
 
 /* Position the previous button on the left */
 button.previous {
-  position: absolute;
-  order: 1;
   background: url('../../assets/black_arrow_before.png') no-repeat;
   background-size: contain;
   text-indent: -9999px; //removes text
@@ -68,8 +83,6 @@ button.previous {
 
 /* Position the next button on the right */
 button.next {
-  position: absolute;
-  order: 3;
   background: url('../../assets/black_arrow_next.png') no-repeat;
   background-size: contain;
   text-indent: -9999px; //removes text
