@@ -238,7 +238,7 @@ export class SquareSingleViewComponent implements OnInit {
       id: this.itemEnlarged.id,
       variant: this.currentColorId,
       quantity: this.quantity,
-      limit: this.stockMap[this.currentColorId]
+      limit: Number(this.stockMap[this.currentColorId])
     }
 
     console.log(cartItem);

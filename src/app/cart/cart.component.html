@@ -7,9 +7,15 @@
     </a>
     <div class="item-details">
       <h3>{{ item.name }}</h3>
-      <p>Price: {{ formatPrice(item.price) }}</p>
+      <p>Price: {{ formatPrice(item.price * item.quantity) }}</p>
       <p *ngIf="item.color !== 'Regular'">Color: {{ item.color }}</p>
+      <div class="previous">
+        <button (click)="decrementQuantity(item)"class="previous">Previous</button>
+      </div>
       <p>Quantity: {{ item.quantity }}</p>
+      <div class="next">
+        <button (click)="incrementQuantity(item)" class="next">Next</button>
+      </div>
     </div>
   </div>
 
