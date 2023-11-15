@@ -245,19 +245,39 @@ export class SquareSingleViewComponent implements OnInit {
 
     const cart: any[] = this.cacheService.getCart();
 
+    //test for variable match in loop
     let itemAlreadyInCart = false;
+    //add item quantity if variant match for later testing?
+    let oldQuantity = 0;
 
-    for (const item of cart) {
-      if (item.id === cartItem.id) {
-        if (item.variant === cartItem.variant) {
-         itemAlreadyInCart = true;
-         break;
+    for (let i = 0; i < cart.length; i++) {
+      const item = cart[i];
+
+      if (item.variant === cartItem.variant) {
+        itemAlreadyInCart = true;
+        oldQuantity = item.quantity;
+
+        if (cartItem.quantity > oldQuantity) {
+          // Remove old cart item from cart variable
+          console.log('larger quantity detected. Removing old item and adding new to saved variable')
+          cart.splice(i, 1);
+          cart.push(cartItem);
         }
+
+        break;
       }
     }
 
+
     if (itemAlreadyInCart) {
       console.log('Item already exists in the cart:');
+      //check for new quantity and if great than previous quantity then update cart via this.cacheService.updateCart()
+      if(cartItem.quantity > oldQuantity) {
+        //you already updated and changed the cached cart saved to variable. Now update cart in cache.
+        console.log('new quantity is greater than the old one.. updating with new quanity')
+        this.cacheService.updateCart(cart);
+      }
+
       this.router.navigate(['/cart']);
     } else {
       this.cacheService.addToCart(cartItem);
