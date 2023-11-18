@@ -43,11 +43,15 @@ export class CartComponent implements OnInit {
       if (item.quantity < item.limit) {
         item.quantity = item.quantity + 1;
         this.subTotal += item.price;
+        //push change to cached Cart
+        this.cacheService.updateCart(this.cart);
       }
     } else {
       //incrmement as there is no limit
       item.quantity = item.quantity + 1;
       this.subTotal += item.price;
+      //push change to cached Cart
+      this.cacheService.updateCart(this.cart);
     }
   }
 
@@ -56,6 +60,8 @@ export class CartComponent implements OnInit {
     if (item.quantity > 1) {
       item.quantity = item.quantity - 1;
       this.subTotal -= item.price;
+      //push change to cached Cart
+      this.cacheService.updateCart(this.cart);
     }
   }
 }
