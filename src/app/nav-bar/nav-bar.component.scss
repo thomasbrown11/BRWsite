@@ -1,18 +1,20 @@
-// .slide-in-animation {
-//   animation: slideInFromLeft 0.5s forwards;
-// }
-
 .nav-links {
+  padding-left:3vh;
   background-color: rgb(146, 122, 90);
   display: none;
   flex-direction: column;
   min-height: 100vh;
   // box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2), 0px 0px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden; /* Clip content that overflows the container */
 }
 
 .nav-links.show {
   display: flex;
+}
+
+.dropdown-content {
+  padding-left: 6vh; /* Adjust the indentation as needed */
 }
 
 .nav-links a,
@@ -30,6 +32,7 @@ button {
   /* Add padding to create space between the text and container edges */
   padding-right: 200px;
   box-sizing: border-box;
+  transition: transform 0.3s ease-in-out;
 }
 
 .nav-links.show {
@@ -39,6 +42,12 @@ button {
 
 
 .nav-links a:hover {
-  background-color: rgb(246, 225, 176);
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  // background-color: rgb(246, 225, 176);
+  color: rgb(232, 214, 175);
+  // box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  transform: scale(1.1); /* Scale up the bubble on hover */
+}
+
+.inner-nav-link {
+  display: block;
 }

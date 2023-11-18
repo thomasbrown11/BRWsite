@@ -1,13 +1,8 @@
-import { Component, AfterViewInit, Inject, OnInit, ChangeDetectorRef } from '@angular/core'; //imported HostListener for clicking out of menu event
-
+import { Component, AfterViewInit, OnInit} from '@angular/core'; //imported HostListener for clicking out of menu event
 //animation handling
 import { trigger, state, style, animate, transition } from '@angular/animations';
-
-
 //shared variable for toggling
-import { SquareService } from '../square/square.service';
 import { SharedService } from '../shared.service';
-import { Observable, of } from 'rxjs';
 import { CacheService } from '../cache.service';
 
 
@@ -29,33 +24,16 @@ export class NavBarComponent implements AfterViewInit, OnInit {
 
   instaLink = 'https://www.instagram.com/elsewernerglass/';
   instaIcon = '../../assets/Instagram_Glyph_Black.png';
-  // shopToggle: boolean = false;
   isMouseOver: Boolean = false;
-  // navIsOpen: boolean = false;
-
-  // squareCategories$: Observable<any[]> = of([]); // Initialize as an empty array
   squareCategories: any[] = [];
 
-  constructor(public sharedService: SharedService, private squareService: SquareService, private cacheService: CacheService) { }
+  constructor(public sharedService: SharedService, private cacheService: CacheService) {}
 
   ngOnInit(): void {
-    // this.squareService.getCatalogue().subscribe(data => {
-    //   this.squareCategories$ = of(data.categories); // Create an observable with categories
-    // })
-    // console.log(`cached from navBar.. ${this.squareCategories$}`)
-    // this.squareService.getImages();
-    // console.log(`nav bar cats: ${this.squareCategories}`)
 
     this.squareCategories = this.cacheService.getSquareCache().categories
 
   }
-
-  // private checkDataAndRender() {
-  //   // Check if both categoryData and itemData are available
-  //   if (this.squareCategories) {
-  //     this.dataReady = true; // Set the dataReady flag to true
-  //   }
-  // }
 
   toggleNav() {
     // this.isOpen = !this.isOpen;
@@ -71,11 +49,6 @@ export class NavBarComponent implements AfterViewInit, OnInit {
 
   }
 
-  // toggleShopDropdown(event: MouseEvent): void {
-  //   event.preventDefault();
-  //   this.shopToggle = !this.shopToggle;
-  // }
-
   showDropdown(): void {
     this.isMouseOver = true;
   }
@@ -90,8 +63,6 @@ export class NavBarComponent implements AfterViewInit, OnInit {
       container.classList.add('slide-in-animation');
     }
   }
-
-
 }
 
 
