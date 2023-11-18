@@ -14,7 +14,7 @@
 }
 
 .dropdown-content {
-  padding-left: 6vh; /* Adjust the indentation as needed */
+  padding-left: 4vh; /* Adjust the indentation as needed */
 }
 
 .nav-links a,
@@ -46,6 +46,33 @@ button {
   color: rgb(232, 214, 175);
   // box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   transform: scale(1.1); /* Scale up the bubble on hover */
+}
+
+/* Add this style for the Shop link */
+.nav-links a[href="/shop"] {
+  position: relative;
+}
+
+.nav-links a[href="/shop"]::before {
+  // content: "\25B6"; /* Unicode character for a right-pointing triangle */
+  position: absolute;
+  left: 10vh; /* Adjust the position as needed */
+  transition: transform 0.3s ease-in-out;
+  border-radius: 4px;
+  content: ''; /* Empty content, necessary for pseudo-elements */
+  background-image: url('../../assets/black_arrow_next.png'); /* Path to your arrow image */
+  background-size: contain; /* Adjust as needed */
+  width: 3.5vh; /* Adjust width as needed */
+  height: 3.5vh; /* Adjust height as needed */
+  display: inline-block;
+}
+
+/* Rotate the arrow on hover */
+.nav-links a[href="/shop"]:hover::before {
+  transform: rotate(90deg);
+  background-color: rgb(232, 214, 175);
+  /* Blend mode to control how the color blends with the image */
+  background-blend-mode: overlay;
 }
 
 .inner-nav-link {

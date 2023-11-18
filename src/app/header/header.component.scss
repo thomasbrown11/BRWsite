@@ -11,7 +11,11 @@
 }
 
 .nav-toggle:hover img {
-  background-color: gray;
+  // background-color: gray;
+  background-color: rgb(232, 214, 175);
+  /* Blend mode to control how the color blends with the image */
+  background-blend-mode: overlay;
+  transform: scale(1.1); /* Scale up the bubble on hover */
   border-radius: 5px;
   opacity: 0.75;
 }
@@ -61,7 +65,9 @@
 }
 
 .page-title:hover {
-  color: gray;
+  // color: gray;
+  color: rgb(232, 214, 175);
+  // transform: scale(1.1); /* Scale up the bubble on hover */
 }
 
 .header-icon {
@@ -69,7 +75,12 @@
 }
 
 .header-icon img:hover {
-  background-color: gray;
+  // background-color: gray;
+  background-color: rgb(232, 214, 175);
+  /* Blend mode to control how the color blends with the image */
+  background-blend-mode: overlay;
+  transform: scale(1.1); /* Scale up the bubble on hover */
+  transition: transform 0.3s ease;
   border-radius: 10px;
   // padding-right: 10px;
 }
