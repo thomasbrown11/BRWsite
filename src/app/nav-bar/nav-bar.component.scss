@@ -49,32 +49,62 @@ button {
 }
 
 /* Add this style for the Shop link */
-.nav-links a[href="/shop"] {
-  position: relative;
+// .nav-links a[href="/shop"] {
+//   position: relative;
+// }
+
+// .nav-links a[href="/shop"]::before {
+//   // content: "\25B6"; /* Unicode character for a right-pointing triangle */
+//   position: absolute;
+//   // bottom: .05vh;
+//   left: 6.3vh; /* Adjust the position as needed */
+//   transition: transform 0.3s ease-in-out;
+//   border-radius: 4px;
+//   content: ''; /* Empty content, necessary for pseudo-elements */
+//   background-image: url('../../assets/black_arrow_next.png'); /* Path to your arrow image */
+//   background-size: contain; /* Adjust as needed */
+//   width: 3vh; /* Adjust width as needed */
+//   height: 3vh; /* Adjust height as needed */
+//   display: inline-block;
+// }
+
+// /* Rotate the arrow on hover */
+// .nav-links a[href="/shop"]:hover::before {
+//   transform: rotate(90deg);
+//   background-color: rgb(232, 214, 175);
+//   /* Blend mode to control how the color blends with the image */
+//   background-blend-mode: overlay;
+// }
+
+.inner-nav-link {
+  display: block;
 }
 
-.nav-links a[href="/shop"]::before {
-  // content: "\25B6"; /* Unicode character for a right-pointing triangle */
-  position: absolute;
-  left: 10vh; /* Adjust the position as needed */
-  transition: transform 0.3s ease-in-out;
-  border-radius: 4px;
+
+
+/* Add this style for the Shop link */
+.nav-links a[href="/shop"] {
+  position: relative;
+  display: flex;
+  align-items: center; /* Align the arrow vertically with the text */
+}
+
+.nav-links a[href="/shop"]::after {
   content: ''; /* Empty content, necessary for pseudo-elements */
-  background-image: url('../../assets/black_arrow_next.png'); /* Path to your arrow image */
-  background-size: contain; /* Adjust as needed */
-  width: 3.5vh; /* Adjust width as needed */
-  height: 3.5vh; /* Adjust height as needed */
-  display: inline-block;
+  background-image: url('../../assets/black_arrow_next.png');
+  background-size: contain;
+  width: 3vh; /* Adjust width as needed */
+  height: 3vh; /* Adjust height as needed */
+  // margin-right: -5px; /* Adjust the spacing between text and arrow */
+  transition: transform 0.3s ease-in-out;
 }
 
 /* Rotate the arrow on hover */
-.nav-links a[href="/shop"]:hover::before {
+.nav-links a[href="/shop"]:hover::after {
   transform: rotate(90deg);
   background-color: rgb(232, 214, 175);
   /* Blend mode to control how the color blends with the image */
   background-blend-mode: overlay;
 }
 
-.inner-nav-link {
-  display: block;
-}
+

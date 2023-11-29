@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-<div class="nav-links" [@inFromLeft] *ngIf="sharedService.navIsOpen" [ngClass]="{'show': sharedService.navIsOpen}">
+<!-- <div class="nav-links" [@inFromLeft] *ngIf="sharedService.navIsOpen" [ngClass]="{'show': sharedService.navIsOpen}">
   <a class="nav-link" href="/home">Home</a>
   <a class="nav-link"
    href="/shop"
@@ -15,4 +15,22 @@
   <a class="nav-link" href="/instagram">Instagram</a>
   <a class="nav-link" href="/facebook">Facebook</a>
   <a class="nav-link" href="/contact">Contact</a>
+</div> -->
+
+<div class="nav-links" [@inFromLeft] *ngIf="sharedService.navIsOpen" [ngClass]="{'show': sharedService.navIsOpen}">
+  <a class="nav-link" href="/home">Home</a>
+  <div class="shop-link" (mouseover)="showDropdown()" (mouseleave)="hideDropdown()">
+    <a href="/shop">Shop</a>
+    <div class="arrow"></div>
+    <div class="dropdown-content" *ngIf="isMouseOver">
+      <a class="inner-nav-link" href="shop/{{category.id}}" *ngFor="let category of squareCategories">{{ category.category_data.name }}</a>
+    </div>
+  </div>
+  <a class="nav-link" href="/about">About</a>
+  <a class="nav-link" href="/blownglass">Blown Glass</a>
+  <a class="nav-link" href="/lampwork">Lamp Work</a>
+  <a class="nav-link" href="/instagram">Instagram</a>
+  <a class="nav-link" href="/facebook">Facebook</a>
+  <a class="nav-link" href="/contact">Contact</a>
 </div>
+
