@@ -250,3 +250,17 @@ button {
 button:hover {
   border: 2px solid #000;
 }
+
+.choose-amount {
+  display: flex;
+  align-items: center;
+}
+
+.amount {
+  margin-bottom: 1vh;
+}
+
+.display-price {
+  margin-bottom: 1vh
+}
+
