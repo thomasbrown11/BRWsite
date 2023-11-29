@@ -3,8 +3,8 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  height: 200vh;
-  gap: 25px;
+  height: 100vh;
+  // gap: 25px;
   position: relative;
 }
 
@@ -21,6 +21,29 @@
     width: 100%; /* Make them take full width */
     margin: 0; /* Remove left and right margins */
   }
+
+  .enlarged-title {
+    left: 50%;
+  }
+
+  /* Center items in the enlarged-text-container */
+  .enlarged-text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .enlarged-title,
+  .enlarged-caption,
+  hr,
+  .center,
+  .contact-button,
+  h4,
+  h5,
+  h6 {
+    width: 100%; /* Make them take full width */
+  }
 }
 
 .enlarged-image-container {
@@ -28,8 +51,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  // margin-left: 15px;
-  margin-right: 15px;
+  // margin-left: 20px;
+  margin-right: 1vh;
 }
 
 .enlarged-image img {
