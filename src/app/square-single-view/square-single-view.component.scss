@@ -57,15 +57,25 @@
 }
 
 .enlarged-image img {
-  max-width: 600px; /* Set a fixed width */
-  max-height: 600px; /* Limit the height to a maximum of 500px */
+  // max-width: 600px; /* Set a fixed width */
+  // max-height: 600px; /* Limit the height to a maximum of 500px */
+  max-width: 75vh;
+  max-height: 75vh;
   padding-top: 20px;
   // padding-left: 20px;
   padding-bottom: 20px;
   text-align: center;
   // margin-left: 25px;
   align-items: center;
+  margin: 0 auto;
 }
+
+// .enlarged-image img {
+//   max-width: 75vh;
+//   max-height: 75vh;
+//   padding: 20px;
+//   text-align: center;
+// }
 
 /* Position the previous button on the left */
 button.previous {
@@ -100,6 +110,47 @@ button.next:hover {
   border: 1px solid #000;
   cursor: pointer;
 }
+
+/* Position the previous button on the left */
+// button.previous-image {
+//   position: absolute;
+//   left: 0;
+//   top: 50%;
+//   transform: translateY(-50%);
+//   background: url('../../assets/black_arrow_before.png') no-repeat;
+//   background-size: contain;
+//   text-indent: -9999px;
+//   border: 0;
+//   height: 25px;
+//   width: 25px;
+// }
+
+// /* Position the next button on the right */
+// button.next-image {
+//   position: absolute;
+//   right: 0;
+//   top: 50%;
+//   transform: translateY(-50%);
+//   background: url('../../assets/black_arrow_next.png') no-repeat;
+//   background-size: contain;
+//   text-indent: -9999px;
+//   border: 0;
+//   height: 25px;
+//   width: 25px;
+// }
+
+// /* Center the previous and next buttons vertically */
+// button.previous-image,
+// button.next-image {
+//   display: flex;
+//   align-items: center;
+// }
+
+// button.previous-image:hover,
+// button.next-image:hover {
+//   border: 1px solid #000;
+//   cursor: pointer;
+// }
 
 //bubbles for under images gallery
 
@@ -292,10 +343,10 @@ button:hover {
 }
 
 .amount {
-  margin-bottom: 1vh;
+  // margin-bottom: 1vh;
 }
 
 .display-price {
-  margin-bottom: 1vh
+  // margin-bottom: 1vh
 }
 

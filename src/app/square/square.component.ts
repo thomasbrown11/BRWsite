@@ -14,6 +14,8 @@ export class SquareComponent implements OnInit {
   saleItems: any[] = []; //pulls square cache or api response and populates all items filtered by category id
   imageMap: any = {}; //imageMap contains urls with keys equal to item id
 
+  placeholderImage: any = '../../assets/image-placeholder.png';
+
   itemEnlarged: any; //controls single item view
   currentImage: any = {};  //current image shown in enlarged image view
   currentImageIndex: number = 0; //used to toggle via item_data.image_ids array
@@ -43,8 +45,8 @@ export class SquareComponent implements OnInit {
 
     this.fetchCatalogData();
 
-    console.log(this.categoryName);
-    console.log(this.saleItems);
+    // console.log(this.categoryName);
+    // console.log(this.saleItems);
 
   }
 
@@ -56,12 +58,14 @@ export class SquareComponent implements OnInit {
       if (matchedCategory) {
         this.categoryName = matchedCategory.category_data.name;
 
-        // Filter items based on category
         this.saleItems = data.items.filter((item: any) => item.item_data.category_id === this.id);
       } else {
         this.categoryName = 'Shop'; // Display 'Shop' if no category selected
         this.saleItems = data.items;
       }
+
+      console.log(`categoryName populated with ${this.categoryName}`);
+      console.log(`saleItems populated with ${this.saleItems}`);
 
       this.squareService.getImages().subscribe(data => {
         this.imageMap = data;
@@ -115,7 +119,15 @@ export class SquareComponent implements OnInit {
         this.currentImageIndex = 0; //clear out any toggled index values
       } else {
         this.itemEnlarged = item; //update current single item.. triggers ngIf
-        this.currentImage = this.imageMap[this.itemEnlarged.item_data.image_ids[0]]; //initiate viewable image in item as first image id in array
+
+        //testing
+        if (item.item_data.image_ids){
+          this.currentImage = this.imageMap[this.itemEnlarged.item_data.image_ids[0]];
+        } else {
+          this.currentImage = this.placeholderImage;
+        }
+        // this.currentImage = this.imageMap[this.itemEnlarged.item_data.image_ids[0]]; //initiate viewable image in item as first image id in array
+
         console.log(`itemEnlarged toggled... instantiating current image as ${this.currentImage}.. index is ${this.currentImageIndex}`)
       }
       console.log('Image enlarged:', this.itemEnlarged);

@@ -4,15 +4,17 @@
     <div class="enlarged-image-container">
 
       <!-- <div clas="horizontal-align"> -->
-      <div [hidden]="(currentImageIndex<=0)" class="previous">
+      <div [hidden]="(currentImageIndex<=0)" class="previous-image">
         <button (click)="currentImageIndex = currentImageIndex - 1; chooseImage(itemEnlarged.item_data.image_ids[currentImageIndex]); $event.stopPropagation(); selectBubble(currentImageIndex)"class="previous">Previous</button>
       </div>
 
-      <a [href]="currentImage" target="_blank" class="enlarged-image">
-        <img [src]="currentImage" alt="{{ itemEnlarged.item_data.caption }}" title="{{ itemEnlarged.item_data.caption }}">
-      </a>
+      <div class="enlarged-image">
+        <a [href]="currentImage" target="_blank">
+          <img [src]="currentImage" alt="{{ itemEnlarged.item_data.caption }}" title="{{ itemEnlarged.item_data.caption }}">
+        </a>
+      </div>
 
-      <div [hidden]="currentImageIndex >= itemEnlarged.item_data.image_ids.length - 1" class="next">
+      <div [hidden]="currentImageIndex >= itemEnlarged.item_data.image_ids.length - 1" class="next-image">
         <button (click)="currentImageIndex = currentImageIndex + 1; chooseImage(itemEnlarged.item_data.image_ids[currentImageIndex]); $event.stopPropagation(); ; selectBubble(currentImageIndex)" class="next">Next</button>
       </div>
       <!-- </div> -->

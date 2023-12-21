@@ -16,7 +16,8 @@
   <div class='image-wrapper' *ngFor="let item of saleItems" (click)="toggleImageEnlarged(item)">
     <div class="image-cover">
       <a href="item/{{item.id}}">
-        <img class='image' [src]="imageMap[item.item_data.image_ids[0]]" alt="item.item_data.name" [class.out-of-stock]="isRegularVariantOutOfStock(item)">
+        <img *ngIf="item.item_data.image_ids" class='image' [src]="imageMap[item.item_data.image_ids[0]]" alt="item.item_data.name" [class.out-of-stock]="isRegularVariantOutOfStock(item)">
+        <img *ngIf="!item.item_data.image_ids" class='image' [src]="this.placeholderImage" alt="item.item_data.name" [class.out-of-stock]="isRegularVariantOutOfStock(item)">
       </a>
     </div>
     <p class="warning" *ngIf="isRegularVariantOutOfStock(item)">Out of Stock</p>
