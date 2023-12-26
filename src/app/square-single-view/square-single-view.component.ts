@@ -64,6 +64,8 @@ export class SquareSingleViewComponent implements OnInit {
     if(this.inStock) {
       this.getStockCount(this.inStockItems);
     }
+
+    console.log(`in stock?: ${this.inStock}`)
   }
 
 
@@ -84,7 +86,12 @@ export class SquareSingleViewComponent implements OnInit {
         //populate local array with the image_ids array from api response
         // this.itemImageArray = this.itemEnlarged.item_data.image_ids;
         // this.currentImage = this.imageMap[this.itemImageArray[0]]; //MAY NOT NEED THIS IF YOU CAN MANIPULATE ARRAY FROM ITEMENLARGED INSTEAD
-        this.currentImage = this.imageMap[this.itemEnlarged.item_data.image_ids[0]]; //initiate viewable image in item as first image id in array
+
+        //TESTING
+        if (this.itemEnlarged.item_data.image_ids) {
+          this.currentImage = this.imageMap[this.itemEnlarged.item_data.image_ids[0]];
+        }
+        // this.currentImage = this.imageMap[this.itemEnlarged.item_data.image_ids[0]]; //initiate viewable image in item as first image id in array
         this.currentColorId = this.itemEnlarged.item_data.variations[0].id;
       }
     });
@@ -105,6 +112,7 @@ export class SquareSingleViewComponent implements OnInit {
      if (this.itemEnlarged.item_data.variations[0].item_variation_data.name === 'Regular') {
       // this.inStock = true;
       this.inStockItems.push(this.itemEnlarged.item_data.variations[0].id);
+      console.log(`this.inStockItems ${this.inStockItems} verifies Regular name was recognized`)
       return
     }
 
@@ -149,7 +157,7 @@ export class SquareSingleViewComponent implements OnInit {
         // Store the response in the stockMap
         this.stockMap = stockMap;
         // Now you can work with the stockMap as needed
-        console.log(this.stockMap);
+        console.log(`in getStockCount method: this.stockMap: ${this.stockMap}`);
       },
       (error) => {
         // Handle any errors here
@@ -229,12 +237,18 @@ export class SquareSingleViewComponent implements OnInit {
   addToCart(): void {
 
     //get relevant id to stock count.. if no colors then variant 0
+    let imageLink: string = '';
+    if (this.imageMap[this.itemEnlarged.item_data.image_ids]) {
+      imageLink = this.imageMap[this.itemEnlarged.item_data.image_ids[0]];
+    }
 
     const cartItem: any = {
       name: this.itemEnlarged.item_data.name,
       price: this.itemEnlarged.item_data.variations[this.currentColorIndex].item_variation_data.price_money.amount,
       color: this.itemEnlarged.item_data.variations[this.currentColorIndex].item_variation_data.name,
-      imageUrl: this.imageMap[this.itemEnlarged.item_data.image_ids[0]],
+      // imageUrl: this.imageMap[this.itemEnlarged.item_data.image_ids[0]],
+      //TESTING
+      imageUrl: imageLink,
       id: this.itemEnlarged.id,
       variant: this.currentColorId,
       quantity: this.quantity,

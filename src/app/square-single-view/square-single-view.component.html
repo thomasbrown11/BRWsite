@@ -1,6 +1,6 @@
 <div class="single-view" *ngIf="itemEnlarged">
 
-  <div class="image-and-selectors">
+  <div class="image-and-selectors" *ngIf="currentImage">
     <div class="enlarged-image-container">
 
       <!-- <div clas="horizontal-align"> -->
@@ -14,7 +14,7 @@
         </a>
       </div>
 
-      <div [hidden]="currentImageIndex >= itemEnlarged.item_data.image_ids.length - 1" class="next-image">
+      <div [hidden]="itemEnlarged.item_data.image_ids && currentImageIndex >= itemEnlarged.item_data.image_ids.length - 1" class="next-image">
         <button (click)="currentImageIndex = currentImageIndex + 1; chooseImage(itemEnlarged.item_data.image_ids[currentImageIndex]); $event.stopPropagation(); ; selectBubble(currentImageIndex)" class="next">Next</button>
       </div>
       <!-- </div> -->
