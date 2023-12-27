@@ -3,7 +3,8 @@
 <div *ngIf="!cartEmpty" class="cart-container">
   <div *ngFor="let item of cart" class="cart-item">
     <a [href]="'/item/' + item.id" class="item-image-link">
-      <img [src]="item.imageUrl" alt="{{ item.name }}" title="{{ item.name }}">
+      <img *ngIf="item.imageUrl" [src]="item.imageUrl" alt="{{ item.name }}" title="{{ item.name }}">
+      <img *ngIf="!item.imageUrl" [src]="placeholderImage" alt="no image available" title="no image available">
     </a>
     <div class="item-details">
       <h3>{{ item.name }}</h3>

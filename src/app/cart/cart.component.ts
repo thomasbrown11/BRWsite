@@ -12,6 +12,7 @@ export class CartComponent implements OnInit {
   cartEmpty : boolean = false;
   quantity: number = 1;
   subTotal: number = 0;
+  placeholderImage: any = '../../assets/image-placeholder.png';
 
   constructor(private cacheService: CacheService) {}
 
