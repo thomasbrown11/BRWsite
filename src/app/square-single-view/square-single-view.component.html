@@ -1,6 +1,6 @@
 <div class="single-view" *ngIf="itemEnlarged">
 
-  <div class="image-and-selectors" *ngIf="currentImage">
+  <div class="image-and-selectors" *ngIf="currentImage !== placeholderImage">
     <div class="enlarged-image-container">
 
       <!-- <div clas="horizontal-align"> -->
@@ -23,6 +23,12 @@
 
     <div class="bubble-selectors">
       <div *ngFor="let image of itemEnlarged.item_data.image_ids; let i = index" class="bubble-selector" [class.selected]="isBubbleSelected && i === currentImageIndex" (click)="chooseImage(image); selectBubble(i)"></div>
+    </div>
+  </div>
+
+  <div class="image-and-selectors" *ngIf="currentImage === placeholderImage">
+    <div class="enlarged-image">
+      <img [src]="placeholderImage" alt="no image available" title="no image available">
     </div>
   </div>
 

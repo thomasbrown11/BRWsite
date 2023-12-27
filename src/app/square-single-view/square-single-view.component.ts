@@ -14,6 +14,9 @@ export class SquareSingleViewComponent implements OnInit {
   imageMap: any = {}; //imageMap contains urls with keys equal to item id
   itemEnlarged: any; //controls single item view
   currentImage: any = {};  //current image shown in enlarged image view
+
+  placeholderImage: any = '../../assets/image-placeholder.png';
+
   currentImageIndex: number = 0; //used to toggle via item_data.image_ids array
   isBubbleSelected: boolean = false; // handle styling on bubble selected
 
@@ -66,6 +69,7 @@ export class SquareSingleViewComponent implements OnInit {
     }
 
     console.log(`in stock?: ${this.inStock}`)
+    console.log(`current image is: ${this.currentImage}`)
   }
 
 
@@ -90,6 +94,8 @@ export class SquareSingleViewComponent implements OnInit {
         //TESTING
         if (this.itemEnlarged.item_data.image_ids) {
           this.currentImage = this.imageMap[this.itemEnlarged.item_data.image_ids[0]];
+        } else {
+          this.currentImage = this.placeholderImage;
         }
         // this.currentImage = this.imageMap[this.itemEnlarged.item_data.image_ids[0]]; //initiate viewable image in item as first image id in array
         this.currentColorId = this.itemEnlarged.item_data.variations[0].id;
