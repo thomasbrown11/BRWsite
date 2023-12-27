@@ -66,8 +66,16 @@ export class CartComponent implements OnInit {
     }
   }
 
-  removeFromCart(index: number): void {
+  removeFromCart(item: any, index: number): void {
+    //remove item from cart
     this.cart.splice(index, 1);
+    //if cart empty trigger empty cart view
+    if (this.cart.length < 1) {
+      this.cartEmpty = true;
+    }
+    //update subtotal to reflect removed item
+    this.subTotal -= (item.price * item.quantity);
+    //update cache
     this.cacheService.updateCart(this.cart);
   }
 }
