@@ -26,10 +26,22 @@
   <h2 class="sub-total">Sub Total: {{formatPrice(subTotal)}}</h2>
 
   <a [href]="'/shop'" class="nav-button">Back to Shop</a>
-  <button class="nav-button">Proceed to Checkout</button>
+  <button class="nav-button" (click)="generateCheckoutLink()">Proceed to Checkout</button>
 </div>
 
 <div *ngIf="cartEmpty">
   <p>Your Cart is Empty</p>
   <a [href]="'/shop'" class="nav-button">Shop now</a>
+</div>
+
+<div *ngIf="checkingOut">
+  <h1>Thank you for shopping at Else Werner Glass!</h1>
+  <p>Before you proceed to checkout, please review the details below:</p>
+  <ul>
+    <li>Clicking below will securely redirect you to the Square checkout page.</li>
+    <li>Ensure that your items and quantities are accurate.</li>
+    <li>Please note: The Subtotal is an estimate only. Shipping and tax will be calculated on the Square checkout page.</li>
+  </ul>
+  <button class="nav-button">Go To Square</button>
+  <button class="nav-button" (click)="checkingOut = false">Back to Cart</button>
 </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CacheService } from '../cache.service';
+import { SquareService } from '../square/square.service';
 
 @Component({
   selector: 'app-cart',
@@ -13,8 +14,9 @@ export class CartComponent implements OnInit {
   quantity: number = 1;
   subTotal: number = 0;
   placeholderImage: any = '../../assets/image-placeholder.png';
+  checkingOut: boolean = false;
 
-  constructor(private cacheService: CacheService) {}
+  constructor(private cacheService: CacheService, private squareService: SquareService) {}
 
   ngOnInit(): void {
     // Fetch the cart data when the component initializes
@@ -44,6 +46,10 @@ export class CartComponent implements OnInit {
       if (item.quantity < item.limit) {
         item.quantity = item.quantity + 1;
         this.subTotal += item.price;
+        //handle if checkout open.. checkout link will be invalid if cart altered
+        if (this.checkingOut) {
+         this.checkingOut = false;
+        }
         //push change to cached Cart
         this.cacheService.updateCart(this.cart);
       }
@@ -51,6 +57,10 @@ export class CartComponent implements OnInit {
       //incrmement as there is no limit
       item.quantity = item.quantity + 1;
       this.subTotal += item.price;
+      //handle if checkout open.. checkout link will be invalid if cart altered
+      if (this.checkingOut) {
+       this.checkingOut = false;
+      }
       //push change to cached Cart
       this.cacheService.updateCart(this.cart);
     }
@@ -61,6 +71,10 @@ export class CartComponent implements OnInit {
     if (item.quantity > 1) {
       item.quantity = item.quantity - 1;
       this.subTotal -= item.price;
+      //handle if checkout open.. checkout link will be invalid if cart altered
+      if (this.checkingOut) {
+        this.checkingOut = false;
+      }
       //push change to cached Cart
       this.cacheService.updateCart(this.cart);
     }
@@ -75,7 +89,16 @@ export class CartComponent implements OnInit {
     }
     //update subtotal to reflect removed item
     this.subTotal -= (item.price * item.quantity);
+    //handle if checkout open.. checkout link will be invalid if cart altered
+    if (this.checkingOut) {
+      this.checkingOut = false;
+    }
     //update cache
     this.cacheService.updateCart(this.cart);
+  }
+
+  generateCheckoutLink(): void {
+    console.log('checkout test');
+    this.checkingOut = true;
   }
 }
