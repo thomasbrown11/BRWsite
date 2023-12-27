@@ -65,4 +65,9 @@ export class CartComponent implements OnInit {
       this.cacheService.updateCart(this.cart);
     }
   }
+
+  removeFromCart(index: number): void {
+    this.cart.splice(index, 1);
+    this.cacheService.updateCart(this.cart);
+  }
 }

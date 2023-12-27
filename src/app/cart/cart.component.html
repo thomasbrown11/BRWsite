@@ -1,7 +1,7 @@
 <h1>Checkout</h1>
 
 <div *ngIf="!cartEmpty" class="cart-container">
-  <div *ngFor="let item of cart" class="cart-item">
+  <div *ngFor="let item of cart; let i = index" class="cart-item">
     <a [href]="'/item/' + item.id" class="item-image-link">
       <img *ngIf="item.imageUrl" [src]="item.imageUrl" alt="{{ item.name }}" title="{{ item.name }}">
       <img *ngIf="!item.imageUrl" [src]="placeholderImage" alt="no image available" title="no image available">
@@ -16,6 +16,9 @@
       <div class="quantity">Quantity: {{ item.quantity }}</div>
       <div class="next">
         <button (click)="incrementQuantity(item)" class="next">Next</button>
+      </div>
+      <div class="remove">
+        <button (click)="removeFromCart(i)" class="remove">X</button>
       </div>
     </div>
   </div>
