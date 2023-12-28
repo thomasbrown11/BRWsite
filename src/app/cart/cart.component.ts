@@ -15,6 +15,8 @@ export class CartComponent implements OnInit {
   subTotal: number = 0;
   placeholderImage: any = '../../assets/image-placeholder.png';
   checkingOut: boolean = false;
+  loading: boolean = false;
+  checkoutUrl: string = '';
 
   constructor(private cacheService: CacheService, private squareService: SquareService) {}
 
@@ -99,6 +101,45 @@ export class CartComponent implements OnInit {
 
   generateCheckoutLink(): void {
     console.log('checkout test');
+    //activate checkout dialogue
     this.checkingOut = true;
+    // Set loading to true while waiting for the response
+    this.loading = true;
+    //format cart to pass for link generation
+    const lineItems = this.cart.map(item => {
+      return {
+        quantity: item.quantity.toString(),
+        catalog_object_id: item.variant,
+      };
+    });
+    console.log(`lineItems: ${lineItems}`) //testing
+
+    // Call the service method and subscribe to the observable
+    this.squareService.generateLink(JSON.stringify(lineItems))
+    .subscribe(
+      (response) => {
+        // Handle the response as needed
+        console.log('Generated payment link:', response);
+
+        // Assign the URL to the class-level variable
+        if (response?.payment_link?.url) {
+          this.checkoutUrl = response.payment_link.url;
+        }
+        // Set loading to false once the response is received
+        this.loading = false;
+      },
+      (error) => {
+        console.error('Error generating payment link', error);
+
+        // Log specific error details from the Square API response
+        if (error.response && error.response.data && error.response.data.errors) {
+          console.error('Square API errors:', error.response.data.errors);
+        }
+
+        // Set loading to false once error thrown
+        this.loading = false;
+      }
+    );
   }
+
 }

@@ -35,6 +35,9 @@
 </div>
 
 <div *ngIf="checkingOut">
+
+  <div class="loader" *ngIf="loading"></div>
+
   <h1>Thank you for shopping at Else Werner Glass!</h1>
   <p>Before you proceed to checkout, please review the details below:</p>
   <ul>
@@ -44,4 +47,6 @@
   </ul>
   <button class="nav-button">Go To Square</button>
   <button class="nav-button" (click)="checkingOut = false">Back to Cart</button>
+
+  <a [href]="checkoutUrl" target="_blank" class="nav-button">Go To Square</a>
 </div>

@@ -13,6 +13,7 @@ export class SquareService {
   private apiUrl = 'http://localhost:3000/api/square';
   private imageUrl = 'http://localhost:3000/api/square_images';
   private stockUrl = 'http://localhost:3000/api/square_item_stock';
+  private checkoutUrl = 'http://localhost:3000/api/checkout';
 
 
   constructor(private http: HttpClient, private cacheService: CacheService) { }
@@ -118,6 +119,12 @@ export class SquareService {
   getInventory(ids: string[]): Observable<any> {
     const requestData = { catalogObjectIds: ids };
     return this.http.post<any>(this.stockUrl, requestData);
+  }
+
+  //generate square checkout link
+  generateLink(items: string): Observable<any> {
+    const requestData = { lineItems: items};
+    return this.http.post<any>(this.checkoutUrl, requestData);
   }
 
 }
