@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { shareReplay, tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { shareReplay, tap, catchError } from 'rxjs/operators';
 
 import { CacheService } from '../cache.service';
 
@@ -103,13 +103,29 @@ export class SquareService {
     console.log('square images not cached.. caching')
     // If not cached or expired, make the HTTP request and cache the response
     return this.http.get<any>(this.imageUrl).pipe(
+      catchError(error => {
+        // Handle the error here, you can log it or provide a default value
+        console.error('Error fetching square images:', error);
+        // Return an observable with an empty image object
+        return of({});
+      }),
       shareReplay(1), // Cache the most recent value and share it with subscribers
       tap(data => {
-          // Separate objects into categories and items arrays
+          // // Separate objects into categories and items arrays
           const images: any = {};
-          data.objects.forEach((object: any) => {
-            images[object.id] = object.image_data.url;
-          });
+          // data.objects.forEach((object: any) => {
+          //   images[object.id] = object.image_data.url;
+          // });
+          if (data?.objects?.length > 0) {
+            // Separate objects into categories and items arrays
+            data.objects.forEach((object: any) => {
+              images[object.id] = object.image_data.url;
+            });
+            // Cache the separated data using your CacheService
+            // this.cacheService.cacheSquareImage(images);
+          } else {
+            console.warn('No image data returned or empty array');
+          }
         // Cache the separated data using your CacheService
         this.cacheService.cacheSquareImage(images);
       })
