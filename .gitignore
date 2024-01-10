@@ -40,3 +40,8 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+
+# Ignore specific image files
+src/assets/Spotted Green 2.JPG
+src/assets/Spotted Green.JPG
