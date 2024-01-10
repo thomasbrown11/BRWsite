@@ -3,24 +3,32 @@
 
     <!-- <div clas="horizontal-align"> -->
     <div [hidden]="(currentImageIndex<=0)" class="previous-image">
-      <button (click)="currentImageIndex = currentImageIndex - 1; chooseImage(itemEnlarged.item_data.image_ids[currentImageIndex]); $event.stopPropagation(); selectBubble(currentImageIndex)"class="previous">Previous</button>
+      <button (click)="currentImageIndex = currentImageIndex - 1; chooseCarouselItem(currentImageIndex); $event.stopPropagation(); selectBubble(currentImageIndex)"class="previous">Previous</button>
     </div>
 
     <div class="enlarged-image">
-      <a [href]="currentImage" target="_blank">
-        <img [src]="currentImage" alt="{{ itemEnlarged.item_data.caption }}" title="{{ itemEnlarged.item_data.caption }}">
+      <a [href]="currentLink" target="_blank">
+        <img [src]="currentImage" alt="currentImageIndex" title="currentImageIndex">
       </a>
     </div>
 
-    <div [hidden]="itemEnlarged.item_data.image_ids && currentImageIndex >= itemEnlarged.item_data.image_ids.length - 1" class="next-image">
-      <button (click)="currentImageIndex = currentImageIndex + 1; chooseImage(itemEnlarged.item_data.image_ids[currentImageIndex]); $event.stopPropagation(); ; selectBubble(currentImageIndex)" class="next">Next</button>
+    <!-- <div *ngIf = "currentLink">
+      <a [href]="currentLink"></a>
+    </div>
+
+    <div *ngIf = "currentDescription">
+      <p>{{currentDescription}}</p>
+    </div> -->
+
+    <div [hidden]="carousel && currentImageIndex >= carousel.length - 1" class="next-image">
+      <button (click)="currentImageIndex = currentImageIndex + 1; chooseCarouselItem(currentImageIndex); $event.stopPropagation(); ; selectBubble(currentImageIndex)" class="next">Next</button>
     </div>
     <!-- </div> -->
 
   </div>
 
   <div class="bubble-selectors">
-    <div *ngFor="let image of itemEnlarged.item_data.image_ids; let i = index" class="bubble-selector" [class.selected]="isBubbleSelected && i === currentImageIndex" (click)="chooseImage(image); selectBubble(i)"></div>
+    <div *ngFor="let carouselItem of carousel; let i = index" class="bubble-selector" [class.selected]="isBubbleSelected && i === currentImageIndex" (click)="chooseCarouselItem(i); selectBubble(i)"></div>
   </div>
 </div>
 
