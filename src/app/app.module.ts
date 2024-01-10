@@ -37,6 +37,7 @@ import { LoadingComponent } from './loading/loading.component';
 import { SquareSingleViewComponent } from './square-single-view/square-single-view.component';
 import { CartComponent } from './cart/cart.component';
 import { AttributionsComponent } from './attributions/attributions.component';
+import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { AttributionsComponent } from './attributions/attributions.component';
     SquareSingleViewComponent,
     CartComponent,
     AttributionsComponent,
+    CarouselComponent,
   ],
   imports: [
     BrowserModule,
