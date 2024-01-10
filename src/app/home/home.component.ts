@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ContactService } from '../contact.service';
 
 import { SquareService } from '../square/square.service';
+import {CarouselComponent} from '../carousel/carousel.component'
 
 @Component({
   selector: 'app-home',

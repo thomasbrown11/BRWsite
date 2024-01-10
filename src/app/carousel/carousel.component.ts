@@ -30,7 +30,23 @@ export class CarouselComponent implements OnInit {
 
   ngOnInit(): void {
     //populate carousel here:
-    // this.carousel = [];
+    this.carousel = [
+      {
+        imageUrl: '../../assets/Spotted Green 2.JPG',
+        linkUrl: 'http://localhost:4200/shop',
+        text: 'hello 1'
+      },
+      {
+        imageUrl: '../../assets/Spotted Green.JPG',
+        linkUrl: 'http://localhost:4200/facebook',
+        text: null
+      },
+      {
+        imageUrl: '../../assets/Spotted Green 2.JPG',
+        linkUrl: null,
+        text: 'hello 3'
+      },
+    ];
 
     //populate carousel with first item
     this.chooseCarouselItem(this.currentImageIndex);
@@ -43,20 +59,24 @@ export class CarouselComponent implements OnInit {
     if (this.carousel) {
       //populate image if image present
       if (this.carousel[index].imageUrl) {
-        this.currentImage = this.carousel[this.currentImageIndex].imageUrl;
+        this.currentImage = this.carousel[index].imageUrl;
       } else {
         //is this necessary? Might be better to not populate at all
         this.currentImage = this.placeholderImage;
       }
 
       //populate button link if present
-      if (this.carousel[this.currentImageIndex].linkUrl) {
-        this.currentLink = this.carousel[this.currentImageIndex].linkUrl;
+      if (this.carousel[index].linkUrl) {
+        this.currentLink = this.carousel[index].linkUrl;
+      } else {
+        this.currentLink = null;
       }
 
       //populate description if present
-      if (this.carousel[this.currentImageIndex].text) {
-        this.currentDescription = this.carousel[this.currentImageIndex].text;
+      if (this.carousel[index].text) {
+        this.currentDescription = this.carousel[index].text;
+      } else {
+        this.currentDescription = null;
       }
     }
   }
