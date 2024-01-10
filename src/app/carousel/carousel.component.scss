@@ -1,0 +1,151 @@
+/* Add a media query to handle smaller screens */
+@media (max-width: 1100px) {
+  .single-view {
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    height: 135vh;
+  }
+
+  .enlarged-image-container,
+  .bubble-selectors,
+  .enlarged-text-container {
+    width: 100%; /* Make them take full width */
+    margin: 0; /* Remove left and right margins */
+  }
+
+  .enlarged-title {
+    left: 50%;
+  }
+
+  /* Center items in the enlarged-text-container */
+  .enlarged-text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .enlarged-title,
+  .enlarged-caption,
+  hr,
+  .center,
+  .contact-button,
+  h4,
+  h5,
+  h6 {
+    width: 100%; /* Make them take full width */
+  }
+}
+
+.enlarged-image-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // margin-left: 20px;
+  margin-right: 1vh;
+}
+
+.enlarged-image img {
+  // max-width: 600px; /* Set a fixed width */
+  // max-height: 600px; /* Limit the height to a maximum of 500px */
+  max-width: 75vh;
+  max-height: 75vh;
+  padding-top: 20px;
+  // padding-left: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+  // margin-left: 25px;
+  align-items: center;
+  margin: 0 auto;
+}
+
+/* Position the previous button on the left */
+button.previous {
+  // position: absolute;
+  order: 1;
+  background: url('../../assets/black_arrow_before.png') no-repeat;
+  background-size: contain;
+  text-indent: -9999px; //removes text
+  border: 0;
+  height: 25px;
+  width: 25px;
+  display: flex;
+  align-items: center;
+}
+
+/* Position the next button on the right */
+button.next {
+  // position: absolute;
+  order: 3;
+  background: url('../../assets/black_arrow_next.png') no-repeat;
+  background-size: contain;
+  text-indent: -9999px; //removes text
+  border: 0;
+  height: 25px;
+  width: 25px;
+  display: flex;
+  align-items: center;
+}
+
+button.previous:hover,
+button.next:hover {
+  border: 1px solid #000;
+  cursor: pointer;
+}
+
+.bubble-selectors {
+  // display: flex;
+  // justify-content: center;
+
+  display: flex;
+  flex-direction: row; /* Arrange items vertically */
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px; /* Adjust the distance from the enlarged-image-container */
+}
+
+.bubble-selector {
+  width: 20px; /* Adjust the size as needed */
+  height: 20px; /* Adjust the size as needed */
+  border: 2px solid #000; /* Set outline color */
+  border-radius: 50%; /* Create a circle */
+  margin: 0 10px; /* Adjust spacing as needed */
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+.bubble-selector:hover {
+  background-color: black;
+  border-color: black; /* Change the outline color on hover */
+  transform: scale(1.1); /* Scale up the bubble on hover */
+  transition: border-color 0.3s, transform 0.3s; /* Add transition for smooth effect */
+}
+
+.bubble-selector.selected {
+  &::before {
+    content: ''; /* Required for pseudo-elements */
+    width: 15px; /* Adjust the size of the smaller circle */
+    height: 15px; /* Adjust the size of the smaller circle */
+    background-color: #000; /* Color of the smaller circle */
+    border-radius: 50%; /* Create the smaller circle */
+    position: absolute;
+    top: 50%; /* Position vertically in the middle */
+    left: 50%; /* Position horizontally in the middle */
+    transform: translate(-50%, -50%); /* Center the smaller circle */
+  }
+
+  /* Add a persistent inner circle using ::before pseudo-element */
+  &::before {
+    content: '';
+    width: 10px; /* Adjust the size of the inner circle */
+    height: 10px; /* Adjust the size of the inner circle */
+    background-color: #000; /* Color of the inner circle */
+    border-radius: 50%; /* Create the inner circle */
+    position: absolute;
+    top: 50%; /* Position vertically in the middle */
+    left: 50%; /* Position horizontally in the middle */
+    transform: translate(-50%, -50%); /* Center the inner circle */
+  }
+}
