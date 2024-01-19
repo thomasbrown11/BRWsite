@@ -38,31 +38,26 @@
 }
 
 .enlarged-image-container {
-  flex: 1;
+  flex-direction: column;
   display: flex;
   align-items: center;
   justify-content: center;
-  // margin-left: 20px;
   margin-right: 1vh;
+  position: relative;
 }
 
 .enlarged-image img {
-  // max-width: 600px; /* Set a fixed width */
-  // max-height: 600px; /* Limit the height to a maximum of 500px */
   max-width: 75vh;
   max-height: 75vh;
   padding-top: 20px;
-  // padding-left: 20px;
   padding-bottom: 20px;
   text-align: center;
-  // margin-left: 25px;
-  align-items: center;
   margin: 0 auto;
 }
 
 /* Position the previous button on the left */
+//may be able to delete entirely
 button.previous {
-  // position: absolute;
   order: 1;
   background: url('../../assets/black_arrow_before.png') no-repeat;
   background-size: contain;
@@ -75,8 +70,8 @@ button.previous {
 }
 
 /* Position the next button on the right */
+//may be able to delete entirely
 button.next {
-  // position: absolute;
   order: 3;
   background: url('../../assets/black_arrow_next.png') no-repeat;
   background-size: contain;
@@ -95,14 +90,13 @@ button.next:hover {
 }
 
 .bubble-selectors {
-  // display: flex;
-  // justify-content: center;
-
+  position: absolute;
   display: flex;
   flex-direction: row; /* Arrange items vertically */
   align-items: center;
   justify-content: center;
-  margin-top: 10px; /* Adjust the distance from the enlarged-image-container */
+  z-index: 2; /* Ensure the bubble-selectors appear on top of image */
+  bottom: 30px; /* push up to overlap image */
 }
 
 .bubble-selector {
@@ -148,4 +142,9 @@ button.next:hover {
     left: 50%; /* Position horizontally in the middle */
     transform: translate(-50%, -50%); /* Center the inner circle */
   }
+}
+
+.current-link {
+  position: absolute;
+  z-index: 2;
 }

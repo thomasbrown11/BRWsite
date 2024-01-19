@@ -1,29 +1,37 @@
 <div class="image-and-selectors" *ngIf="currentImage !== placeholderImage">
   <div class="enlarged-image-container">
-    <div [hidden]="(currentImageIndex<=0)" class="previous-image">
+    <!-- <div [hidden]="(currentImageIndex<=0)" class="previous-image">
       <button (click)="currentImageIndex = currentImageIndex - 1; chooseCarouselItem(currentImageIndex); $event.stopPropagation(); selectBubble(currentImageIndex)"class="previous">Previous</button>
-    </div>
+    </div> -->
 
     <div class="enlarged-image">
       <img [src]="currentImage" alt="currentImageIndex" title="currentImageIndex">
     </div>
 
-    <div [hidden]="carousel && currentImageIndex >= carousel.length - 1" class="next-image">
-      <button (click)="currentImageIndex = currentImageIndex + 1; chooseCarouselItem(currentImageIndex); $event.stopPropagation(); ; selectBubble(currentImageIndex)" class="next">Next</button>
+    <div *ngIf = "currentLink" class="current-link">
+      <a [href]="currentLink">Click Here</a>
     </div>
+
+    <div class="bubble-selectors">
+      <div *ngFor="let carouselItem of carousel; let i = index" class="bubble-selector" [class.selected]="isBubbleSelected && i === currentImageIndex" (click)="chooseCarouselItem(i); selectBubble(i)"></div>
+    </div>
+
+    <!-- <div [hidden]="carousel && currentImageIndex >= carousel.length - 1" class="next-image">
+      <button (click)="currentImageIndex = currentImageIndex + 1; chooseCarouselItem(currentImageIndex); $event.stopPropagation(); ; selectBubble(currentImageIndex)" class="next">Next</button>
+    </div> -->
   </div>
 
-  <div *ngIf = "currentLink">
+  <!-- <div *ngIf = "currentLink">
     <a [href]="currentLink">Click Here</a>
-  </div>
+  </div> -->
 
   <div *ngIf = "currentDescription">
     <p>{{currentDescription}}</p>
   </div>
 
-  <div class="bubble-selectors">
+  <!-- <div class="bubble-selectors">
     <div *ngFor="let carouselItem of carousel; let i = index" class="bubble-selector" [class.selected]="isBubbleSelected && i === currentImageIndex" (click)="chooseCarouselItem(i); selectBubble(i)"></div>
-  </div>
+  </div> -->
 </div>
 
 <div class="image-and-selectors" *ngIf="currentImage === placeholderImage">
