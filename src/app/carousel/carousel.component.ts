@@ -16,6 +16,7 @@ export class CarouselComponent implements OnInit {
 
 
   carousel: CarouselItem[] | null = null;
+  intervalId: any; //track carousel automation to start and stop
 
   placeholderImage: string = '../../assets/image-placeholder.png';
   currentImage: string | null = null;
@@ -25,6 +26,8 @@ export class CarouselComponent implements OnInit {
   isBubbleSelected: boolean = false; // handle styling on bubble selected
 
   imageMap: any = {}; //imageMap contains urls with keys equal to item id
+
+
 
   constructor () {}
 
@@ -57,20 +60,15 @@ export class CarouselComponent implements OnInit {
   }
 
   advanceCarousel(): void {
-    let index: number = 0;
-    setInterval(() => {
-      // this.chooseCarouselItem(index);
-
-      if (this.carousel && index === this.carousel.length -1) {
-        index = 0;
-      } else {
-        index ++; //advance index
+    let index: number = this.currentImageIndex;
+    this.intervalId = setInterval(() => {
+      if (this.carousel) {
+        index = (index + 1) % this.carousel?.length; //wrap to zero if exceeding carousel length
       }
-
       this.chooseCarouselItem(index);
       console.log(`current slide index ${index}`)
 
-    }, 5000); // milliseconds equals 5 seconds
+    }, 3000); // milliseconds equals 3 seconds
   }
 
   //change carousel item based on carousel index (use currentImageIndex as arg on init)
@@ -109,6 +107,7 @@ export class CarouselComponent implements OnInit {
 
    //handles events when bubble is clicked for image selection in single view
    selectBubble(index: number): void {
+    clearInterval(this.intervalId); //kill carousel automation on manual select
     this.currentImageIndex = index; // Update the selected index
     this.isBubbleSelected = true; // Enable the class on the selected bubble
   }
