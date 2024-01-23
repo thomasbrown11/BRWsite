@@ -48,9 +48,29 @@ export class CarouselComponent implements OnInit {
       },
     ];
 
-    //populate carousel with first item
+    //initiate carousel
     this.chooseCarouselItem(this.currentImageIndex);
 
+    //advance and loop carousel after init
+    this.advanceCarousel();
+
+  }
+
+  advanceCarousel(): void {
+    let index: number = 0;
+    setInterval(() => {
+      // this.chooseCarouselItem(index);
+
+      if (this.carousel && index === this.carousel.length -1) {
+        index = 0;
+      } else {
+        index ++; //advance index
+      }
+
+      this.chooseCarouselItem(index);
+      console.log(`current slide index ${index}`)
+
+    }, 5000); // milliseconds equals 5 seconds
   }
 
   //change carousel item based on carousel index (use currentImageIndex as arg on init)
